@@ -15,112 +15,53 @@
         </div>
 
         <div class="card-body">
-            <form method="POST">
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label for="frist_name">First Name</label>
-                        <input id="frist_name"
-                            type="text"
-                            class="form-control"
-                            name="frist_name"
-                            autofocus>
+            <form class="user" method="POST" action="{{route('registeruser')}}">
+                @csrf
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="First Name" name="name">
                     </div>
-                    <div class="form-group col-6">
-                        <label for="last_name">Last Name</label>
-                        <input id="last_name"
-                            type="text"
-                            class="form-control"
-                            name="last_name">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control form-control-user" id="exampleLastNim"
+                            placeholder="NIM" name="nis">
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email"
-                        type="email"
-                        class="form-control"
-                        name="email">
-                    <div class="invalid-feedback">
-                    </div>
+                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                        placeholder="Email Address" name="email">
                 </div>
-
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label for="password"
-                            class="d-block">Password</label>
-                        <input id="password"
-                            type="password"
-                            class="form-control pwstrength"
-                            data-indicator="pwindicator"
-                            name="password">
-                        <div id="pwindicator"
-                            class="pwindicator">
-                            <div class="bar"></div>
-                            <div class="label"></div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="password" class="form-control form-control-user"
+                            id="exampleInputPassword" placeholder="Password" name="password">
+                    </div>
+                        <div class="col-md-6">
+                            <input id="captcha" type="text" class="form-control form-control-user" placeholder="Enter Captcha" name="captcha">
                         </div>
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="password2"
-                            class="d-block">Password Confirmation</label>
-                        <input id="password2"
-                            type="password"
-                            class="form-control"
-                            name="password-confirm">
-                    </div>
                 </div>
 
-                <div class="form-divider">
-                    Your Home
-                </div>
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label>Country</label>
-                        <select class="form-control selectric">
-                            <option>Indonesia</option>
-                            <option>Palestine</option>
-                            <option>Syria</option>
-                            <option>Malaysia</option>
-                            <option>Thailand</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-6">
-                        <label>Province</label>
-                        <select class="form-control selectric">
-                            <option>West Java</option>
-                            <option>East Java</option>
-                        </select>
+                {{-- Recaptcha --}}
+               
+                <div class="form-group row">
+                    <label for="captcha" class="col-md-3 col-form-label">Captcha</label>
+                    <div class="col-md-6 captcha">
+                        <span>{!! captcha_img() !!}</span>
+                        <button type="button" class="btn btn-primary" class="reload" id="reload">
+                        &#x21bb;
+                        </button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label>City</label>
-                        <input type="text"
-                            class="form-control">
-                    </div>
-                    <div class="form-group col-6">
-                        <label>Postal Code</label>
-                        <input type="text"
-                            class="form-control">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox"
-                            name="agree"
-                            class="custom-control-input"
-                            id="agree">
-                        <label class="custom-control-label"
-                            for="agree">I agree with the terms and conditions</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit"
-                        class="btn btn-primary btn-lg btn-block">
-                        Register
-                    </button>
-                </div>
+                    
+                <button class="btn btn-primary btn-user btn-block">
+                    Register Account
+                </button>
+                {{-- <a href="index.html" class="btn btn-google btn-user btn-block">
+                    <i class="fab fa-google fa-fw"></i> Register with Google
+                </a>
+                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                </a> --}}
             </form>
         </div>
     </div>
@@ -133,4 +74,6 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/auth-register.js') }}"></script>
+
+    
 @endpush

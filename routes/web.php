@@ -1,6 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ScanController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\WebcamController;
+use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\PeminjamController;
+use App\Http\Controllers\BaranguserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +22,77 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/dashboard-general-dashboard');
+// Route::redirect('/', '/dashboard-general-dashboard');
+
+Route::redirect('/', '/auth-login2');
+
+//home
+// Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->name('dashboard-general-dashboard');
+
+// Recaptcha
+Route::get('/reload-captcha', [LoginController::class, 'reloadCaptcha']);
+
+// webcam
+Route::get('webcam', [WebcamController::class, 'index']);
+Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture');
+Route::get('scan', [ScanController::class, 'index'])->name('scan');
+
+// Login
+Route::get('/auth-login2', [LoginController::class, 'login'])->name('login');
+Route::get('/register', [LoginController::class, 'register'])->name('register');
+Route::post('/registeruser', [LoginController::class, 'registeruser'])->name('registeruser');
+Route::post('/loginproses', [LoginController::class, 'loginproses'])->name('loginproses');
+Route::post('/logout', [LoginController::class, 'logout']);
+
+// barang
+Route::get('/barang', [BarangController::class,'index'])->name('barang');
+Route::get('/tambahbarang', [BarangController::class,'tambahbarang'])->name('tambahbarang');
+Route::post('/insertbarang', [BarangController::class,'store'])->name('insertbarang');
+Route::get('/tampilanbarang/{id}', [BarangController::class,'tampilanbarang'])->name('tampilanbarang');
+Route::put('/updatebarang/{id}', [BarangController::class,'update'])->name('updatebarang');
+Route::get('/deletebarang/{id}', [BarangController::class,'destroy'])->name('deletebarang');
+Route::get('/barang/cari',[BarangController::class,'cari'])->name('cari');
+
+// Peminjaman
+Route::get('/peminjaman', [PeminjamController::class,'index'])->name('peminjaman');
+Route::get('/tambahpeminjam', [PeminjamController::class,'tambahpeminjam'])->name('tambahpeminjam');
+Route::post('/insertpeminjam', [PeminjamController::class,'store'])->name('insertpeminjam');
+Route::get('/tampilanpeminjam/{id}', [PeminjamController::class,'tampilanpeminjam'])->name('tampilanpeminjam');
+Route::put('/updatepeminjam/{id}', [PeminjamController::class,'update'])->name('updatepeminjam');
+Route::get('/deletepeminjaman/{id}', [PeminjamController::class,'destroy'])->name('deletepeminjaman');
+Route::get('/peminjam/cari',[PeminjamController::class,'cari'])->name('cari');
+// Route::get('/action',[PeminjamController::class,'action'])->name('action');
+
+//user
+Route::get('/baranguser', [BaranguserController::class, 'index'])->name('baranguser');
+Route::put('/baranguser', [BaranguserController::class, 'baranguser'])->name('baranguser');
+Route::get('/pinjamuser', [BaranguserController::class,'pinjamuser'])->name('pinjamuser');
+Route::post('/insertpinjam', [BaranguserController::class,'store'])->name('insertpinjam');
+
+// expired
+Route::get('/user', [UserController::class, 'index'])->name('User');
+Route::get('/tambahuser', [UserController::class,'tambahuser'])->name('tambahuser');
+Route::post('/insertuser', [UserController::class,'store'])->name('insertuser');
+Route::get('/tampilanuser/{id}', [UserController::class,'tampilanuser'])->name('tampilanuser');
+Route::put('/updateuser/{id}', [UserController::class,'update'])->name('updateuser');
+Route::get('/deleteuser/{id}', [UserController::class,'destroy'])->name('deletebarang');
+Route::get('/user/cari',[UserController::class,'cari'])->name('cari');
+
+// auth
+Route::group(['middleware' => ['auth','checkrole:admin']],function () {
+    Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');
+    Route::get('mahasiswa', function () { return view('mahasiswa'); })->middleware(['checkRole:mahasiswa,admin']);
+});
+
+//history
+Route::get('/history', [HistoryController::class, 'index'])->name('history');
+Route::delete('/deletehistory/{id}', [HistoryController::class,'destroy'])->name('deletehistory');
+
+// webcam
+Route::get('webcam', [WebcamController::class, 'index']);
+Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture');
+Route::get('scan', [ScanController::class, 'index'])->name('scan');
+
 
 // Dashboard
 Route::get('/dashboard-general-dashboard', function () {

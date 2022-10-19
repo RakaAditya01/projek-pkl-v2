@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
         name="viewport">
-    <title>@yield('title') &mdash; Stisla</title>
+        
+    <link rel="shortcut icon" href="img/pnj.ico" type="image/x-icon">
+    <title>@yield('title') &mdash; Admin</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet"
