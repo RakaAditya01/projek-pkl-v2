@@ -11,7 +11,7 @@
         <div class="row">
             <div class="table-responsive">
                     <form action="/barang" method="GET" class="mt-3">
-                        <input type="text" id="input" placeholder="Cari Barang .." onkeyup='searchTable()'>
+                        <input type="text" id="input" placeholder="Cari Barang..." onkeyup='searchTable()'>
                     </form>
             <table class="table-sm table">
                 <thead>

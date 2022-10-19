@@ -31,25 +31,22 @@
                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
                         placeholder="Email Address" name="email">
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control form-control-user"
-                            id="exampleInputPassword" placeholder="Password" name="password">
-                    </div>
-                        <div class="col-md-6">
-                            <input id="captcha" type="text" class="form-control form-control-user" placeholder="Enter Captcha" name="captcha">
-                        </div>
+                <div class="form-group">
+                     <input type="password" class="form-control form-control-user"
+                        id="exampleInputPassword" placeholder="Password" name="password">
                 </div>
 
                 {{-- Recaptcha --}}
-               
                 <div class="form-group row">
-                    <label for="captcha" class="col-md-3 col-form-label">Captcha</label>
+                    {{-- <label for="captcha" class="col-md-3 col-form-label">Captcha</label> --}}
                     <div class="col-md-6 captcha">
                         <span>{!! captcha_img() !!}</span>
                         <button type="button" class="btn btn-primary" class="reload" id="reload">
                         &#x21bb;
                         </button>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="captcha" type="text" class="form-control form-control-user" placeholder="Enter Captcha" name="captcha">
                     </div>
                 </div>
                     

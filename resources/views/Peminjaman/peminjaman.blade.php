@@ -10,11 +10,17 @@
         </div>
         <div class="row">
             <div class="table-responsive">
-            <a href="{{route('tambahpeminjam')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
-            <form action="/peminjam" method="GET" class="mt-3">
-                <input type="text" id="input" placeholder="Cari Peminjam .."  onkeyup='searchTable()'>
-            </form>
-                    <table class="table mt-3 table-bordered">
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <form action="/peminjam" method="GET" class="mt-3">
+                            <input type="text" id="input" placeholder="Cari Peminjam..."  onkeyup='searchTable()'>
+                        </form>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <a href="{{route('tambahpeminjam')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
+                    </div>
+                </div>
+                    <table class="table-sm table">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>

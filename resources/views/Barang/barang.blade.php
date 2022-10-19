@@ -10,10 +10,16 @@
         </div>
         <div class="row">
             <div class="table-responsive">
-                    <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight">
                         <form action="/barang" method="GET" class="mt-3">
-                            <input type="text" id="input" placeholder="Cari Barang .." onkeyup='searchTable()'>
+                            <input type="text" id="input" placeholder="Cari Barang..." onkeyup='searchTable()'>
                         </form>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
+                    </div>
+                </div>    
                 <table class="table-sm table">
                     <thead>
                         <tr>

@@ -46,7 +46,7 @@
                 </li>
                 <li class='{{ Request::is('scan') ? 'active' : '' }}'>
                     <a class="nav-link"
-                        href="{{ url('scan') }}">Scan Barqode</a>
+                        href="{{ url('scan') }}">Scan Barcode</a>
                 </li>
             </ul>
             </li>

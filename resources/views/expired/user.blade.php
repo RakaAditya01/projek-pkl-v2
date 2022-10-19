@@ -8,11 +8,15 @@
         </div>
         <div class="row">
             <div class="table-responsive">
-                <a hrefc="{{route('tambahuser')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
-                <div class="col">
-                    <form action="/user" method="GET" class="mt-3">
-                        <input type="text" id="input" placeholder="Cari Barang .." onkeyup='searchTable()'>
-                    </form>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <form action="/user" method="GET" class="mt-3">
+                            <input type="text" id="input" placeholder="Cari User..." onkeyup='searchTable()'>
+                        </form>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                         <a hrefc="{{route('tambahuser')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
+                    </div>
                 </div>
                 <div style="overflow-x: scroll;;">
                     <table class="table mt-3 table-bordered">
