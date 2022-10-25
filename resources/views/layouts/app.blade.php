@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
         name="viewport">
-        
     <link rel="shortcut icon" href="img/pnj.ico" type="image/x-icon">
-    <title>@yield('title') &mdash; Admin</title>
+    <title>@yield('title') &mdash; Sarpras PNJ</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet"

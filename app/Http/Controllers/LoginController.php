@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 
 class LoginController extends Controller
 {
@@ -33,7 +34,7 @@ class LoginController extends Controller
     
 
     public function registeruser(Request $request){
-        // dd($request->all());    
+        // dd($request->all());   
         user::create([
             'name' => $request->name,
             'nim' => $request->nis,
@@ -46,6 +47,8 @@ class LoginController extends Controller
 
         if (!empty($User) && $User->expired_at );
         return redirect('/auth-login2');
+        
+        $validator = Validator::make($input, $rules);
     }
 
     // recaptcha
@@ -54,7 +57,8 @@ class LoginController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required|string|confirmed', Password::min(8)->mixedCase()],
+            'password_confirmation'=> ['required_with:password|same:password|min:8'],
             'captcha' => ['required','captcha'],
         ]);
     }

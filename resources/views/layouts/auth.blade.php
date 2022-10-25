@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
         name="viewport">
     <title>@yield('title')</title>
+    <link rel="shortcut icon" href="img/pnj.ico" type="image/x-icon">
 
     <!-- General CSS Files -->
     <link rel="stylesheet"

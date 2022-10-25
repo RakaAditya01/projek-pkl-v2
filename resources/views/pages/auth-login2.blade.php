@@ -47,7 +47,7 @@
                             novalidate="">
                             @csrf
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email">Email <span class="text-danger">*</span></label>
                                 <input id="email"
                                     type="email"
                                     class="form-control"
@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <div class="d-block">
                                     <label for="password"
-                                        class="control-label">Password</label>
+                                        class="control-label">Password <span class="text-danger">*</span></label>
                                 </div>
                                 <input id="password"
                                     type="password"
