@@ -20,7 +20,6 @@
                         <th scope="col">Gambar</th>
                         <th scope="col">Nama Barang</th>
                         <th scope="col">Stock</th>
-                        <th scope="col">Anggaran</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -38,7 +37,6 @@
                         <td hidden id="id">{{$row -> id}}</td>
                         <td>{{$row -> nama_barang}}</td>
                         <td>{{$row -> stock}}</td>
-                        <td>{{$row -> anggaran}}</td>
                         <td>
                             <a href="{{route('pinjamuser')}}" type="button" class="btn btn-primary m-2">Pinjam</a>
                         </td>

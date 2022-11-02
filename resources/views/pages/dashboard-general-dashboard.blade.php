@@ -16,6 +16,8 @@
             <div class="section-header">
                 <h1>Dashboard</h1>
             </div>
+            {{-- Admin --}}
+            @if(auth()->user()->role == 'admin')
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
@@ -24,10 +26,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Admin</h4>
+                                <h4>Total User</h4>
                             </div>
                             <div class="card-body">
-                            {{-- {{ $peminjam }} --}}
+                            {{ $user }}
                             </div>
                         </div>
                     </div>
@@ -35,14 +37,14 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
-                            <i class="far fa-newspaper"></i>
+                            <i class="fas fa-boxes-alt"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>News</h4>
+                                <h4>Jumlah Barang</h4>
                             </div>
                             <div class="card-body">
-                                42
+                               {{ $barang }}
                             </div>
                         </div>
                     </div>
@@ -78,6 +80,73 @@
                     </div>
                 </div>
             </div>
+            @endif
+
+            {{-- Mahasiswa --}}
+            @if(auth()->user()->role == 'mahasiswa')
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-primary">
+                            <i class="far fa-user"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Total User</h4>
+                            </div>
+                            <div class="card-body">
+                            {{ $user }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-danger">
+                            <i class="fas fa-boxes-alt"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Jumlah Barang</h4>
+                            </div>
+                            <div class="card-body">
+                               {{ $barang }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-warning">
+                            <i class="far fa-file"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Reports</h4>
+                            </div>
+                            <div class="card-body">
+                                1,201
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+                {{-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-success">
+                            <i class="fas fa-circle"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Online Users</h4>
+                            </div>
+                            <div class="card-body">
+                                47
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+            </div>
+            @endif
             {{-- Content --}}
         </section>
     </div>

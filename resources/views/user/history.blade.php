@@ -13,7 +13,7 @@
                     <input type="text" id="input" placeholder="Cari Barang..." onkeyup='searchTable()'>
                 </form>
             </div>
-            <table class="table mt-3 table-bordered">
+            <table class="table-sm table">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
