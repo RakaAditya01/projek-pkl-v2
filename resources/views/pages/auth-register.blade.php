@@ -15,24 +15,34 @@
         </div>
 
         <div class="card-body">
-            <form class="user needs-validation" method="POST" action="{{route('registeruser')}}" novalidate>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+            <form class="user needs-validation" method="POST" action="{{route('registeruser')}}">
                 @csrf
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
+                <div class="row">
+                    <div class="form-group col-6">
                         <input type="text" required class="form-control form-control-user" id="Name"
-                            placeholder="First Name" name="name">
+                            placeholder="First Name" name="name" autofocus>
                             <div class="invalid-feedback">
                                 Name Can't Be Empty.
                             </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="form-group col-6">
                         <input type="text" required class="form-control form-control-user" id="Nim"
-                            placeholder="NIM" name="nis">
+                            placeholder="NIM" name="nim">
                             <div class="invalid-feedback">
                                 NIM Can't Be Empty.
                             </div>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <input type="email" required class="form-control form-control-user" id="Email"
                         placeholder="Email Address" name="email">
@@ -40,17 +50,23 @@
                             Email Can't Be Empty.
                         </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror form-control-user"
-                        id="Password" required placeholder="Password" name="password">
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        <input type="password" for="password" class="form-control form-control-user pwstrength"
+                        id="Password" data-indicator="pwindicator" required placeholder="Password" name="password">
                         <div class="invalid-feedback">
                             Password Can't Be Empty.
                         </div>
+                        <div id="pwindicator"
+                            class="pwindicator">
+                            <div class="bar"></div>
+                            <div class="label"></div>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror form-control-user"
-                        id="Password2" required placeholder="Confirm Password" name="password_confirmation">
+                    <div class="form-group col-6">
+                        <input type="password" for="password_confirmation" class="form-control form-control-user"
+                        id="password_confirmation" required placeholder="Confirm Password" name="password_confirmation">
                         <div class="invalid-feedback">
                             Please Confirm The Password.
                         </div>
@@ -58,17 +74,19 @@
                 </div>
 
                 {{-- Recaptcha --}}
-                <div class="form-group row">
+                <div class="row">
                     {{-- <label for="captcha" class="col-md-3 col-form-label">Captcha</label> --}}
-                    <div class="col-md-3 captcha">
-                        <span>{!! captcha_img() !!}</span>
+                    <div class="row ml-2 col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group col-9 captcha ">
+                            <span>{!! captcha_img() !!}</span>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-primary" class="reload" id="reload">
+                                &#x21bb;
+                            </button>
+                        </div>    
                     </div>
-                    <div class="col">
-                        <button type="button" class="btn btn-primary" class="reload" id="reload">
-                            &#x21bb;
-                        </button>
-                    </div>
-                    <div class="col-md-6">
+                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <input id="captcha" type="text" class="form-control form-control-user" required placeholder="Enter Captcha" name="captcha">
                         <div class="invalid-feedback">
                             Captcha Can't Be Empty.

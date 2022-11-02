@@ -9,6 +9,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\WebcamController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PeminjamController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BaranguserController;
 
 /*
@@ -27,7 +28,7 @@ use App\Http\Controllers\BaranguserController;
 Route::redirect('/', '/auth-login2');
 
 //home
-// Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->name('dashboard-general-dashboard');
+Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->name('dashboard-general-dashboard');
 
 // Recaptcha
 Route::get('/reload-captcha', [LoginController::class, 'reloadCaptcha']);
@@ -37,12 +38,13 @@ Route::get('webcam', [WebcamController::class, 'index']);
 Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture');
 Route::get('scan', [ScanController::class, 'index'])->name('scan');
 
-// Login
-Route::get('/auth-login2', [LoginController::class, 'login'])->name('login');
-Route::get('/register', [LoginController::class, 'register'])->name('register');
-Route::post('/registeruser', [LoginController::class, 'registeruser'])->name('registeruser');
-Route::post('/loginproses', [LoginController::class, 'loginproses'])->name('loginproses');
+// Auth
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/auth-login2', [LoginController::class, 'login'])->name('login');
+Route::post('/loginproses', [LoginController::class, 'loginproses'])->name('loginproses');
+Route::get('/register', [RegisterController::class, 'register'])->name('register');
+Route::get('/password', [RegisterController::class])->middleware('password.confirm'); //confirm-password
+Route::post('/registeruser', [RegisterController::class, 'registeruser'])->name('registeruser');
 
 // barang
 Route::get('/barang', [BarangController::class,'index'])->name('barang');
@@ -94,13 +96,15 @@ Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture'
 Route::get('scan', [ScanController::class, 'index'])->name('scan');
 
 
+// --------------------------------------------------------------------------------------------------------------------- //
+
 // Dashboard
-Route::get('/dashboard-general-dashboard', function () {
-    return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
-});
-Route::get('/dashboard-ecommerce-dashboard', function () {
-    return view('pages.dashboard-ecommerce-dashboard', ['type_menu' => 'dashboard']);
-});
+// Route::get('/dashboard-general-dashboard', function () {
+//     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
+// });
+// Route::get('/dashboard-ecommerce-dashboard', function () {
+//     return view('pages.dashboard-ecommerce-dashboard', ['type_menu' => 'dashboard']);
+// });
 
 
 // Layout
