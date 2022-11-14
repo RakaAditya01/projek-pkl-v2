@@ -15,6 +15,7 @@ class Barang extends Model
         'nama_barang',
         'stock',
         'anggaran',
+        'scan',
     ];
 
     public Function peminjam(){

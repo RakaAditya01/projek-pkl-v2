@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 class WebcamController extends Controller
 {
      /**
@@ -36,6 +36,6 @@ class WebcamController extends Controller
         $file = $folderPath . $fileName;
         Storage::put($file, $image_base64);
         
-        dd('Image uploaded successfully: '.$fileName);
+        return ('Image uploaded successfully: '.$fileName);
     }
 }

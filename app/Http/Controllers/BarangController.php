@@ -25,6 +25,7 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'stock' => 'required',
             'anggaran' => 'required',
+            'scan' => 'required',
         ],
         [
             'gambar.required' => 'Gambar tidak boleh kosong',
