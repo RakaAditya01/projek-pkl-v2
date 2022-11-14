@@ -64,6 +64,18 @@
                                     </div>
                                     @enderror
                                 </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Barcode</label>
+                                    <input type="text" name="scan" class="form-control 
+                                    @error('scan')
+                                        is-invalid
+                                    @enderror" id="" aria-describedby="emailHelp" value="{{ old('scan') }}">
+                                    @error('scan')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>

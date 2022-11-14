@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->integer('stock');
             $table->integer('anggaran');
+            $table->string('scan');
             $table->timestamps();
         });
     }

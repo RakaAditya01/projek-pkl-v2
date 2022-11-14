@@ -23,6 +23,41 @@ class LoginController extends Controller
         }
         return redirect('/auth-login2');
     }
+
+
+    public function register(){
+        return view('pages.auth-register');
+    }
+    
+    
+
+    public function registeruser(Request $request){
+        // dd($request->all());   
+        user::create([
+            'name' => $request->name,
+            'nim' => $request->nis,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'expired_at' => Carbon::now()->addMonths(6),
+            'remember_token' => Str::random(60)
+        ]);
+    
+        return redirect('/auth-login2');
+        
+        $validator = Validator::make($input, $rules);
+    }
+
+    // recaptcha
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required|string|confirmed', Password::min(8)->mixedCase()],
+            'password_confirmation'=> ['required_with:password|same:password|min:8'],
+            'captcha' => ['required','captcha'],
+        ]);
+    }
    
     public function reloadCaptcha()
     {

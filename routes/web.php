@@ -11,6 +11,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BaranguserController;
+use App\Http\Controllers\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,12 @@ Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->na
 
 // Recaptcha
 Route::get('/reload-captcha', [LoginController::class, 'reloadCaptcha']);
+
+  
+Route::get('auth-forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('auth-forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('auth-reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('auth-reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 // webcam
 Route::get('webcam', [WebcamController::class, 'index']);

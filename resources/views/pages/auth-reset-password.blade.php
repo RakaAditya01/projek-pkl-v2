@@ -4,6 +4,8 @@
 
 @push('style')
     <!-- CSS Libraries -->
+    <link rel="stylesheet"
+        href="{{ asset('library/selectric/public/selectric.css') }}">
 @endpush
 
 @section('main')
@@ -14,42 +16,31 @@
 
         <div class="card-body">
             <p class="text-muted">We will send a link to reset your password</p>
-            <form method="POST">
+            <form action="{{ route('reset.password.post') }}" method="POST">
+                @csrf
+                <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email"
-                        type="email"
-                        class="form-control"
-                        name="email"
-                        tabindex="1"
-                        required
-                        autofocus>
+                    <label for="email_address">Email</label>
+                    <input type="text" id="email_address" class="form-control" name="email" required autofocus>
+                                  @if ($errors->has('email'))
+                                      <span class="text-danger">{{ $errors->first('email') }}</span>
+                                  @endif
                 </div>
 
                 <div class="form-group">
                     <label for="password">New Password</label>
-                    <input id="password"
-                        type="password"
-                        class="form-control pwstrength"
-                        data-indicator="pwindicator"
-                        name="password"
-                        tabindex="2"
-                        required>
-                    <div id="pwindicator"
-                        class="pwindicator">
-                        <div class="bar"></div>
-                        <div class="label"></div>
-                    </div>
+                    <input type="password" id="password" class="form-control" name="password" required autofocus>
+                    @if ($errors->has('password'))
+                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                    @endif
                 </div>
 
                 <div class="form-group">
                     <label for="password-confirm">Confirm Password</label>
-                    <input id="password-confirm"
-                        type="password"
-                        class="form-control"
-                        name="confirm-password"
-                        tabindex="2"
-                        required>
+                    <input type="password" id="password-confirm" class="form-control" name="password_confirmation" required autofocus>
+                                  @if ($errors->has('password_confirmation'))
+                                      <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                                  @endif
                 </div>
 
                 <div class="form-group">

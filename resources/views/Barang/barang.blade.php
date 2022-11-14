@@ -28,6 +28,7 @@
                             <th scope="col">Nama Barang</th>
                             <th scope="col">Stock</th>
                             <th scope="col">Anggaran</th>
+                            <th scope="col">Barcode</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -45,6 +46,7 @@
                             <td>{{$row ->nama_barang}}</td>
                             <td>{{$row ->stock}}</td>
                             <td>{{$row ->anggaran}}</td>
+                            <td>{{$row ->scan}}</td>
                             <td class="d-flex">
                                 <form action="/deletebarang/{{$row->id}}" method="get">
                                     @csrf
