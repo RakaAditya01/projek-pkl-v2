@@ -6,13 +6,13 @@ use App\Models\Peminjam;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class PeminjamController extends Controller
 {
     public function index(){  
         $data = Peminjam::paginate();
         
-        // 
         return view('Peminjaman\peminjaman',compact('data'));
     }
 
@@ -37,30 +37,11 @@ class PeminjamController extends Controller
     }
 
     public function store(request $request){
-        $this-> validate($request, [
-            'nim',
-            'nama',
-            'nama_barang'=> 'required',
-            'dokumentasi'=> 'required',
-            'jumlah'=> 'required',
-        ],
-        [
-            'nama_barang.required' => 'Nama Barang tidak boleh kosong',
-            'dokumentasi.required' => 'Dokumentasi tidak boleh kosong',
-            'jumlah.required' => 'Jumlah tidak boleh kosong',
-        ]);
-        // $datas[] =[
-        //     'nim' => $request->input('nim'),
-        //     'nama' => $request->input('nama'),
-        //     'nama_barang' => $request->input('nama_barang'),
-        //     'dokumentasi' => $request()->file('dokumentasi'),
-        //     'jumlah' => $request->input('jumlah')
-        // ];
-        // dd($datas);
         $data = Peminjam::create ($request->all());
         if($request->hasFile('dokumentasi')){
             $request->file('dokumentasi')->move('fotodokumentasi/', $request->file('dokumentasi')->getClientOriginalName());
             $data->dokumentasi = $request->file('dokumentasi')->getClientOriginalName();
+            $data -> expired_at = Carbon::now()->addWeeks(1);
             $data->save();
         }  
             

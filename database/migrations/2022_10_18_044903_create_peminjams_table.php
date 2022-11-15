@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->string('dokumentasi');
             $table->integer('jumlah');
+            $table->timestamp('barang_verified_at')->nullable();
+            $table->date('expired_at')->nullable();
             $table->timestamps();
         });
     }

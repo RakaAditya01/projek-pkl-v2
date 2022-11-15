@@ -21,6 +21,7 @@
                         <th scope="col">Nama Barang</th>
                         <th scope="col">Jumlah</th>
                         <th scope="col">Tgl.Dipinjam</th>
+                        <th scope="col">Tgl.Dikembalikan</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -38,6 +39,7 @@
                         <td>{{$row -> nama_barang}}</td>
                         <td>{{$row -> jumlah}}</td>
                         <td>{{$row -> created_at}}</td>
+                        <td>{{$row -> expired_at}}</td>
                         <td>
                             <form action="/deletehistory/{{$row->id}}" method="POST">
                                 @csrf

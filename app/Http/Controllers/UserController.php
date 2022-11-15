@@ -29,10 +29,6 @@ class UserController extends Controller
             'expired_at' => Carbon::now()->addMonths(6),
             'remember_token' => Str::random(60)
         ]);
-        // $coupon = Coupon::where('code', $request->get('coupon'))->first();
-
-        // if (!empty($coupon) && $coupon->expire_date );
-        // return redirect('/user');
     }
 
     public function tampilanUser($id){
