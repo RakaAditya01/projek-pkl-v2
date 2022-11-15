@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->date('expired_at')->nullable();
             $table->enum('role', ['admin', 'mahasiswa'])->default('mahasiswa');
+            $table->string('aboutme')->default();
             $table->rememberToken();
             $table->timestamps();
         });

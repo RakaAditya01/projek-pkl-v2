@@ -44,10 +44,6 @@
                     <a class="nav-link"
                         href="{{ url('webcam') }}">Webcam</a>
                 </li>
-                <li class='{{ Request::is('scan') ? 'active' : '' }}'>
-                    <a class="nav-link"
-                        href="{{ url('scan') }}">Scan Barcode</a>
-                </li>
             </ul>
             </li>
         </ul>

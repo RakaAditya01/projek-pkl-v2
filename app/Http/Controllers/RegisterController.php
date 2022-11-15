@@ -51,21 +51,4 @@ class RegisterController extends Controller
         return new Response('Invalid Password');
        }
     }
-
-    // ---Ori---
-    // public function registeruser(Request $request){
-    //     // dd($request->all());   
-    //     user::create([
-    //         'name' => $request->name,
-    //         'nim' => $request->nis,
-    //         'email' => $request->email,
-    //         'password' => bcrypt($request->password),
-    //         'expired_at' => Carbon::now()->addMonths(6),
-    //         'remember_token' => Str::random(60)
-    //     ]);
-    //     $User = User::where('name', $request->get('user'))->first();
-
-    //     if (!empty($User) && $User->expired_at );
-    //     return redirect('/auth-login2');
-    // }
 }

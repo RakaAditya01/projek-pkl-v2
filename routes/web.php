@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\WebcamController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BaranguserController;
@@ -77,6 +78,11 @@ Route::get('/baranguser', [BaranguserController::class, 'index'])->name('barangu
 Route::put('/baranguser', [BaranguserController::class, 'baranguser'])->name('baranguser');
 Route::get('/pinjamuser', [BaranguserController::class,'pinjamuser'])->name('pinjamuser');
 Route::post('/insertpinjam', [BaranguserController::class,'store'])->name('insertpinjam');
+
+// Profile
+Route::get('/features-profile', [ProfileController::class, 'index'])->name('profile');
+// Route::get('/edit', [ProfileController::class,'edit'])->name('profile.edit');
+Route::put('/update', [ProfileController::class,'update'])->name('update');
 
 // expired
 Route::get('/user', [UserController::class, 'index'])->name('User');

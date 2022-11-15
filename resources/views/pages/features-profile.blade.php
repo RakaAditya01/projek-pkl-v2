@@ -16,12 +16,12 @@
             <div class="section-header">
                 <h1>Profile</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="/dashboard-general-dashboard">Dashboard</a></div>
                     <div class="breadcrumb-item">Profile</div>
                 </div>
             </div>
             <div class="section-body">
-                <h2 class="section-title">Hi, Ujang!</h2>
+                <h2 class="section-title">Hi, {{auth()->user()->name}}!</h2>
                 <p class="section-lead">
                     Change information about yourself on this page.
                 </p>
@@ -33,7 +33,7 @@
                                 <img alt="image"
                                     src="{{ asset('img/avatar/avatar-1.png') }}"
                                     class="rounded-circle profile-widget-picture">
-                                <div class="profile-widget-items">
+                                {{-- <div class="profile-widget-items">
                                     <div class="profile-widget-item">
                                         <div class="profile-widget-item-label">Posts</div>
                                         <div class="profile-widget-item-value">187</div>
@@ -46,28 +46,37 @@
                                         <div class="profile-widget-item-label">Following</div>
                                         <div class="profile-widget-item-value">2,1K</div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
+                            @if (auth()->user()->role == 'admin')
                             <div class="profile-widget-description">
-                                <div class="profile-widget-name">Ujang Maman <div
+                                <div class="profile-widget-name">{{auth()->user()->name}} <div
                                         class="text-muted d-inline font-weight-normal">
-                                        <div class="slash"></div> Web Developer
+                                        <div class="slash"></div> {{auth()->user()->role}}
                                     </div>
                                 </div>
-                                Ujang maman is a superhero name in <b>Indonesia</b>, especially in my family. He is not a
-                                fictional character but an original hero in my family, a hero for his children and for his
-                                wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with
-                                <b>'John Doe'</b>.
+                                {{auth()->user()->aboutme}}
                             </div>
-                            <div class="card-footer text-center">
-                                <div class="font-weight-bold mb-2">Follow Ujang On</div>
+                            @endif
+                            @if (auth()->user()->role == 'mahasiswa')
+                            <div class="profile-widget-description">
+                                <div class="profile-widget-name">{{auth()->user()->name}} <div
+                                        class="text-muted d-inline font-weight-normal">
+                                        <div class="slash"></div> {{auth()->user()->role}}
+                                    </div>
+                                </div>
+                                {{auth()->user()->aboutme}}
+                            </div>
+                            @endif
+                            {{-- <div class="card-footer text-center">
+                                <div class="font-weight-bold mb-2">Follow {{auth()->user()->name}} On</div>
                                 <a href="#"
                                     class="btn btn-social-icon btn-facebook mr-1">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                                 <a href="#"
                                     class="btn btn-social-icon btn-twitter mr-1">
-                                    <i class="fab fa-twitter"></i>
+                                    <i class="fa-brands fa-square-twitter"></i>
                                 </a>
                                 <a href="#"
                                     class="btn btn-social-icon btn-github mr-1">
@@ -77,62 +86,69 @@
                                     class="btn btn-social-icon btn-instagram">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-7">
+                        @if (session()->has('message'))
+                        <div class="text-green-600 mb-4">{{ session('message') }}</div>
+                        @endif
                         <div class="card">
-                            <form method="post"
+                            <form method="POST"
+                                action="{{ route('update') }}"
                                 class="needs-validation"
                                 novalidate="">
+                                @csrf
+                                @method('put')
                                 <div class="card-header">
                                     <h4>Edit Profile</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-md-6 col-12">
-                                            <label>First Name</label>
+                                            <label>Name</label>
                                             <input type="text"
                                                 class="form-control"
-                                                value="Ujang"
+                                                readonly
+                                                value="{{auth()->user()->name}}"
                                                 required="">
                                             <div class="invalid-feedback">
                                                 Please fill in the first name
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6 col-12">
-                                            <label>Last Name</label>
-                                            <input type="text"
-                                                class="form-control"
-                                                value="Maman"
-                                                required="">
-                                            <div class="invalid-feedback">
-                                                Please fill in the last name
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-7 col-12">
                                             <label>Email</label>
                                             <input type="email"
                                                 class="form-control"
-                                                value="ujang@maman.com"
+                                                readonly
+                                                value="{{auth()->user()->email}}"
                                                 required="">
                                             <div class="invalid-feedback">
                                                 Please fill in the email
                                             </div>
                                         </div>
-                                        <div class="form-group col-md-5 col-12">
-                                            <label>Phone</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-12">
+                                            <label>NIM</label>
                                             <input type="tel"
                                                 class="form-control"
-                                                value="">
+                                                readonly
+                                                value="{{auth()->user()->nim}}"
+                                                name="nim">
                                         </div>
+                                        {{-- <div class="form-group col-md-6 col-12">
+                                            <label>Jurusan</label>
+                                            <input type="tel"
+                                                class="form-control"
+                                                disabled=""
+                                                value="{{auth()->user()->jurusan}}">
+                                        </div> --}}
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-12">
                                             <label>Bio</label>
-                                            <textarea class="form-control summernote-simple">Ujang maman is a superhero name in <b>Indonesia</b>, especially in my family. He is not a fictional character but an original hero in my family, a hero for his children and for his wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with <b>'John Doe'</b>.</textarea>
+                                            <textarea class="form-control" name="aboutme">{{auth()->user()->aboutme}}</textarea>
                                         </div>
                                     </div>
                                     <div class="row">

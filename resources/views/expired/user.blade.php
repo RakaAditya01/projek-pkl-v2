@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div style="overflow-x: scroll;;">
-                    <table class="table mt-3 table-bordered">
+                    <table class="table-sm table">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>

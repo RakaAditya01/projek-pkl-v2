@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="form-group col-6">
                         <input type="text" required class="form-control form-control-user" id="Name"
-                            placeholder="First Name" name="name" autofocus>
+                            placeholder="Name" name="name" autofocus>
                             <div class="invalid-feedback">
                                 Name Can't Be Empty.
                             </div>
