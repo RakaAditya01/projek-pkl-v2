@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Peminjam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -55,7 +56,7 @@ class BarangController extends Controller
     }   
 
     public function destroy($id){
-    $data = Barang::first();
+    $data = Barang::find($id);
     $data->delete();
     return redirect()->route('barang')->with('success', 'Data Berhasil Di Hapus!');;
     }

@@ -41,7 +41,7 @@ class PeminjamController extends Controller
         if($request->hasFile('dokumentasi')){
             $request->file('dokumentasi')->move('fotodokumentasi/', $request->file('dokumentasi')->getClientOriginalName());
             $data->dokumentasi = $request->file('dokumentasi')->getClientOriginalName();
-            $data -> expired_at = Carbon::now()->addWeeks(1);
+            $data -> expired_at = Carbon::today()->addWeeks(1)->toDateString();
             $data->save();
         }  
             
@@ -50,7 +50,7 @@ class PeminjamController extends Controller
     
 
     public function tampilanpeminjam($id){
-        $data = Peminjam::find ($id);
+        $data = Peminjam::find($id);
         return view('Peminjaman\edit',compact('data'));
     }
 
@@ -60,8 +60,8 @@ class PeminjamController extends Controller
         return redirect()->route('peminjaman')->with('success', 'Data Berhasil Di Edit!');;
     }   
 
-    public function destroy($id){
-        $data = Peminjam::first();
+    public function destroy(request $request,$id){
+        $data = Peminjam::find($id);
         $data->delete();
         return redirect()->route('peminjaman');
     }
