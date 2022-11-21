@@ -10,56 +10,68 @@
         </div>
         <div class="row">
             <div class="table-responsive">
-                <div class="d-flex bd-highlight">
-                    <div class="p-2 flex-grow-1 bd-highlight">
+                <div class="bd-highlight d-flex">
+                    <div class="card-header-form">
                         <form action="/peminjam" method="GET" class="mt-3">
-                            <input type="text" id="input" placeholder="Cari Peminjam..."  onkeyup='searchTable()'>
+                            <div class="input-group">
+                                <input type="text" 
+                                id="input"
+                                class="form-control" 
+                                placeholder="Search"  
+                                onkeyup='searchTable()'>
+                            </div>
                         </form>
                     </div>
-                    <div class="p-2 bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight text-right">
                         <a href="{{route('tambahpeminjam')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
                     </div>
                 </div>
-                    <table class="table-sm table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">NIM</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Nama Barang</th>
-                                <th scope="col">Dokumentasi</th>
-                                <th scope="col">Jumlah</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                            $no = 1;
-                            @endphp
-                            <tr>
-                                @foreach ($data as $index => $row)
-                                <th scope="row">{{ $index + $data->firstItem() }}</th>
-                                <td>{{$row->nim}}</td>
-                                <td>{{$row->nama}}</td>
-                                <td>{{$row->nama_barang}}</td>
-                                <td>
-                                    <img src="{{ asset('fotodokumentasi/'.$row->dokumentasi) }}" alt=""
-                                        style="width: 80px;">
-                                </td>
-                                <td>{{$row->jumlah}}</td>
-                                <td class="d-flex">
-                                        <a href="#" class="btn btn-danger m-2 delete" data-id="{{$row->id}}"  data-nama="{{$row->nama}}">Delete</a>
-                                    <a href="/tampilanpeminjam/{{$row->id}}" type="submit"class="btn btn-warning m-2">Edit</a>
-                                </td>
-                            </tr>
-                            @endforeach
-                            {{-- @if ($data->count() == 0)
-                                <div class="alert alert-danger" role="alert">
-                                    Tidak Ada Data Peminjam!
-                                </div>
-                            @endif --}}
-                        </tbody>
-                    </table>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table-striped table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">NIM</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">Nama Barang</th>
+                                        <th scope="col">Dokumentasi</th>
+                                        <th scope="col">Jumlah</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    <tr>
+                                        @foreach ($data as $index => $row)
+                                        <th scope="row">{{ $index + $data->firstItem() }}</th>
+                                        <td>{{$row->nim}}</td>
+                                        <td>{{$row->nama}}</td>
+                                        <td>{{$row->nama_barang}}</td>
+                                        <td>
+                                            <img src="{{ asset('fotodokumentasi/'.$row->dokumentasi) }}" alt=""
+                                                style="width: 80px;">
+                                        </td>
+                                        <td>{{$row->jumlah}}</td>
+                                        <td class="d-flex">
+                                            <div class="div">
+                                                <a class="btn btn-danger m-2 delete" data-id="{{$row->id}}" data-nama="{{$row->nama}}">Delete</a>
+                                                <a href="/tampilanpeminjam/{{$row->id}}" type="submit" class="btn btn-warning m-2">Edit</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    {{-- @if ($data->count() == 0)
+                                        <div class="alert alert-danger" role="alert">
+                                            Tidak Ada Data Peminjam!
+                                        </div>
+                                    @endif --}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
     </section>
@@ -80,7 +92,7 @@ crossorigin="anonymous"></script>
       var nama = $(this).attr('data-nama');
       swal({
               title: "Yakin?",
-              text: "Anda Akan Menghapus Data Ini id "+nama+"",
+              text: "Anda Akan Menghapus Data Ini dengan nama "+nama+"",
               icon: "warning",
               buttons: true,
               dangerMode: true,

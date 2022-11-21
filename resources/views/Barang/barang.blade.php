@@ -10,56 +10,66 @@
         </div>
         <div class="row">
             <div class="table-responsive">
-                <div class="d-flex bd-highlight">
-                    <div class="p-2 flex-grow-1 bd-highlight">
+                <div class="bd-highlight d-flex">
+                    <div class="card-header-form">
                         <form action="/barang" method="GET" class="mt-3">
-                            <input type="text" id="input" placeholder="Cari Barang..." onkeyup='searchTable()'>
+                            <div class="input-group">
+                                <input type="text"
+                                    id="input"
+                                    class="form-control"
+                                    placeholder="Search"
+                                    onkeyup='searchTable()'>
+                            </div>
                         </form>
                     </div>
-                    <div class="p-2 bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight text-right">
                         <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
                     </div>
                 </div>    
-                <table class="table-sm table">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Gambar</th>
-                            <th scope="col">Nama Barang</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Anggaran</th>
-                            <th scope="col">Barcode</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                        $no = 1;
-                        @endphp
-                        <tr>
-                            @foreach ($data as $index => $row)
-                            <th scope="row">{{ $index + $data->firstItem() }}</th>
-                            <td>
-                                <img src="{{ asset('fotodokumentasi/'.$row->gambar) }}" alt=""
-                                    style="width: 80px;">
-                            </td>
-                            <td>{{$row ->nama_barang}}</td>
-                            <td>{{$row ->stock}}</td>
-                            <td>{{$row ->anggaran}}</td>
-                            <td>{{$row ->scan}}</td>
-                            <td class="d-flex">
-                                <form action="/deletebarang/{{$row->id}}" method="get">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger m-2" type="submit">Delete</button>
-                                </form>
-                                <a href="/tampilanbarang/{{$row->id}}" type="submit"
-                                    class="btn btn-warning m-2">Edit</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table-striped table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Gambar</th>
+                                    <th scope="col">Nama Barang</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Anggaran</th>
+                                    <th scope="col">Barcode</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                $no = 1;
+                                @endphp
+                                <tr>
+                                    @foreach ($data as $index => $row)
+                                    <th scope="row">{{ $index + $data->firstItem() }}</th>
+                                    <td>
+                                        <img src="{{ asset('fotodokumentasi/'.$row->gambar) }}" alt=""
+                                            style="width: 80px;">
+                                    </td>
+                                    <td>{{$row ->nama_barang}}</td>
+                                    <td>{{$row ->stock}}</td>
+                                    <td>{{$row ->anggaran}}</td>
+                                    <td>{{$row ->scan}}</td>
+                                    <td class="d-flex">
+                                        <form action="/deletebarang/{{$row->id}}" method="get">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger m-2" type="submit">Delete</button>
+                                            <a href="/tampilanbarang/{{$row->id}}" type="submit"
+                                                class="btn btn-warning m-2">Edit</a>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>    
+                    </div>
+                </div>
             </div>
         </div>
     </section>

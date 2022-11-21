@@ -10,57 +10,62 @@
         </div>
         <div class="row">
             <div class="table-responsive">
-                <div class="d-flex bd-highlight">
-                    <div class="p-2 flex-grow-1 bd-highlight">
+                <div class="bd-highlight d-flex">
+                    <div class="card-header-form">
                         <form action="/user" method="GET" class="mt-3">
-                            <input type="text" id="input" placeholder="Cari User..." onkeyup='searchTable()'>
+                            <input type="text" id="input" placeholder="Search"
+                            class="form-control" onkeyup='searchTable()'>
                         </form>
                     </div>
-                    <div class="p-2 bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-hiighlight text-right">
                          <a hrefc="{{route('tambahuser')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
                     </div>
                 </div>
-                <div style="overflow-x: scroll;;">
-                    <table class="table-sm table">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Nim</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">password</th>
-                            <th scope="col">Expired</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Action</th>
+               <div class="card-body p-0">
+                <div class="table-responsive">
+                        <table class="table-striped table nowrap" id="table" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Nim</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">password</th>
+                                <th scope="col">Expired</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                            $no = 1;
+                            @endphp
+                            <tr>
+                                @foreach ($data as $index => $row)
+                                <th scope="row">{{ $index + $data->firstItem() }}</th>
+                                <td>{{$row ->name}}</td>
+                                <td>{{$row ->nim}}</td>
+                                <td>{{$row ->email}}</td>
+                                <td>{{$row ->password}}</td>
+                                <td>{{$row ->expired_at}}</td>
+                                <td>{{$row ->role}}</td>
+                                <td class="d-flex">
+                                <div class="row m-0">
+                                <button  class="btn btn-danger m-2 delete" data-id="{{$row->id}}"  data-nama="{{$row->name}}">Delete</button>
+                                <button href="/tampilanuser/{{$row->id}}" type="submit"class="btn btn-warning m-2">Edit</button>
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                        $no = 1;
-                        @endphp
-                        <tr>
-                            @foreach ($data as $index => $row)
-                            <th scope="row">{{ $index + $data->firstItem() }}</th>
-                            <td>{{$row ->name}}</td>
-                            <td>{{$row ->nim}}</td>
-                            <td>{{$row ->email}}</td>
-                            <td>{{$row ->password}}</td>
-                            <td>{{$row ->expired_at}}</td>
-                            <td>{{$row ->role}}</td>
-                            <td class="d-flex">
-                                <a href="#" class="btn btn-danger m-2 delete" data-id="{{$row->id}}"  data-nama="{{$row->name}}">Delete</a>
-                            <a href="/tampilanuser/{{$row->id}}" type="submit"class="btn btn-warning m-2">Edit</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @if ($data->count() == 0)
-                            <div class="alert alert-danger" role="alert">
-                                Tidak Ada Data Peminjam!
-                            </div>
-                        @endif
-                     </tbody>
-                 </table>
-              </div>
+                        @endforeach
+                        @if ($data->count() == 0)
+                                <div class="alert alert-danger" role="alert">
+                                    Tidak Ada Data Peminjam!
+                                </div>
+                            @endif
+                         </tbody>
+                     </table>
+                </div>
+               </div>
             </div>
         </div>
     </section>
