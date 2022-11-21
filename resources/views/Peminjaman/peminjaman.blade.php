@@ -37,6 +37,7 @@
                                         <th scope="col">Nama Barang</th>
                                         <th scope="col">Dokumentasi</th>
                                         <th scope="col">Jumlah</th>
+                                        <th scope="col">Expired</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -55,6 +56,7 @@
                                                 style="width: 80px;">
                                         </td>
                                         <td>{{$row->jumlah}}</td>
+                                        <td>{{$row->expired_at->format('Y-m-d')}}</td>
                                         <td class="d-flex">
                                             <div class="div">
                                                 <a class="btn btn-danger m-2 delete" data-id="{{$row->id}}" data-nama="{{$row->nama}}">Delete</a>

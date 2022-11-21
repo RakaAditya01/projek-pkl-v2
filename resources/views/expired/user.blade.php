@@ -47,7 +47,7 @@
                                 <td>{{$row ->nim}}</td>
                                 <td>{{$row ->email}}</td>
                                 <td>{{$row ->password}}</td>
-                                <td>{{$row ->expired_at}}</td>
+                                <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                 <td>{{$row ->role}}</td>
                                 <td class="d-flex">
                                 <div class="row m-0">
