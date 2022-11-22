@@ -59,7 +59,7 @@
                                         <td>{{$row->expired_at->format('Y-m-d')}}</td>
                                         <td class="d-flex">
                                             <div class="div">
-                                                <a class="btn btn-danger m-2 delete" data-id="{{$row->id}}" data-nama="{{$row->nama}}">Delete</a>
+                                                <a href="/deletepeminjaman/{{$row->id}}" class="btn btn-danger m-2 delete" data-id="{{$row->id}}" data-nama="{{$row->nama}}">Delete</a>
                                                 <a href="/tampilanpeminjam/{{$row->id}}" type="submit" class="btn btn-warning m-2">Edit</a>
                                             </div>
                                         </td>

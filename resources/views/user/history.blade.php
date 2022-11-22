@@ -40,8 +40,8 @@
                         </td>
                         <td>{{$row -> nama_barang}}</td>
                         <td>{{$row -> jumlah}}</td>
-                        <td>{{$row -> created_at}}</td>
-                        <td>{{$row -> expired_at}}</td>
+                        <td>{{$row -> created_at->format('Y-m-d')}}</td>
+                        <td>{{$row -> expired_at->format('Y-m-d')}}</td>
                         <td>
                             <form action="/deletehistory/{{$row->id}}" method="POST">
                                 @csrf
