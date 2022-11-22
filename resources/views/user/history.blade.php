@@ -17,44 +17,49 @@
                     </form>
                 </div>
             </div>
-            <table class="table-sm table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Foto</th>
-                        <th scope="col">Nama Barang</th>
-                        <th scope="col">Jumlah</th>
-                        <th scope="col">Tgl.Dipinjam</th>
-                        <th scope="col">Tgl.Dikembalikan</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                    $no = 1;
-                    @endphp
-                    <tr>
-                        @foreach ($data as $index => $row)
-                        <th scope="row">{{ $index + $data->firstItem() }}</th>
-                        <td>
-                            <img src="{{ asset('fotodokumentasi/'.$row->dokumentasi) }}" alt=""
-                                style="width: 80px;">
-                        </td>
-                        <td>{{$row -> nama_barang}}</td>
-                        <td>{{$row -> jumlah}}</td>
-                        <td>{{$row -> created_at->format('Y-m-d')}}</td>
-                        <td>{{$row -> expired_at->format('Y-m-d')}}</td>
-                        <td>
-                            <form action="/deletehistory/{{$row->id}}" method="POST">
-                                @csrf
-                                @method("delete")
-                                <button class="btn btn-primary m-2">Kembalikan</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <br>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table-striped table nowrap" id="table" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Foto</th>
+                                <th scope="col">Nama Barang</th>
+                                <th scope="col">Jumlah</th>
+                                <th scope="col">Tgl.Dipinjam</th>
+                                <th scope="col">Tgl.Dikembalikan</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                            $no = 1;
+                            @endphp
+                            <tr>
+                                @foreach ($data as $index => $row)
+                                <th scope="row">{{ $index + $data->firstItem() }}</th>
+                                <td>
+                                    <img src="{{ asset('fotodokumentasi/'.$row->dokumentasi) }}" alt=""
+                                        style="width: 80px;">
+                                </td>
+                                <td>{{$row -> nama_barang}}</td>
+                                <td>{{$row -> jumlah}}</td>
+                                <td>{{$row -> created_at->format('Y-m-d')}}</td>
+                                <td>{{$row -> expired_at->format('Y-m-d')}}</td>
+                                <td>
+                                    <form action="/deletehistory/{{$row->id}}" method="POST">
+                                        @csrf
+                                        @method("delete")
+                                        <button class="btn btn-primary m-2">Kembalikan</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             {{ $data->links() }}
            </div>
         </div>
