@@ -1,11 +1,12 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Sarpras</a>
+            <a href="{{ url('dashboard-general-dashboard') }}">Sarpras</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">PNJ</a>
+            <a href="{{ url('dashboard-general-dashboard') }}">PNJ</a>
         </div>
+
         @if(auth()->user()->role == 'admin')
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
@@ -29,10 +30,6 @@
                         <a class="nav-link"
                             href="{{ url('user') }}">User</a>
                     </li>
-                    {{-- <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link"
-                            href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
-                    </li> --}}
                 </ul>
             </li>
             <li class="menu-header">More</li>
@@ -48,6 +45,7 @@
             </li>
         </ul>
         @endif
+
         @if(auth()->user()->role == 'mahasiswa')
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
@@ -67,19 +65,15 @@
                         <a class="nav-link"
                             href="{{ url('history') }}">History</a>
                     </li>
-                    {{-- <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link"
-                            href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
-                    </li> --}}
                 </ul>
             </li>
         </ul>
         @endif
-        <div class="hide-sidebar-mini mt-4 mb-4 p-3">
+        {{-- <div class="hide-sidebar-mini mt-4 mb-4 p-3">
             <a href="https://getstisla.com/docs"
                 class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Documentation
             </a>
-        </div>
+        </div> --}}
     </aside>
 </div>

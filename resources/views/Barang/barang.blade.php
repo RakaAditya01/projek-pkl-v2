@@ -61,7 +61,7 @@
                                             @method('delete')
                                             <button class="btn btn-danger m-2" type="submit">Delete</button>
                                             <a href="/tampilanbarang/{{$row->id}}" type="submit"
-                                                class="btn btn-warning m-2">Edit</a>
+                                                class="btn btn-primary m-2">Edit</a>
                                         </form>
                                     </td>
                                 </tr>

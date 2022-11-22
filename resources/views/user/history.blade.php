@@ -10,10 +10,12 @@
         </div>
         <div class="row">
            <div class="table-responsive">
-            <div class="col">
-                <form action="/history" method="GET" class="mt-3">
-                    <input type="text" id="input" placeholder="Cari Barang..." onkeyup='searchTable()'>
-                </form>
+            <div class="bd-highlight d-flex">
+                <div class="card-header-form">
+                    <form action="/history" method="GET" class="mt-3">
+                        <input type="text" id="input" placeholder="Search" class="form-control" onkeyup='searchTable()'>
+                    </form>
+                </div>
             </div>
             <table class="table-sm table">
                 <thead>

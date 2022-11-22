@@ -17,10 +17,8 @@
                             class="form-control" onkeyup='searchTable()'>
                         </form>
                     </div>
-                    <div class="p-2 flex-grow-1 bd-hiighlight text-right">
-                         <a hrefc="{{route('tambahuser')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
-                    </div>
                 </div>
+                <br>
                <div class="card-body p-0">
                 <div class="table-responsive">
                         <table class="table-striped table nowrap" id="table" style="width: 100%">
@@ -30,7 +28,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Nim</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">password</th>
+                                {{-- <th scope="col">password</th> --}}
                                 <th scope="col">Expired</th>
                                 <th scope="col">Role</th>
                                 <th scope="col">Action</th>
@@ -46,13 +44,13 @@
                                 <td>{{$row ->name}}</td>
                                 <td>{{$row ->nim}}</td>
                                 <td>{{$row ->email}}</td>
-                                <td>{{$row ->password}}</td>
+                                {{-- <td>{{$row ->password}}</td> --}}
                                 <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                 <td>{{$row ->role}}</td>
                                 <td class="d-flex">
                                 <div class="row m-0">
-                                <button  class="btn btn-danger m-2 delete" data-id="{{$row->id}}"  data-nama="{{$row->name}}">Delete</button>
-                                <button href="/tampilanuser/{{$row->id}}" type="submit"class="btn btn-warning m-2">Edit</button>
+                                <button  class="btn btn-danger m-2 delete" data-id="{{$row->id}}"  data-nama="{{$row->name}}"><i class="fas fa-trash"></i></button>
+                                <button href="/tampilanuser/{{$row->id}}" type="submit" class="btn btn-primary m-2"><i class="fas fa-pencil-alt"></i></button>
                                 </div>
                             </td>
                         </tr>
