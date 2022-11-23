@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -33,11 +34,12 @@ class UserController extends Controller
 
     public function tampilanUser($id){
         $data = User::find ($id);
-        return view('expired\user',compact('data'));
+        return view('expired\edit',compact('data'));
     }
 
     public function update(request $request, $id){  
         $data = User::find($id);
+        $request['password'] = Hash::make($request['password']);
         $data->update($request->all());
         return redirect()->route('user')->with('success', 'Data Berhasil Di Edit!');;
     }   

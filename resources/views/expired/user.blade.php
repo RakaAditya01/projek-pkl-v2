@@ -50,7 +50,7 @@
                                 <td class="d-flex">
                                 <div class="row m-0">
                                 <button  class="btn btn-danger m-2 delete" data-id="{{$row->id}}"  data-nama="{{$row->name}}"><i class="fas fa-trash"></i></button>
-                                <button href="/tampilanuser/{{$row->id}}" type="submit" class="btn btn-primary m-2"><i class="fas fa-pencil-alt"></i></button>
+                                <a href="/tampilanuser/{{$row->id}}" class="btn btn-primary m-2"><i class="fas fa-pencil-alt mt-2"></i></a>
                                 </div>
                             </td>
                         </tr>

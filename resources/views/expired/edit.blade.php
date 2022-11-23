@@ -36,8 +36,8 @@
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Dokumentasi</label>
-                                        <input type="text" name="password" value="{{$data->password}}" class="form-control"  id="exampleInputEmail1"
+                                        <label for="exampleInputEmail1" class="form-label">Password</label>
+                                        <input type="text" name="password" value="" class="form-control"  id="exampleInputEmail1"
                                         aria-describedby="emailHelp">
                                         @error('password')
                                         <div class="text-danger">

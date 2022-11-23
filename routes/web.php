@@ -85,7 +85,7 @@ Route::get('/features-profile', [ProfileController::class, 'index'])->name('prof
 Route::put('/update', [ProfileController::class,'update'])->name('update');
 
 // expired
-Route::get('/user', [UserController::class, 'index'])->name('User');
+Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/tambahuser', [UserController::class,'tambahuser'])->name('tambahuser');
 Route::post('/insertuser', [UserController::class,'store'])->name('insertuser');
 Route::get('/tampilanuser/{id}', [UserController::class,'tampilanuser'])->name('tampilanuser');
