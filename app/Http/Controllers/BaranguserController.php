@@ -15,18 +15,6 @@ class BaranguserController extends Controller
         return view('user\baranguser',compact('data'));
     }
 
-    // public function baranguser($id)
-    // {
-    //     $barang = Barang::select('nama_barang')->find($id);
-    //     return redirect('user\history' , compact('barang'));
-    // }
-    // public function namadannim(Request $request)
-    // {
-    //     return response()->json([
-    //         'r' =>'pantek',
-    //     ]);
-    // }
-
     public function pinjamuser(){
         $barang = Barang ::all();
         return view('user\pinjamuser' , compact('barang'));
