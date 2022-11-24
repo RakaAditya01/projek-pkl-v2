@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Peminjam;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
 class BaranguserController extends Controller
@@ -33,24 +34,11 @@ class BaranguserController extends Controller
     }
 
     public function store(request $request){
-        $this-> validate($request, [
-            'nim'=> 'required',
-            'nama'=> 'required',
-            'nama_barang'=> 'required',
-            'dokumentasi'=> 'required',
-            'jumlah'=> 'required',
-        ],
-        [
-            'nim.required' => 'Nim tidak boleh kosong',
-            'nama.required' => 'Nama tidak boleh kosong',
-            'nama_barang.required' => 'Nama Barang tidak boleh kosong',
-            'dokumentasi.required' => 'Dokumentasi tidak boleh kosong',
-            'jumlah.required' => 'Jumlah tidak boleh kosong',
-        ]);
         $data = Peminjam::create ($request->all());
         if($request->hasFile('dokumentasi')){
             $request->file('dokumentasi')->move('fotodokumentasi/', $request->file('dokumentasi')->getClientOriginalName());
             $data->dokumentasi = $request->file('dokumentasi')->getClientOriginalName();
+            $data -> expired_at = Carbon::today()->addWeeks(1)->toDateString();
             $data->save();
         }  
             

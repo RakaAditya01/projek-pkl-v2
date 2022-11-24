@@ -20,7 +20,7 @@
                                 <input type="text" name="nim" id="" class="form-control 
                                 @error('nim')
                                     is-invalid
-                                @enderror" aria-describedby="emailHelp">
+                                @enderror" aria-describedby="emailHelp" value="{{auth()->user()->nim}}" readonly>
                                 @error('nim')
                                 <div class="text-danger">
                                     {{ $message }}
@@ -30,15 +30,8 @@
     
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nama</label>
-                                <input type="text" name="nama" id="nama" class="form-control 
-                                @error('nama')
-                                    is-invalid
-                                @enderror" aria-describedby="emailHelp">
-                                @error('nama')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                                <input type="text" name="nama"  class="form-control" aria-describedby="emailHelp" value="{{auth()->user()->name}}" readonly>
+                                </input>
                             </div>
     
                             <div class="mb-3">
