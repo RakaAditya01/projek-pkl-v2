@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+// Cloudinary
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 return [
 
@@ -197,6 +199,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         // recaptcha
         Mews\Captcha\CaptchaServiceProvider::class,
+        // Cloudinary
+        CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
 
     ],
 

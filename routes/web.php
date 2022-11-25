@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ScanController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BaranguserController;
 use App\Http\Controllers\ForgotPasswordController;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 
 /*
 |--------------------------------------------------------------------------
