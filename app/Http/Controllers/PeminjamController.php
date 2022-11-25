@@ -39,10 +39,8 @@ class PeminjamController extends Controller
     public function store(request $request){
         $data = Peminjam::create ($request->all());
         if($request->hasFile('dokumentasi')){
-            $request->file('dokumentasi')->move('fotodokumentasi/', $request->file('dokumentasi')->getClientOriginalName());
-            $data->dokumentasi = $request->file('dokumentasi')->getClientOriginalName();
-            $data -> expired_at = Carbon::today()->addWeeks(1)->toDateString();
-            $data->save();
+           $data->dokumentasi = cloudinary()->upload($request->file('dokumentasi')->getRealPath())->getSecurePath();
+           $data->save();
         }  
             
         return redirect(route('peminjaman'));

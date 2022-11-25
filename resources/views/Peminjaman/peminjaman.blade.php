@@ -51,7 +51,7 @@
                                         <td>{{$row->nama}}</td>
                                         <td>{{$row->nama_barang}}</td>
                                         <td>
-                                            <img src="{{ asset('fotodokumentasi/'.$row->dokumentasi) }}" alt=""
+                                            <img src="{{ $row->dokumentasi }}" alt=""
                                                 style="width: 80px;">
                                         </td>
                                         <td>{{$row->jumlah}}</td>

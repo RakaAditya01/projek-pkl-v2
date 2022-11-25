@@ -36,11 +36,7 @@ class BarangController extends Controller
         ]);
         $data = Barang::create ($request->all());
         if($request->hasFile('gambar')){
-            // $request->file('gambar')->move('fotodokumentasi/', $request->file('gambar')->getClientOriginalName());
             $data->gambar = cloudinary()->upload($request->file('gambar')->getRealPath())->getSecurePath();
-            // dd($uploadedFileUrl);
-            // $data->gambar = $request->file('gambar')->getClientOriginalName();
-            // dd($data);
             $data->save();
         }
         return redirect(route('barang'));
