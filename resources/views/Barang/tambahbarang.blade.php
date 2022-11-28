@@ -21,7 +21,7 @@
                                     <input type="file" name="gambar" class="form-control 
                                     @error('gambar')
                                         is-invalid
-                                    </div>
+
                                     @enderror" id="exampleInputEmail1" aria-describedby="emailHelp"  value="{{ old('gambar') }}">
                                     @error('gambar')
                                     <div class="text-danger">

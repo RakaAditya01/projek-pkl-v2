@@ -39,6 +39,7 @@ class BarangController extends Controller
             $data->gambar = cloudinary()->upload($request->file('gambar')->getRealPath())->getSecurePath();
             $data->save();
         }
+        
         return redirect(route('barang'));
     }
     
