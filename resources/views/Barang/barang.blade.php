@@ -14,11 +14,17 @@
                     <div class="card-header-form">
                         <form action="/barang" method="GET" class="mt-3">
                             <div class="input-group">
-                                <input type="text"
+                                <ul class="navbar-nav mr-3">
+                                  <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+                                </ul>
+                                <form class="form-inline mr-auto">
+                                <input type="search"
                                     id="input"
+                                    aria-label="Search" data-width="250"
                                     class="form-control"
                                     placeholder="Search"
                                     onkeyup='searchTable()'>
+                                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                             </div>
                         </form>
                     </div>
@@ -46,6 +52,7 @@
                                 @endphp
                                 <tr>
                                     @foreach ($data as $index => $row)
+                                    <input type="hidden" class="delete_id" value="{{ $row->id }}">
                                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                                     <td>
                                         <img src="{{ $row->gambar }}" alt=""
@@ -56,13 +63,14 @@
                                     <td>{{$row ->anggaran}}</td>
                                     <td>{{$row ->scan}}</td>
                                     <td class="d-flex">
-                                        <form action="/deletebarang/{{$row->id}}" method="get">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-danger m-2" type="submit">Delete</button>
-                                            <a href="/tampilanbarang/{{$row->id}}" type="submit"
-                                                class="btn btn-primary m-2">Edit</a>
-                                        </form>
+                                        <div class="row mt-0">
+                                            <form action="{{ route('deletebarang', $row->id) }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-icon btn-danger m-1 ml-3 mt-3 mb-3  btndelete"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                            <a href="/tampilanbarang/{{$row->id}}" class="btn btn-primary m-1 mr-3 mb-3 mt-3 "><i class="fas fa-pencil-alt "></i></a>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -80,34 +88,58 @@
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
     integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 {{-- end --}}
 </body>
-<script>
-$('.delete').click( function( ){
-    var barangid = $(this).attr('data-id');
-    var nama = $(this).attr('data-nama');
-    swal({
-            title: "Yakin?",
-            text: "Anda Akan Menghapus Data Ini? "+barangid+"",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                window.location = "/deletebarang/ "+barangid+""
-                swal("Data Anda Berhasil Di Hapus", {
-                icon: "success",
-                });
-            } else {
-                swal("Data Anda Tidak Jadi Di Hapus");
-            }
-    });
-});
-</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+<script>
+    $(document).ready(function () {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.btndelete').click(function (e) {
+            e.preventDefault();
+
+            var deleteid = $(this).closest("tr").find('.delete_id').val();
+
+            swal({
+                    title: "Apakah anda yakin?",
+                    text: "Setelah dihapus, Anda tidak dapat memulihkan Tag ini lagi!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        var data = {
+                            "_token": $('input[name=_token]').val(),
+                            'id': deleteid,
+                        };
+                        $.ajax({
+                            type: "DELETE",
+                            url: 'deletebarang/' + deleteid,
+                            data: data,
+                            success: function (response) {
+                                swal(response.status, {
+                                        icon: "success",
+                                    })
+                                    .then((result) => {
+                                        location.reload();
+                                    });
+                            }
+                        });
+                    }
+                });
+        });
+
+    });
+
+</script>
 <script>
 function searchTable() {
     var input;

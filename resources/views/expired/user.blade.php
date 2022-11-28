@@ -48,7 +48,7 @@
                                 <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                 <td>{{$row ->role}}</td>
                                 <td class="d-flex">
-                                <div class="row m-0">
+                                <div class="row">
                                 <button  class="btn btn-danger m-2 delete" data-id="{{$row->id}}"  data-nama="{{$row->name}}"><i class="fas fa-trash"></i></button>
                                 <a href="/tampilanuser/{{$row->id}}" class="btn btn-primary m-2"><i class="fas fa-pencil-alt mt-2"></i></a>
                                 </div>
@@ -82,7 +82,7 @@ crossorigin="anonymous"></script>
 <script>
 $('.delete').click( function( ){
     var barangid = $(this).attr('data-id');
-    var nama = $(this).attr('data-name');
+    var nama = $(this).attr('data-nama');
     swal({
             title: "Yakin?",
             text: "Anda Akan Menghapus Data Ini id "+nama+"",

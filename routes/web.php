@@ -63,7 +63,7 @@ Route::get('/tambahbarang', [BarangController::class,'tambahbarang'])->name('tam
 Route::post('/insertbarang', [BarangController::class,'store'])->name('insertbarang');
 Route::get('/tampilanbarang/{id}', [BarangController::class,'tampilanbarang'])->name('tampilanbarang');
 Route::put('/updatebarang/{id}', [BarangController::class,'update'])->name('updatebarang');
-Route::get('/deletebarang/{id}', [BarangController::class,'destroy'])->name('deletebarang');
+Route::delete('/deletebarang/{id}', [BarangController::class,'destroy'])->name('deletebarang');
 Route::get('/barang/cari',[BarangController::class,'cari'])->name('cari');
 
 // Peminjaman

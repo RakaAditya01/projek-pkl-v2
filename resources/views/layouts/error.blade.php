@@ -63,6 +63,7 @@
     <script src="{{ asset('js/stisla.js') }}"></script>
 
     @stack('scripts')
+    
 
     <!-- Template JS File -->
     <script src="{{ asset('js/scripts.js') }}"></script>
