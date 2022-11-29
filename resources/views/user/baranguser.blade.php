@@ -38,7 +38,7 @@
                                 @foreach ($data as $index => $row)
                                 <th scope="row">{{ $index + $data->firstItem() }}</th>
                                 <td>
-                                    <img src="{{ asset('fotodokumentasi/'.$row->gambar) }}" alt=""
+                                    <img src="{{ $row->gambar }}" alt=""
                                         style="width: 80px;">
                                 </td>
                                 <td hidden id="id">{{$row -> id}}</td>

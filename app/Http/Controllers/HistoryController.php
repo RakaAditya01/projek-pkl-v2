@@ -15,9 +15,10 @@ class HistoryController extends Controller
         $user = Auth::user()->nim;
         $data = Peminjam::where('nim' ,'=', "$user")
                 ->paginate();
+                // dd($data);
         return view('user\history',compact('data'));
     }
-
+    
     public function destroy($id){
         $data = Peminjam::find($id);
         $data->delete();
