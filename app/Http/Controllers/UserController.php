@@ -45,7 +45,7 @@ class UserController extends Controller
     }   
 
     public function destroy($id){
-        $data = User::first();
+        $data = User::find($id);
         $data->delete();
         return redirect()->route('user');
     }

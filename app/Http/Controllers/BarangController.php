@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Peminjam;
+use File;
 use Illuminate\Http\Request;
+use App\Exports\DataExport;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class BarangController extends Controller
@@ -22,7 +25,6 @@ class BarangController extends Controller
 
     public function store(request $request){
         $this-> validate($request, [
-            'gambar' => 'required',
             'nama_barang' => 'required',
             'stock' => 'required',
             'anggaran' => 'required',
@@ -34,12 +36,19 @@ class BarangController extends Controller
             'stock.required' => 'Stock tidak boleh kosong',
             'anggaran.required' => 'Anggaran tidak boleh kosong',
         ]);
-        $data = Barang::create ($request->all());
-        if($request->hasFile('gambar')){
-            $data->gambar = cloudinary()->upload($request->file('gambar')->getRealPath())->getSecurePath();
-            $data->save();
+        if($request->image){
+            $img =  $request->put('image');
+            $folderPath = "storage/";
+            $image_parts = explode(";base64,", $img);
+            foreach ($image_parts as $row => $image){
+            $image_base64 = base64_decode($image);
+            }
+            $fileName = uniqid() . '.png';
+            $file = $folderPath . $fileName;
+            file_put_contents($file, $image_base64);
+            $validateData['image'] = $fileName;
         }
-        
+
         return redirect(route('barang'));
     }
     
@@ -52,12 +61,28 @@ class BarangController extends Controller
    public function update(request $request, $id){
     $data = Barang::find($id);
     $data->update($request->all());
+
+    if($request->image){
+        if($data->image){
+            File::delete('storage/'. $data->image);
+        }
+        $img =  $request->get('image');
+        $folderPath = "storage/";
+        $image_parts = explode(";base64,", $img);
+        foreach ($image_parts as $key => $image){
+            $image_base64 = base64_decode($image);
+        }
+        $fileName = uniqid() . '.png';
+        $file = $folderPath . $fileName;
+        file_put_contents($file, $image_base64);
+        $validateData['image'] = $fileName;
+    }
     return redirect()->route('barang')->with('success', 'Data Berhasil Di Edit!');;
     }   
 
     public function destroy($id){
     $data = Barang::find($id);
     $data->delete();
-    return redirect()->route('barang')->with('success', 'Data Berhasil Di Hapus!');;
-    }
+    return redirect()->route('barang')->with('success', 'Data Berhasil Di Edit!');;
+    }   
 }

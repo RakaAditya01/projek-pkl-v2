@@ -60,9 +60,9 @@ Route::post('/registeruser', [RegisterController::class, 'registeruser'])->name(
 // barang
 Route::get('/barang', [BarangController::class,'index'])->name('barang');
 Route::get('/tambahbarang', [BarangController::class,'tambahbarang'])->name('tambahbarang');
-Route::post('/insertbarang', [BarangController::class,'store'])->name('insertbarang');
-Route::get('/tampilanbarang/{id}', [BarangController::class,'tampilanbarang'])->name('tampilanbarang');
 Route::put('/updatebarang/{id}', [BarangController::class,'update'])->name('updatebarang');
+Route::get('/tampilanbarang/{id}', [BarangController::class,'tampilanbarang'])->name('tampilanbarang');
+Route::post('/insertbarang', [BarangController::class,'store'])->name('insertbarang');
 Route::delete('/deletebarang/{id}', [BarangController::class,'destroy'])->name('deletebarang');
 Route::get('/barang/cari',[BarangController::class,'cari'])->name('cari');
 
@@ -72,7 +72,7 @@ Route::get('/tambahpeminjam', [PeminjamController::class,'tambahpeminjam'])->nam
 Route::post('/insertpeminjam', [PeminjamController::class,'store'])->name('insertpeminjam');
 Route::get('/tampilanpeminjam/{id}', [PeminjamController::class,'tampilanpeminjam'])->name('tampilanpeminjam');
 Route::put('/updatepeminjam/{id}', [PeminjamController::class,'update'])->name('updatepeminjam');
-Route::get('/deletepeminjaman/{id}', [PeminjamController::class,'destroy'])->name('deletepeminjaman');
+Route::delete('/deletepeminjaman/{id}', [PeminjamController::class,'destroy'])->name('deletepeminjaman');
 Route::get('/peminjam/cari',[PeminjamController::class,'cari'])->name('cari');
 // Route::get('/action',[PeminjamController::class,'action'])->name('action');
 
@@ -93,7 +93,7 @@ Route::get('/tambahuser', [UserController::class,'tambahuser'])->name('tambahuse
 Route::post('/insertuser', [UserController::class,'store'])->name('insertuser');
 Route::get('/tampilanuser/{id}', [UserController::class,'tampilanuser'])->name('tampilanuser');
 Route::put('/updateuser/{id}', [UserController::class,'update'])->name('updateuser');
-Route::get('/deleteuser/{id}', [UserController::class,'destroy'])->name('deletebarang');
+Route::delete('/deleteuser/{id}', [UserController::class,'destroy'])->name('deleteuser');
 Route::get('/user/cari',[UserController::class,'cari'])->name('cari');
 
 // auth

@@ -47,99 +47,80 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                $no = 1;
-                                @endphp
+                                @foreach ($data as $no=> $row)
                                 <tr>
-                                    @foreach ($data as $index => $row)
-                                    <input type="hidden" class="delete_id" value="{{ $row->id }}">
-                                    <th scope="row">{{ $index + $data->firstItem() }}</th>
-                                    <td>
-                                        <img src="{{ $row->gambar }}" alt=""
-                                            style="width: 80px;">
-                                    </td>
+                                    <input type="hidden" value="{{ $row->image }}" class="key{{ $no }}">
+                                    <input type="hidden" value="{{ $row->nama_barang }}" class="key{{ $no }}">
+                                    <input type="hidden" value="{{ $row->stock }}" class="key{{ $no }}">
+                                    <input type="hidden" value="{{ $row->anggaran }}" class="key{{ $no }}">
+                                    <input type="hidden" value="{{ $row->scan }}" class="key{{ $no }}">
+                                    <td>{{$data->firstItem()+$no}}</td>
+                                    <td><img src="storage/{{$row->image}}" style="width: 30px;"></td>
                                     <td>{{$row ->nama_barang}}</td>
                                     <td>{{$row ->stock}}</td>
                                     <td>{{$row ->anggaran}}</td>
                                     <td>{{$row ->scan}}</td>
-                                    <td class="d-flex">
-                                        <div class="row mt-0">
-                                            <form action="{{ route('deletebarang', $row->id) }}" method="POST">
+                                    <td >
+                                        <div class="container d-flex" style="margin: 0;padding: 0;">
+                                            <form action="{{route('deletebarang',$row->id)}}" id="delete{{$row->id}}" method="POST" class="d-block">
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-icon btn-danger m-1 ml-3 mt-3 mb-3  btndelete"><i class="fas fa-trash"></i></button>
+                                                <a href="#" data-id={{$row->id}} class="btn btn-icon btn-danger m-1 ml-3 mt-3 mb-3 delete swal-confrim">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
                                             </form>
-                                            <a href="/tampilanbarang/{{$row->id}}" class="btn btn-primary m-1 mr-3 mb-3 mt-3 "><i class="fas fa-pencil-alt "></i></a>
+                                            <a href="{{route('tampilanbarang',$row->id)}}" class="btn btn-primary m-1 mr-3 mb-3 mt-3 "><i class="fas fa-pencil-alt "></i></a>
                                         </div>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
-                        </table>    
+                        </table>
+                        {{-- @else
+                        <div class="alert alert-success mt-3 alert-dismissible fade show" role="alert">
+                            Maaf, tidak ada ditemukan
+                        </div>
+                        @endif --}}
+                        {{$data->links()}}
+                
                     </div>
                 </div>
-            </div>
         </div>
-    </section>
-     {{ $data->links() }}
-</div>
-
-{{-- @include('sweetalert::alert') --}}
-<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
-    integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-
-{{-- end --}}
-</body>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    
+        
+    @endsection
+    
+@push('after-script')
 <script>
-    $(document).ready(function () {
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        $(".swal-confrim").click(function(e) {
+            id = e.target.dataset.id;
+            Swal.fire({
+            title: 'Apakah anda yakin ingin hapus data ini?',
+            text: "Data yang terhapus tidak dapat dikembalikan",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success',
+                )
+                $(`#delete${id}`).submit();
+            }else{
+                
             }
-        });
-
-        $('.btndelete').click(function (e) {
-            e.preventDefault();
-
-            var deleteid = $(this).closest("tr").find('.delete_id').val();
-
-            swal({
-                    title: "Apakah anda yakin?",
-                    text: "Setelah dihapus, Anda tidak dapat memulihkan Tag ini lagi!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-
-                        var data = {
-                            "_token": $('input[name=_token]').val(),
-                            'id': deleteid,
-                        };
-                        $.ajax({
-                            type: "DELETE",
-                            url: 'deletebarang/' + deleteid,
-                            data: data,
-                            success: function (response) {
-                                swal(response.status, {
-                                        icon: "success",
-                                    })
-                                    .then((result) => {
-                                        location.reload();
-                                    });
-                            }
-                        });
-                    }
-                });
-        });
-
+            
+            })
+            
     });
-
 </script>
+@endpush
+
 <script>
 function searchTable() {
     var input;
@@ -170,4 +151,3 @@ function searchTable() {
     }
 }
 </script>
-@endsection
