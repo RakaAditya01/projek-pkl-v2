@@ -40,6 +40,7 @@ class PeminjamController extends Controller
         $data = Peminjam::create ($request->all());
         if($request->hasFile('dokumentasi')){
            $data->dokumentasi = cloudinary()->upload($request->file('dokumentasi')->getRealPath())->getSecurePath();
+        //    dd($data);
            $data->save();
         }  
             

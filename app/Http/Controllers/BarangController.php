@@ -36,9 +36,10 @@ class BarangController extends Controller
             'stock.required' => 'Stock tidak boleh kosong',
             'anggaran.required' => 'Anggaran tidak boleh kosong',
         ]);
+        // $data = Barang::create ($reque;
         if($request->image){
-            $img =  $request->put('image');
-            $folderPath = "storage/";
+            $img =  $request->get('image');
+            $folderPath = "images/";
             $image_parts = explode(";base64,", $img);
             foreach ($image_parts as $row => $image){
             $image_base64 = base64_decode($image);
@@ -47,7 +48,26 @@ class BarangController extends Controller
             $file = $folderPath . $fileName;
             file_put_contents($file, $image_base64);
             $validateData['image'] = $fileName;
+            // dd($fileName);
+            
+            $data = Barang::insert([
+                'nama_barang' => $request->nama_barang,
+                'stock' => $request->stock,
+                'anggaran' => $request->anggaran,
+                'scan' => $request->scan,
+                'image' => $fileName,
+                'created_at' => now(),
+            ]);
+            // $data->nama_barang = $request->nama_barang;
+            // $data->stock = $request->stock;
+            // $data->anggaran = $request->anggaran;
+            // $data->scan = $request->scan;
+            // $data->image = $fileName;
+            // dd($data);
+            // $data->save();
+            
         }
+        
 
         return redirect(route('barang'));
     }
@@ -55,19 +75,36 @@ class BarangController extends Controller
     
 
     public function tampilanbarang($id){
-        $data = Barang::find ($id);
-    return view('Barang\edit',compact('data'));
+        $data = DB::table('barangs')->where('id',$id)->find($id);
+    return view('Barang\edit',['data'=>$data]);
    }
-   public function update(request $request, $id){
-    $data = Barang::find($id);
-    $data->update($request->all());
+   public function update(request $request, $id)
+   {
+    $data = DB::table('barangs')->where('id',$id)->get()[0];
+
+    //     'nama_barang' => $request->nama_barang,
+    //     'stock' => $request->stock,
+    //     'anggaran' => $request->anggaran,
+    //     'scan' => $request->scan,
+    //     'image' => $fileName,
+    //     'created_at' => now(),
+    // ]);
+    $data = DB::table('barangs')
+              ->where('id', $id)
+              ->update([
+                'nama_barang' => $request->nama_barang,
+                'stock' => $request->stock,
+                'anggaran' => $request->anggaran,
+                'scan' => $request->scan,
+                'updated_at' => now(),
+            ]);
 
     if($request->image){
         if($data->image){
-            File::delete('storage/'. $data->image);
+            File::delete('images/'. $data->image);
         }
         $img =  $request->get('image');
-        $folderPath = "storage/";
+        $folderPath = "images/";
         $image_parts = explode(";base64,", $img);
         foreach ($image_parts as $key => $image){
             $image_base64 = base64_decode($image);
@@ -76,7 +113,18 @@ class BarangController extends Controller
         $file = $folderPath . $fileName;
         file_put_contents($file, $image_base64);
         $validateData['image'] = $fileName;
+        $data = DB::table('barangs')
+              ->where('id', $id)
+              ->update([
+                'image' => $fileName,
+                'nama_barang' => $request->nama_barang,
+                'stock' => $request->stock,
+                'anggaran' => $request->anggaran,
+                'scan' => $request->scan,
+                'updated_at' => now(),
+            ]);
     }
+    
     return redirect()->route('barang')->with('success', 'Data Berhasil Di Edit!');;
     }   
 

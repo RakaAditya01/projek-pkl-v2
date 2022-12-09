@@ -55,7 +55,7 @@
                                     <input type="hidden" value="{{ $row->anggaran }}" class="key{{ $no }}">
                                     <input type="hidden" value="{{ $row->scan }}" class="key{{ $no }}">
                                     <td>{{$data->firstItem()+$no}}</td>
-                                    <td><img src="storage/{{$row->image}}" style="width: 30px;"></td>
+                                    <td><img src="images/{{$row->image}}" style="width: 30px;"></td>
                                     <td>{{$row ->nama_barang}}</td>
                                     <td>{{$row ->stock}}</td>
                                     <td>{{$row ->anggaran}}</td>

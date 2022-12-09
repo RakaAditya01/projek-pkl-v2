@@ -31,19 +31,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                            $no = 1;
-                            @endphp
+            
                              <tr>
-                                @foreach ($data as $index => $row)
-                                <th scope="row">{{ $index + $data->firstItem() }}</th>
-                                <td>
-                                    <img src="{{ asset('fotodokumentasi/'.$row->gambar) }}" alt=""
-                                        style="width: 80px;">
-                                </td>
+                                @foreach ($data as $no => $row)
+
+                                <td>{{$data->firstItem()+$no}}</td>
+                                <td><img src="images/{{$row->image}}" style="width: 30px;"></td>
                                 <td hidden id="id">{{$row -> id}}</td>
-                                <td>{{$row -> nama_barang}}</td>
-                                <td>{{$row -> stock}}</td>
+                                <td>{{$row ->nama_barang}}</td>
+                                <td>{{$row ->stock}}</td>
                                 <td>
                                     <a href="{{route('pinjamuser')}}" type="button" class="btn btn-primary m-2">Pinjam</a>
                                 </td>
@@ -58,38 +54,6 @@
     </section>
     {{ $data->links() }}
 </div>
-
-{{-- @include('sweetalert::alert') --}}
-<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
-    integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-{{-- end --}}
-</body>
-<script>
-$('.delete').click( function( ){
-    var barangid = $(this).attr('data-id');
-    var nama = $(this).attr('data-nama');
-    swal({
-            title: "Yakin?",
-            text: "Anda Akan Menghapus Data Ini? "+barangid+"",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                window.location = "/deletebarang/ "+barangid+""
-                swal("Data Anda Berhasil Di Hapus", {
-                icon: "success",
-                });
-            } else {
-                swal("Data Anda Tidak Jadi Di Hapus");
-            }
-    });
-});
-</script>
 
 <script>
 function searchTable() {
