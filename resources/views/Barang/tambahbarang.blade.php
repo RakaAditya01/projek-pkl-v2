@@ -88,17 +88,10 @@
         </div>
 </div>
 
-{{-- <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script> --}}
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
-   
-    {{-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> --}}
-    {{-- <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script> --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script> --}}
- 
-    {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> --}}
     <script type='text/javascript'>
         Webcam.set({
                 width: 350,
@@ -115,43 +108,7 @@
                 } );
             }
 
-            // let signature;
-
-            // function setupSignature(){
-            //     const canvas = document.querySelector('canvas');
-            //     signature = new SignaturePad(canvas);
-            // }
-
-            // $(document).ready(setupSignature)
-
-            // $('#clear').click(function() {
-            // signature.clear()
-            // $('#signature64').val('');
-            // console.log($('#signature64').val())
-            // });
-
-            // $('#simpanEdit123').click(function(){
-            //     let ttd = signature.toDataURL();
-            //     let data = $('#signature64').val(ttd)
-            //     console.log($('#signature64').val())
-
-            // })
-
-            // let width = window.screen.width;
-            // if(width < 480){
-            //     const video = document.querySelector('#camera video');
-            //     const sig = document.querySelector('#sig');
-            //     video.style.width = "17rem";
-            //     sig.style.width = "15rem";
-            // }
-            
-        // var canvas = document.getElementById('signature-pad');
-        // var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
-        // $('#clear').click(function(e) {
-        //     e.preventDefault();
-        //     sig.signature('clear');
-        //     $("#signature64").val('');
-        // });
+        
 
         
 

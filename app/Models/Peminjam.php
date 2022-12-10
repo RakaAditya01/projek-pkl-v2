@@ -14,7 +14,7 @@ class Peminjam extends Model
         'nim',
         'nama',
         'nama_barang',
-        'dokumentasi',
+        'image',
         'jumlah',
         'expired_at',
     ];

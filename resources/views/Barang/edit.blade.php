@@ -102,16 +102,12 @@
         </script>
 
 <script>
-    const tombolFoto = document.querySelector('.tombol-foto');
-    const tombolTandaTangan = document.querySelector('.tombol-tanda-tangan');
+    const tombolFoto = document.querySelector('.tombol-foto');;
     const tombolFotoBatal = document.querySelector('.tombol-foto-batal');
     const bungkus = document.querySelector('.bungkus');
     const bungkus2 = document.querySelector('.bungkus2');
     const results = document.querySelector('#results');
     const imageTag = document.querySelector('.image-tag');
-    const containertandatangan = document.querySelector('.containertandatangan');
-    const container2tandatangan = document.querySelector('.container2tandatangan');
-    const tombolTandaTanganBatal = document.querySelector('.tombol-tanda-tangan-batal');
 
     tombolFoto.addEventListener('click', function(){
         tombolFotoBatal.style.display = 'block';
@@ -127,13 +123,6 @@
         tombolFotoBatal.style.display = 'none';
         results.innerHTML = 'Your captured image will appear here...';
         imageTag.value = "";
-    })
-
-    tombolTandaTangan.addEventListener('click', function(){
-        containertandatangan.style.display =  'block';
-        container2tandatangan.style.display = 'none';
-        tombolTandaTangan.style.display = 'none';
-        tombolTandaTanganBatal.style.display = 'block';
     })
 
     

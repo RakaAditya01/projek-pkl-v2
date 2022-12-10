@@ -37,7 +37,7 @@ class BarangController extends Controller
             'anggaran.required' => 'Anggaran tidak boleh kosong',
         ]);
         // $data = Barang::create ($reque;
-        if($request->image){
+        if($request->images){
             $img =  $request->get('image');
             $folderPath = "images/";
             $image_parts = explode(";base64,", $img);
@@ -99,7 +99,7 @@ class BarangController extends Controller
                 'updated_at' => now(),
             ]);
 
-    if($request->image){
+    if($request->images){
         if($data->image){
             File::delete('images/'. $data->image);
         }
