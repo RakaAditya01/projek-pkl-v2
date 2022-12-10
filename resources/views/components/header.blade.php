@@ -180,9 +180,11 @@
         ?>
         <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg d-flex">
             <i class="far fa-bell"></i>
+            @if($stock)
             <div class="rounded-circle bg-success" style="width: 15px!important; height: 15px!important;">
                 <span style="display: flex!important; justify-content: center!important; text-align: center!important; align-items: center; width: 15px!important; height: 15px!important; font-size: 12px;">{{ count($stock) }}</span>
             </div>
+            @endif
         </a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
                 <div class="dropdown-header">Notifications</div>

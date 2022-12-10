@@ -45,6 +45,7 @@
                                         </div>
                                         @enderror
                                     </div>
+
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="exampleFormControlSelect1" class="form-label">Role</label>
@@ -55,6 +56,7 @@
                                             </select>
                                         </div>
                                     </div>
+                                    
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>

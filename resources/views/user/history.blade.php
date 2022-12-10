@@ -18,6 +18,7 @@
                 </div>
             </div>
             <br>
+
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table-striped table nowrap" id="table" style="width: 100%">
@@ -62,6 +63,7 @@
             {{ $data->links() }}
            </div>
         </div>
+        
     </section>
 </div>
 

@@ -19,6 +19,7 @@
                                 @method('get')
                                 <div class="mb-3">
                                 <label for="image">Foto</label>
+
                                 <div class="bungkus" {{ ($data->image) ? "style=display:none" : "style=display:block" }}>
                                     <div class="col-md-6">
                                         <div id="camera"></div>
@@ -30,9 +31,11 @@
                                         <div id="results" style="margin-top: 30px;">Your captured image will appear here...</div>
                                     </div>
                                 </div>
+
                                 <div class="bungkus2" {{ ($data->image) ? "style=display:block" : "style=display:none" }}>
                                     <img src="{{ asset('images/'.$data->image) }}" style="width: 25vw;">
                                 </div>
+
                                 <button class="btn btn-warning mt-2 tombol-foto" type="button">Ubah Foto</button>
                                 <button class="btn btn-secondary mt-2 tombol-foto-batal" type="button" style="display: none;">Batal</button>
                                 
@@ -41,6 +44,7 @@
                                         Data Harus diisi!
                                     </div>
                                 @enderror
+
                             </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Nama Barang</label>
@@ -69,6 +73,7 @@
                                         aria-describedby="emailHelp">
                                     <div id="emailHelp" class="form-text"></div>
                                 </div>
+                                
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>

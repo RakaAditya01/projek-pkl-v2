@@ -30,6 +30,7 @@
                                         </div>
                                     @enderror
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Nama Barang</label>
                                     <input type="text" name="nama_barang" class="form-control 
@@ -42,6 +43,7 @@
                                     </div>
                                     @enderror
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Stock</label>
                                     <input type="text" name="stock" class="form-control 
@@ -54,6 +56,7 @@
                                     </div>
                                     @enderror
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Anggaran</label>
                                     <input type="text" name="anggaran" class="form-control 
@@ -66,6 +69,7 @@
                                     </div>
                                     @enderror
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Barcode</label>
                                     <input type="text" name="scan" class="form-control 
@@ -78,6 +82,7 @@
                                     </div>
                                     @enderror
                                 </div>
+                                
                                 <button class="btn btn-primary" type="submit">Submit</button>
                             </form>
                         </div>

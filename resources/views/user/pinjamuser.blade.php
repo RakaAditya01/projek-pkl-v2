@@ -28,6 +28,7 @@
                                     </div>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">NIM</label>
                                 <input type="text" name="nim" id="" class="form-control 
@@ -63,6 +64,7 @@
                                 </div>
                                 @enderror
                             </div>
+                            
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Jumlah</label>
                                 <input type="text" name="jumlah" class="form-control 

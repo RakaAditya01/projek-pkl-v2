@@ -20,6 +20,7 @@
                 </div>
                 <br>
                <div class="card-body p-0">
+
                 <div class="table-responsive">
                         <table class="table-striped table nowrap" id="table" style="width: 100%">
                         <thead>
@@ -34,6 +35,7 @@
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
                             @php
                             $no = 1;
@@ -63,6 +65,7 @@
                          </tbody>
                      </table>
                 </div>
+
                </div>
             </div>
         </div>

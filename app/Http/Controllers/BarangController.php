@@ -100,7 +100,7 @@ class BarangController extends Controller
             ]);
 
     if($request->images){
-        if($data->image){
+        if($data->images){
             File::delete('images/'. $data->image);
         }
         $img =  $request->get('image');

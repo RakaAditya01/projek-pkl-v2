@@ -26,6 +26,7 @@
                         <a href="{{route('tambahpeminjam')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
                     </div>
                 </div>
+
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table-striped table">
@@ -79,6 +80,7 @@
                         {{-- {{$data->links()}} --}}
                 
                     </div>
+                    
                 </div>
         </div>
         </div>
