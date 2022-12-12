@@ -60,7 +60,7 @@ Route::post('/registeruser', [RegisterController::class, 'registeruser'])->name(
 // barang
 Route::get('/barang', [BarangController::class,'index'])->name('barang');
 Route::get('/tambahbarang', [BarangController::class,'tambahbarang'])->name('tambahbarang');
-Route::put('/updatebarang/{id}', [BarangController::class,'update'])->name('updatebarang');
+Route::get('/updatebarang/{id}', [BarangController::class,'update'])->name('updatebarang');
 Route::get('/tampilanbarang/{id}', [BarangController::class,'tampilanbarang'])->name('tampilanbarang');
 Route::post('/insertbarang', [BarangController::class,'store'])->name('insertbarang');
 Route::delete('/deletebarang/{id}', [BarangController::class,'destroy'])->name('deletebarang');

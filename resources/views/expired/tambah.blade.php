@@ -40,6 +40,7 @@
                                         </div>
                                         @enderror
                                     </div>
+
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email</label>
                                         <input type="text" name="email" id="email" class="form-control 
@@ -52,6 +53,7 @@
                                         </div>
                                         @enderror
                                     </div>
+
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Password</label>
                                         <input type="text" name="Password" id="Password" class="form-control 
@@ -75,6 +77,7 @@
                                             </select>
                                         </div>
                                     </div>
+                                    
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>

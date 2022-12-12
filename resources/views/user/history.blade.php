@@ -18,6 +18,7 @@
                 </div>
             </div>
             <br>
+
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table-striped table nowrap" id="table" style="width: 100%">
@@ -40,13 +41,12 @@
                                 @foreach ($data as $index => $row)
                                 <th scope="row">{{ $index + $data->firstItem() }}</th>
                                 <td>
-                                    <img src="{{ $row->dokumentasi }}" alt=""
-                                        style="width: 80px;">
+                                <img src="images/{{$row->image}}" style="width: 30px;">
                                 </td>
-                                <td>{{$row -> nama_barang}}</td>
-                                <td>{{$row -> jumlah}}</td>
-                                <td>{{$row -> created_at->format('Y-m-d')}}</td>
-                                <td>{{$row -> expired_at->format('Y-m-d')}}</td>
+                                <td>{{$row ->nama_barang}}</td>
+                                <td>{{$row ->jumlah}}</td>
+                                <td>{{$row ->created_at->format('Y-m-d')}}</td>
+                                <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                 <td>
                                     <form action="/deletehistory/{{$row->id}}" method="POST">
                                         @csrf
@@ -63,6 +63,7 @@
             {{ $data->links() }}
            </div>
         </div>
+        
     </section>
 </div>
 

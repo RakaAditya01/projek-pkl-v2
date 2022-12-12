@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 use DB; 
 use Carbon\Carbon; 
 use App\Models\User; 
-use Mail; 
 use Hash;
 use Illuminate\Support\Str;
+use App\Mail\Subscribe;
+use App\Models\Subscriber;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
   
 class ForgotPasswordController extends Controller
 {

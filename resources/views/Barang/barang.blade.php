@@ -55,7 +55,7 @@
                                     <input type="hidden" value="{{ $row->anggaran }}" class="key{{ $no }}">
                                     <input type="hidden" value="{{ $row->scan }}" class="key{{ $no }}">
                                     <td>{{$data->firstItem()+$no}}</td>
-                                    <td><img src="storage/{{$row->image}}" style="width: 30px;"></td>
+                                    <td><img src="images/{{$row->image}}" style="width: 30px;"></td>
                                     <td>{{$row ->nama_barang}}</td>
                                     <td>{{$row ->stock}}</td>
                                     <td>{{$row ->anggaran}}</td>
@@ -65,11 +65,11 @@
                                             <form action="{{route('deletebarang',$row->id)}}" id="delete{{$row->id}}" method="POST" class="d-block">
                                                 @csrf
                                                 @method('delete')
-                                                <a href="#" data-id={{$row->id}} class="btn btn-icon btn-danger m-1 ml-3 mt-3 mb-3 delete swal-confrim">
+                                                <a href="#" data-id={{$row->id}} class="btn btn-icon btn-danger m-1 ml-3 mt-3 mb-3 btn-lg delete swal-confrim">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </form>
-                                            <a href="{{route('tampilanbarang',$row->id)}}" class="btn btn-primary m-1 mr-3 mb-3 mt-3 "><i class="fas fa-pencil-alt "></i></a>
+                                            <a href="{{route('tampilanbarang',$row->id)}}" class="btn btn-primary m-1 mr-3 mb-5 mt-3 btn-lg"><i class="fas fa-pencil-alt "></i></a>
                                         </div>
                                     </td>
                                 </tr>

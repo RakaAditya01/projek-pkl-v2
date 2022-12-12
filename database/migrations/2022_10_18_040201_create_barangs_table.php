@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('barangs', function (Blueprint $table) {
             $table->id();
-            $table->text('image')->nullable();
+            $table->string('image');
             $table->string('nama_barang');
             $table->integer('stock');
             $table->integer('anggaran');

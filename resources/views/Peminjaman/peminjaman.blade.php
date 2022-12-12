@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-    @section('title', 'Peminjam')
+@section('title', 'Peminjaman')
 
 @section('main')
 <div class="main-content">
@@ -12,7 +12,7 @@
             <div class="table-responsive">
                 <div class="bd-highlight d-flex">
                     <div class="card-header-form">
-                        <form action="/peminjam" method="GET" class="mt-3">
+                        <form action="/peminjaman" method="GET" class="mt-3">
                             <div class="input-group">
                                 <input type="text" 
                                 id="input"
@@ -26,6 +26,7 @@
                         <a href="{{route('tambahpeminjam')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah +</a>
                     </div>
                 </div>
+
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table-striped table">
@@ -41,73 +42,80 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                    $no = 1;
-                                    @endphp
+        
                                     <tr>
-                                        @foreach ($data as $index => $row)
-                                        <th scope="row">{{ $index + $data->firstItem() }}</th>
+                                        @foreach ($data as $no => $row)
+                                        <input type="hidden" value="{{ $row->image }}" class="key{{ $no }}">
+                                        <input type="hidden" value="{{ $row->nim }}" class="key{{ $no }}">
+                                        <input type="hidden" value="{{ $row->nama }}" class="key{{ $no }}">
+                                        <input type="hidden" value="{{ $row->nama_barang }}" class="key{{ $no }}">
+                                        <input type="hidden" value="{{ $row->jumlah }}" class="key{{ $no }}">
+                                        <td>{{$data->firstItem()+$no}}</td>
+                                        <td><img src="images/{{$row->image}}" style="width: 30px;"></td>
                                         <td>{{$row->nim}}</td>
                                         <td>{{$row->nama}}</td>
                                         <td>{{$row->nama_barang}}</td>
-                                        <td>
-                                            <img src="{{ $row->dokumentasi }}" alt=""
-                                                style="width: 80px;">
-                                        </td>
                                         <td>{{$row->jumlah}}</td>
-                                        <td class="d-flex">
-                                            <div class="div">
-                                                <a href="/deletepeminjaman/{{$row->id}}" class="btn btn-danger m-2 delete" data-id="{{$row->id}}" data-nama="{{$row->nama}}">Delete</a>
-                                                <a href="/tampilanpeminjam/{{$row->id}}" type="submit" class="btn btn-warning m-2">Edit</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    {{-- @if ($data->count() == 0)
-                                        <div class="alert alert-danger" role="alert">
-                                            Tidak Ada Data Peminjam!
+                                        <td>
+                                        <div class="container d-flex" style="margin: 0;padding: 0;">
+                                            <form action="{{route('deletepeminjaman',$row->id)}}" id="delete{{$row->id}}" method="POST" class="d-block">
+                                                @csrf
+                                                @method('delete')
+                                                <a href="#" data-id={{$row->id}} class="btn btn-icon btn-danger m-1 ml-3 mt-3 mb-3 delete swal-confrim">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </form>
+                                            <a href="{{route('tampilanpeminjam',$row->id)}}" class="btn btn-primary m-1 mr-3 mb-3 mt-3 "><i class="fas fa-pencil-alt "></i></a>
                                         </div>
-                                    @endif --}}
-                                </tbody>
-                            </table>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{-- @else
+                        <div class="alert alert-success mt-3 alert-dismissible fade show" role="alert">
+                            Maaf, tidak ada ditemukan
                         </div>
+                        @endif --}}
+                        {{-- {{$data->links()}} --}}
+                
                     </div>
+                    
                 </div>
-            </div>
+        </div>
+        </div>
     </section>
-</div>  
-{{-- script --}}
-<script
-src="https://code.jquery.com/jquery-3.6.0.slim.js"
-integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
-crossorigin="anonymous"></script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-{{-- end --}}
-</body>
+    @endsection
+    
+@push('after-script')
 <script>
-  $('.delete').click( function( ){
-      var peminjamid = $(this).attr('data-id');
-      var nama = $(this).attr('data-nama');
-      swal({
-              title: "Yakin?",
-              text: "Anda Akan Menghapus Data Ini dengan nama "+nama+"",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-              })
-              .then((willDelete) => {
-              if (willDelete) {
-                  window.location = "/deletepeminjaman/ "+nama+""
-                  swal("Data Anda Berhasil Di Hapus", {
-                  icon: "success",
-                  });
-              } else {
-                  swal("Data Anda Tidak Jadi Di Hapus");
-              }
-      });
-  });
+        $(".swal-confrim").click(function(e) {
+            id = e.target.dataset.id;
+            Swal.fire({
+            title: 'Apakah anda yakin ingin hapus data ini?',
+            text: "Data yang terhapus tidak dapat dikembalikan",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success',
+                )
+                $(`#delete${id}`).submit();
+            }else{
+                
+            }
+            
+            })
+            
+    });
 </script>
 
 <script>
@@ -129,15 +137,15 @@ crossorigin="anonymous"></script>
           for (j = 0; j < td.length; j++) {
               if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
                   status = true;
-              }
-          }
-          if (status) {
-              tr[i].style.display = "uuun";
-              status = false;
-          } else {
-              tr[i].style.display = "none";
-          }
-      }
+                }
+            }
+            if (status) {
+                tr[i].style.display = "uuun";
+                status = false;
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
   }
 </script>
-@endsection
+ @endpush

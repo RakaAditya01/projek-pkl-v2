@@ -22,11 +22,30 @@ class BaranguserController extends Controller
     }
 
     public function store(request $request){
-        $data = Peminjam::create ($request->all());
-        if($request->hasFile('dokumentasi')){
-            $data->dokumentasi = cloudinary()->upload($request->file('dokumentasi')->getRealPath())->getSecurePath();
-            $data -> expired_at = Carbon::today()->addWeeks(1)->toDateString();
-            $data->save();
+        if($request->image){
+            $img =  $request->get('image');
+            $folderPath = "images/";
+            $image_parts = explode(";base64,", $img);
+            foreach ($image_parts as $row => $image){
+            $image_base64 = base64_decode($image);
+            }
+            $fileName = uniqid() . '.png';
+            $file = $folderPath . $fileName;
+            file_put_contents($file, $image_base64);
+            $validateData['image'] = $fileName;
+            // dd($fileName);
+            $id = auth()->user()->nim;
+            $nama = auth()->user()->name;
+            $data = Peminjam::insert([
+                'nama_barang' => $request->nama_barang,
+                'image' => $fileName,
+                'nama' => $nama,
+                'nim' => $id,
+                'jumlah' =>$request->jumlah,
+                'expired_at' => Carbon::today()->addWeeks(1)->toDateString(),
+                'created_at' => now(),
+            ]);
+            // dd($data);
         }  
             
         return redirect(route('history'));

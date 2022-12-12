@@ -18,6 +18,20 @@
                                     @csrf
                                     @foreach($user as $users)
                                     <div class="mb-3">
+                                        <label for="image">Foto</label>
+                                        <div id="camera" class="img-fluid"></div>
+                                        <br/>
+                                        <input type=button class="btn btn-sm btn-primary" value="Take Snapshot" onClick="take_snapshot()">
+                                        <input type="hidden" name="image" class="image-tag">
+                                        <div id="results">Your captured image will appear here...</div>
+                                        
+                                        @error('image')
+                                            <div class="alert alert-danger" role="alert">
+                                                Data Harus diisi!
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">NIM</label>
                                         <input type="text" name="nim" id="" class="form-control 
                                         @error('nim')
@@ -46,18 +60,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-            
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Dokumentasi</label>
-                                        <input type="file" name="dokumentasi" class="form-control 
-                                        @error('dokumentasi')
-                                            is-invalid
-                                        @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                        @error('dokumentasi')
-                                        <div class="text-danger">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Jumlah</label>
                                         <input type="text" name="jumlah" class="form-control 
@@ -81,4 +83,24 @@
         </div>
     </section>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+
+<script type='text/javascript'>
+    Webcam.set({
+            width: 350,
+            height: 250,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+
+        Webcam.attach('#camera');
+        function take_snapshot() {
+            Webcam.snap( function(data_uri) {
+                $(".image-tag").val(data_uri);
+                document.getElementById('results').innerHTML = '<img src="'+data_uri+'" class="img-fluid mt-4"/>';
+            } );
+        }
+        </script>
 @endsection
