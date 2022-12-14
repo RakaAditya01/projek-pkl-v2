@@ -111,7 +111,14 @@ Route::get('webcam', [WebcamController::class, 'index']);
 Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture');
 Route::get('scan', [ScanController::class, 'index'])->name('scan');
 
-
+// midleware
+Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->middleware(['auth','checkRole:mahasiswa,admin']);
+// Route::get('/barang', [BarangController::class,'index'])->middleware(['auth','checkRole:mahasiswa,admin']);
+// Route::get('/peminjaman', [PeminjamController::class,'index'])->middleware(['auth','checkRole:mahasiswa,admin']);
+Route::get('webcam', [WebcamController::class, 'index'])->middleware(['auth','checkRole:mahasiswa,admin']);
+Route::get('/user', [UserController::class, 'index'])->middleware(['auth','checkRole:admin']);
+Route::get('/baranguser', [BaranguserController::class, 'index'])->middleware(['auth','checkRole:mahasiswa']);
+Route::get('/history', [HistoryController::class, 'index'])->middleware(['auth','checkRole:mahasiswa']);
 // --------------------------------------------------------------------------------------------------------------------- //
 
 // Dashboard
