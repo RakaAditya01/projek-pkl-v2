@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('image');
             $table->integer('jumlah');
             $table->timestamp('barang_verified_at')->nullable();
+            $table->string('keterangan');
             $table->date('expired_at')->nullable();
             $table->timestamps();
         });

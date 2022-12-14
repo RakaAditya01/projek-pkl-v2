@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peminjam;
+use Alert;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,7 @@ class PeminjamController extends Controller
     public function tambahpeminjam(Request $request){
         $barang = Barang ::all();
         
-        $nama = auth()->user()->name;
+        $nim = auth()->user()->nim;
         // $peminjam = DB::table('users')
         //     ->join('peminjams', 'peminjams.nim','=','users.nim')
         //     ->select('users.*','peminjams.nama_barang','peminjams.jumlah')
@@ -27,10 +28,12 @@ class PeminjamController extends Controller
         // ;
         // dd($peminjam);
         $user = DB::table('users')
-            ->where('name' ,'=', $nama)
+            ->where('nim' ,'=', $nim)
             ->select('nim','name')
             ->get();
         // 
+
+        // dd($user);
          return view('Peminjaman\tambahpeminjam',[
             'user' => $user
          ] , compact('barang'));
@@ -56,13 +59,14 @@ class PeminjamController extends Controller
                 'image' => $fileName,
                 'nama' => $nama,
                 'nim' => $id,
+                'keterangan' =>$request->keterangan,
                 'jumlah' =>$request->jumlah,
                 'expired_at' => Carbon::today()->addWeeks(1)->toDateString(),
                 'created_at' => now(),
             ]);
         }  
             
-        return redirect(route('peminjaman'));
+        return redirect('peminjaman')->with('toast_success', 'Data Berhasil Di Simpan!');;
     }
     
 
@@ -79,6 +83,7 @@ class PeminjamController extends Controller
          // dd($fileName);
           ->update([
            'nama_barang' => $request->nama_barang,
+                'keterangan' =>$request->keterangan,
                 'jumlah' =>$request->jumlah,
                 'expired_at' => Carbon::today()->addWeeks(1)->toDateString(),
                 'created_at' => now(),
@@ -103,17 +108,18 @@ if($request->images){
         ->update([
           'image' => $fileName,
           'nama_barang' => $request->nama_barang,
+          'keterangan' =>$request->keterangan,
           'jumlah' =>$request->jumlah,
           'expired_at' => Carbon::today()->addWeeks(1)->toDateString(),
           'created_at' => now(),
       ]);
 }
-return redirect()->route('barang')->with('success', 'Data Berhasil Di Edit!');;  
+return redirect()->route('peminjam')->with('toast_success', 'Data Berhasil Di Edit!');;  
     }   
 
     public function destroy(request $request,$id){
         $data = Peminjam::find($id);
         $data->delete();
-        return redirect()->route('peminjaman');
+        return redirect()->route('peminjaman')->with('toast_success', 'Data Berhasil Di Hapus!');;;
     }
 }

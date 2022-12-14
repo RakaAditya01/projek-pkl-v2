@@ -4,19 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Peminjam;
+use Alert;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class BaranguserController extends Controller
 {
+
     public function index(){
         $data = Barang::paginate();
         // dd($data);
         return view('user\baranguser',compact('data'));
     }
 
-    public function pinjamuser(){
-        $barang = Barang ::all();
+    public function pinjamuser($id){
+        // $barang = Barang ::all();
+        $barang = DB::table('barangs')->where('id',$id)->find($id);
+        // dd($data);
         return view('user\pinjamuser' , compact('barang'));
         return redirect(route('history'));
     }
@@ -41,6 +47,7 @@ class BaranguserController extends Controller
                 'image' => $fileName,
                 'nama' => $nama,
                 'nim' => $id,
+                'keterangan' =>$request->keterangan,
                 'jumlah' =>$request->jumlah,
                 'expired_at' => Carbon::today()->addWeeks(1)->toDateString(),
                 'created_at' => now(),
@@ -48,6 +55,6 @@ class BaranguserController extends Controller
             // dd($data);
         }  
             
-        return redirect(route('history'));
+        return redirect('history')->with('toast_success', 'Data Berhasil Di Simpan!');;
     }
 }

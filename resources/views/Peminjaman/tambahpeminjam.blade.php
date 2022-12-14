@@ -16,7 +16,6 @@
                             <div class="card-body" style="width: 90%">
                                 <form method="POST" action="/insertpeminjam/" enctype="multipart/form-data">
                                     @csrf
-                                    @foreach($user as $users)
                                     <div class="mb-3">
                                         <label for="image">Foto</label>
                                         <div id="camera" class="img-fluid"></div>
@@ -29,8 +28,9 @@
                                             <div class="alert alert-danger" role="alert">
                                                 Data Harus diisi!
                                             </div>
-                                        @enderror
-                                    </div>
+                                            @enderror
+                                        </div>
+                              @foreach($user as $users)
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">NIM</label>
                                         <input type="text" name="nim" id="" class="form-control 
@@ -59,6 +59,18 @@
                                             <option value="{{$data->nama_barang}}">{{ $data->nama_barang}}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">keterangan</label>
+                                        <input type="text" name="keterangan" class="form-control 
+                                        @error('keterangan')
+                                            is-invalid
+                                        @enderror" id="" aria-describedby="emailHelp">
+                                        @error('keterangan')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Jumlah</label>

@@ -49,22 +49,24 @@
                             </div>
     
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label  @error('nama_barang')
+                                <label for="exampleInputEmail1" class="form-label">Nama Barang</label>
+                                <input type="text" name="nama_barang"  class="form-control" aria-describedby="emailHelp" value="{{$barang->nama_barang}}" readonly>
+                                </input>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">keterangan</label>
+                                <input type="text" name="keterangan" class="form-control 
+                                @error('keterangan')
                                     is-invalid
-                                @enderror">Nama Barang</label>
-                                <select class="form-control" id="nama_barang" aria-label="Default select example" name="nama_barang">
-                                    <option value="">-- Pilih --</option>
-                                    @foreach ($barang as $data)
-                                    <option value="{{$data->nama_barang}}">{{ $data->nama_barang}}</option>
-                                    @endforeach
-                                </select>
-                                @error('nama_barang')
+                                @enderror" id="" aria-describedby="emailHelp">
+                                @error('keterangan')
                                 <div class="text-danger">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
-                            
+
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Jumlah</label>
                                 <input type="text" name="jumlah" class="form-control 
