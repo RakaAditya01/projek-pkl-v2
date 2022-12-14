@@ -2,9 +2,14 @@
 
 @section('title', 'List Barang')
 
+@push('style')
+    <link rel="stylesheet"
+        href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
+@endpush
+
 @section('main')
 <div class="main-content">
-    <section class="section">
+    <section class="section"> 
         <div class="section-header">
             <h1>List Barang</h1>
         </div>
@@ -37,7 +42,7 @@
                                     <td>{{$row -> nama_barang}}</td>
                                     <td>{{$row -> stock}}</td>
                                     <td>
-                                        <a href="pinjamuser/{{$row->id}}" type="button" class="btn btn-primary m-2">Pinjam</a>
+                                        <a href="{{route('pinjamuser')}}" type="button" class="btn btn-primary m-2">Pinjam</a>
                                     </td>
                                 </tr>
                                 @endforeach

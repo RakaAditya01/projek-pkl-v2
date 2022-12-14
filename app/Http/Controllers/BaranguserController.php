@@ -30,21 +30,17 @@ class BaranguserController extends Controller
     public function store(request $request){
         if($request->image){
             $img =  $request->get('image');
-            $folderPath = "images/";
             $image_parts = explode(";base64,", $img);
             foreach ($image_parts as $row => $image){
-            $image_base64 = base64_decode($image);
+                $image_base64 = base64_decode($image);
             }
-            $fileName = uniqid() . '.png';
-            $file = $folderPath . $fileName;
-            file_put_contents($file, $image_base64);
-            $validateData['image'] = $fileName;
             // dd($fileName);
+            $upload= cloudinary()->upload($img)->getSecurePath();
             $id = auth()->user()->nim;
             $nama = auth()->user()->name;
             $data = Peminjam::insert([
                 'nama_barang' => $request->nama_barang,
-                'image' => $fileName,
+                'image' => $upload,
                 'nama' => $nama,
                 'nim' => $id,
                 'keterangan' =>$request->keterangan,

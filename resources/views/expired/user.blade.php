@@ -2,6 +2,11 @@
 
 @section('title', 'User')
 
+@push('style')
+    <link rel="stylesheet"
+        href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
+@endpush
+
 @section('main')
 <div class="main-content">
     <section class="section">
@@ -9,14 +14,57 @@
             <h1>Data User</h1>
         </div>
         <div class="row">
-            <div class="table-responsive">
-                <div class="bd-highlight d-flex">
-                    <div class="card-header-form">
-                        <form action="/user" method="GET" class="mt-3">
-                            <input type="text" id="input" placeholder="Search"
-                            class="form-control" onkeyup='searchTable()'>
-                        </form>
-                    </div>
+          <div class="col-12">
+            <div class="card">
+                    <br>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                                <table class="table-striped table nowrap" id="table" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Nim</th>
+                                        <th scope="col">Email</th>
+                                        {{-- <th scope="col">password</th> --}}
+                                        <th scope="col">Expired</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    <tr>
+                                        @foreach ($data as $index => $row)
+                                        <th scope="row">{{ $index + $data->firstItem() }}</th>
+                                        <td>{{$row ->name}}</td>
+                                        <td>{{$row ->nim}}</td>
+                                        <td>{{$row ->email}}</td>
+                                        {{-- <td>{{$row ->password}}</td> --}}
+                                        <td>{{$row ->expired_at->format('Y-m-d')}}</td>
+                                        <td>{{$row ->role}}</td>
+                                        <td class="d-flex">
+                                        <div class="row mt-0">
+                                        <form action="{{ route('deleteuser', $row->id) }}" method="POST">
+                                        @csrf
+                                        
+                                        <button class="btn btn-icon btn-danger mr-1 btnde   lete"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                        <a href="/tampilanuser/{{$row->id}}" class="btn btn-primary mr-1"><i class="fas fa-pen-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                {{-- @if ($data->count() == 0)
+                                        <div class="alert alert-danger" role="alert">
+                                            Tidak Ada Data Peminjam!
+                                        </div>
+                                    @endif --}}
+                                 </tbody>
+                             </table>
+                        </div>
                 </div>
                 <br>
                <div class="card-body p-0">
@@ -73,7 +121,7 @@
                 </div>
 
                </div>
-            </div>
+          </div>
         </div>
     </section>
 </div>
@@ -108,31 +156,63 @@
         });
         </script>
 <script>
-$('.delete').click( function( ){
-    var barangid = $(this).attr('data-id');
-    var nama = $(this).attr('data-nama');
-    swal({
-            title: "Yakin?",
-            text: "Anda Akan Menghapus Data Ini id "+nama+"",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                window.location = "/deleteuser/ "+nama+""
-                swal("Data Anda Berhasil Di Hapus", {
-                icon: "success",
-                });
-            } else {
-                swal("Data Anda Tidak Jadi Di Hapus");
+    $(document).ready(function () {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+        $('.btndelete').click(function (e) {
+            e.preventDefault();
+
+            var deleteid = $(this).closest("tr").find('.delete_id').val();
+
+            swal({
+                    title: "Apakah anda yakin?",
+                    text: "Setelah dihapus, Anda tidak dapat memulihkan Tag ini lagi!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        var data = {
+                            "_token": $('input[name=_token]').val(),
+                            'id': deleteid,
+                        };
+                        $.ajax({
+                            type: "POST",
+                            url: 'deleteuser/' + deleteid,
+                            data: data,
+                            success: function (response) {
+                                swal(response.status, {
+                                        icon: "success",
+                                    })
+                                    .then((result) => {
+                                        location.reload();
+                                    });
+                            }
+                        });
+                    }
+                });
+        });
+
     });
-});
 
 </script>
 
 <script>
+    $("#table").dataTable({
+    "scrollX" : true,
+    "responsive" : true,
+    "autoWidth" : false,
+  "columnDefs": [
+    { "sortable": false, "targets": [2,3] }
+  ]
+});
 function searchTable() {
     var input;
     var saring;
@@ -154,7 +234,7 @@ function searchTable() {
             }
         }
         if (status) {
-            tr[i].style.display = "uuun";
+            tr[i].style.display = "test";
             status = false;
         } else {
             tr[i].style.display = "none";

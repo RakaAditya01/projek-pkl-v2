@@ -38,25 +38,20 @@ class BarangController extends Controller
             'anggaran.required' => 'Anggaran tidak boleh kosong',
         ]);
         // $data = Barang::create ($reque;
-        if($request->image){
+        if($request->get('image')){
             $img =  $request->get('image');
-            $folderPath = "images/";
             $image_parts = explode(";base64,", $img);
             foreach ($image_parts as $row => $image){
-            $image_base64 = base64_decode($image);
+                $image_base64 = base64_decode($image);
             }
-            $fileName = uniqid() . '.png';
-            $file = $folderPath . $fileName;
-            file_put_contents($file, $image_base64);
-            $validateData['image'] = $fileName;
             // dd($fileName);
-            
+            $upload = cloudinary()->upload($img)->getSecurePath();
             $data = Barang::insert([
                 'nama_barang' => $request->nama_barang,
                 'stock' => $request->stock,
                 'anggaran' => $request->anggaran,
                 'scan' => $request->scan,
-                'image' => $fileName,
+                'image' => $upload,
                 'created_at' => now(),
             ]);
             // $data->nama_barang = $request->nama_barang;

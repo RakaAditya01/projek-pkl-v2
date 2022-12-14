@@ -63,7 +63,7 @@ Route::get('/tambahbarang', [BarangController::class,'tambahbarang'])->name('tam
 Route::get('/updatebarang/{id}', [BarangController::class,'update'])->name('updatebarang');
 Route::get('/tampilanbarang/{id}', [BarangController::class,'tampilanbarang'])->name('tampilanbarang');
 Route::post('/insertbarang', [BarangController::class,'store'])->name('insertbarang');
-Route::delete('/deletebarang/{id}', [BarangController::class,'destroy'])->name('deletebarang');
+Route::post('/deletebarang/{id}', [BarangController::class,'destroy'])->name('deletebarang');
 Route::get('/barang/cari',[BarangController::class,'cari'])->name('cari');
 
 // Peminjaman
@@ -104,7 +104,7 @@ Route::group(['middleware' => ['auth','checkrole:admin']],function () {
 
 //history
 Route::get('/history', [HistoryController::class, 'index'])->name('history');
-Route::delete('/deletehistory/{id}', [HistoryController::class,'destroy'])->name('deletehistory');
+Route::post('/deletehistory/{id}', [HistoryController::class,'destroy'])->name('deletehistory');
 
 // webcam
 Route::get('webcam', [WebcamController::class, 'index']);

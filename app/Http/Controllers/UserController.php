@@ -16,6 +16,15 @@ class UserController extends Controller
         return view('expired\user',compact('data'));
     }
 
+    // public function api_render()
+    // {
+    //     try {
+    //         if  (User::query()->exists()) {
+    //             $data = User::query()->where('name', intval($));
+    //         }
+    //     }
+    // }
+
     public function tambahuser(){
         $user = User::all();
         return view('expired.tambah',compact('user'))->with('toast_success', 'Data Berhasil Di Edit!');;
@@ -47,6 +56,10 @@ class UserController extends Controller
     public function destroy($id){
         $data = User::find($id);
         $data->delete();
+<<<<<<< HEAD
         return redirect()->route('user')->with('toast_success', 'Data Berhasil Di Edit!');;
+=======
+        return redirect()->route('user')->with('success', 'Data Berhasil Di Hapus!');;
+>>>>>>> 697e2e6 (sweet alert)
     }
 }

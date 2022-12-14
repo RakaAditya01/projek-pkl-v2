@@ -113,14 +113,14 @@
     const bungkus2 = document.querySelector('.bungkus2');
     const results = document.querySelector('#results');
     const imageTag = document.querySelector('.image-tag');
-
+    
     tombolFoto.addEventListener('click', function(){
         tombolFotoBatal.style.display = 'block';
         tombolFoto.style.display = 'none';
         bungkus.style.display = 'block';
         bungkus2.style.display = 'none';
     })
-
+    
     tombolFotoBatal.addEventListener('click', function(){
         bungkus.style.display = 'none';
         bungkus2.style.display = 'block';
@@ -129,4 +129,5 @@
         results.innerHTML = 'Your captured image will appear here...';
         imageTag.value = "";
     })
-@endsection
+    </script>
+    @endsection

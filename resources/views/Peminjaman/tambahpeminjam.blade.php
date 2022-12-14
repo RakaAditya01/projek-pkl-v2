@@ -22,11 +22,10 @@
                                         <br/>
                                         <input type=button class="btn btn-sm btn-primary" value="Take Snapshot" onClick="take_snapshot()">
                                         <input type="hidden" name="image" class="image-tag">
-                                        <div id="results">Your captured image will appear here...</div>
-                                        
+                                        <div id="results" >Your captured image will appear here...</div>
                                         @error('image')
                                             <div class="alert alert-danger" role="alert">
-                                                Data Harus diisi!
+                                                {{ $message }}
                                             </div>
                                             @enderror
                                         </div>
@@ -110,7 +109,7 @@
         function take_snapshot() {
             Webcam.snap( function(data_uri) {
                 $(".image-tag").val(data_uri);
-                document.getElementById('results').innerHTML = '<img src="'+data_uri+'" class="img-fluid mt-4"/>';
+                document.getElementById('results').innerHTML = '<img src="'+data_uri+'" class="img-fluid mt-4" name="result"/>';
             } );
         }
         </script>
