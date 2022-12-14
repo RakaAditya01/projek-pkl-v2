@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Peminjam;
 use File;
+use Alert;
 use Illuminate\Http\Request;
 use App\Exports\DataExport;
 use Illuminate\Support\Facades\DB;
@@ -68,8 +69,7 @@ class BarangController extends Controller
             
         }
         
-
-        return redirect(route('barang'));
+        return redirect('barang')->with('toast_success', 'Data Berhasil Di Simpan!');;
     }
     
     
@@ -125,12 +125,12 @@ class BarangController extends Controller
             ]);
     }
     
-    return redirect()->route('barang')->with('success', 'Data Berhasil Di Edit!');;
+    return redirect('barang')->with('toast_success', 'Data Berhasil Di Edit!');;
     }   
 
     public function destroy($id){
     $data = Barang::find($id);
     $data->delete();
-    return redirect()->route('barang')->with('success', 'Data Berhasil Di Edit!');;
+    return redirect()->route('barang')->with('toast_success', 'Data Berhasil Di Hapus!');;
     }   
 }

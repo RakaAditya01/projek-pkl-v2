@@ -187,8 +187,8 @@ return [
         /*
          * Package Service Providers...
          */
-        // // sweet alert
-        // RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        // sweet alert
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -217,8 +217,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-    // // sweet alert
-    // 'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+    // sweet alert
+    'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
     //  Recaptcha
     'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ])->toArray(),

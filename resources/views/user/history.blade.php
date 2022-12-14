@@ -27,6 +27,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Foto</th>
                                 <th scope="col">Nama Barang</th>
+                                <th scope="col">keterangan</th>
                                 <th scope="col">Jumlah</th>
                                 <th scope="col">Tgl.Dipinjam</th>
                                 <th scope="col">Tgl.Dikembalikan</th>
@@ -41,18 +42,21 @@
                                 @foreach ($data as $index => $row)
                                 <th scope="row">{{ $index + $data->firstItem() }}</th>
                                 <td>
-                                <img src="images/{{$row->image}}" style="width: 30px;">
+                                <img src="images/{{$row->image}}" style="width: 60px;">
                                 </td>
                                 <td>{{$row ->nama_barang}}</td>
+                                <td>{{$row ->keterangan}}</td>
                                 <td>{{$row ->jumlah}}</td>
                                 <td>{{$row ->created_at->format('Y-m-d')}}</td>
                                 <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                 <td>
-                                    <form action="/deletehistory/{{$row->id}}" method="POST">
-                                        @csrf
-                                        @method("delete")
-                                        <button class="btn btn-primary m-2">Kembalikan</button>
-                                    </form>
+                                        <form action="{{route('deletehistory',$row->id)}}" id="delete{{$row->id}}" method="POST" class="d-block">
+                                            @csrf
+                                            @method('delete')
+                                            <a href="#" data-id={{$row->id}} class="btn btn-danger m-1 delete swal-confrim">
+                                                Kembalikan
+                                            </a>
+                                        </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -67,33 +71,34 @@
     </section>
 </div>
 
-{{-- @include('sweetalert::alert') --}}
-<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
-    integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-</tbody>
+@push('after-script')
 <script>
-    $('.deletebarang').click(function () {
-        var peminjamsid = $(this).attr('data-id');
-        swal({
-                title: "Kembalikan Barang?",
-                text: "kamu akan mengembalikan barang dengan id " + peminjamsid + " ",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
+        $(".swal-confrim").click(function(e) {
+            id = e.target.dataset.id;
+            Swal.fire({
+            title: 'Apakah anda yakin ingin kembalikan barang ini?',
+            text: "Data yang terhapus tidak dapat dikembalikan",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success',
+                )
+                $(`#delete${id}`).submit();
+            }else{
+                
+            }
+            
             })
-            .then((willDelete) => {
-                if (willDelete) {
-                    window.location = "/deletehistory/" + peminjamsid + " "
-                    swal("Barang berhasil di kembalikan", {
-                        icon: "success",
-                    });
-                } else {
-                    swal("Barang tidak jadi di Kembalikan");
-                }
-            });
-    });
+            
+        });
 </script>
 <script>
     function searchTable() {
@@ -125,4 +130,6 @@
         }
     }
 </script>
+@include('sweetalert::alert')
+@endpush
 @endsection

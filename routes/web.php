@@ -79,7 +79,7 @@ Route::get('/peminjam/cari',[PeminjamController::class,'cari'])->name('cari');
 //user
 Route::get('/baranguser', [BaranguserController::class, 'index'])->name('baranguser');
 Route::put('/baranguser', [BaranguserController::class, 'baranguser'])->name('baranguser');
-Route::get('/pinjamuser', [BaranguserController::class,'pinjamuser'])->name('pinjamuser');
+Route::get('/pinjamuser/{id}', [BaranguserController::class,'pinjamuser'])->name('pinjamuser');
 Route::post('/insertpinjam', [BaranguserController::class,'store'])->name('insertpinjam');
 
 // Profile

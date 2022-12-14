@@ -63,6 +63,12 @@
                                         <div id="emailHelp" class="form-text"></div>
                                     </div>
                                     <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">keterangan</label>
+                                        <input type="text" name="keterangan" value="{{$data->keterangan}}" class="form-control" id=""
+                                            aria-describedby="emailHelp">
+                                        <div id="emailHelp" class="form-text"></div>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Jumlah</label>
                                         <input type="text" name="jumlah" value="{{$data->jumlah}}" class="form-control" id=""
                                             aria-describedby="emailHelp">

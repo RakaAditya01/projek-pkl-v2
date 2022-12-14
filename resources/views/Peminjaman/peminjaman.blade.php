@@ -33,10 +33,11 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
+                                        <th scope="col">Foto</th>
                                         <th scope="col">NIM</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Nama Barang</th>
-                                        <th scope="col">Dokumentasi</th>
+                                        <th scope="col">keterangan</th>
                                         <th scope="col">Jumlah</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -51,10 +52,11 @@
                                         <input type="hidden" value="{{ $row->nama_barang }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->jumlah }}" class="key{{ $no }}">
                                         <td>{{$data->firstItem()+$no}}</td>
-                                        <td><img src="images/{{$row->image}}" style="width: 30px;"></td>
+                                        <td><img src="images/{{$row->image}}" style="width: 60px;"></td>
                                         <td>{{$row->nim}}</td>
                                         <td>{{$row->nama}}</td>
                                         <td>{{$row->nama_barang}}</td>
+                                        <td>{{$row->keterangan}}</td>
                                         <td>{{$row->jumlah}}</td>
                                         <td>
                                         <div class="container d-flex" style="margin: 0;padding: 0;">
@@ -86,9 +88,8 @@
         </div>
     </section>
 
-    @endsection
     
-@push('after-script')
+    @push('after-script')
 <script>
         $(".swal-confrim").click(function(e) {
             id = e.target.dataset.id;
@@ -101,7 +102,7 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
             
-            }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire(
                 'Deleted!',
@@ -115,13 +116,13 @@
             
             })
             
-    });
+        });
 </script>
 
 <script>
-  function searchTable() {
-      var input;
-      var saring;
+    function searchTable() {
+        var input;
+        var saring;
       var status;
       var tbody;
       var tr;
@@ -146,6 +147,7 @@
                 tr[i].style.display = "none";
             }
         }
-  }
+    }
 </script>
- @endpush
+@endpush
+@endsection

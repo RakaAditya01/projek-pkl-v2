@@ -16,7 +16,7 @@
                                     @csrf
                                     @method('put')
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Nama/label>
+                                        <label for="exampleInputEmail1" class="form-label">Nama</label>
                                         <input type="text" name="name" value="{{$data->name}}" class="form-control" id=""
                                             aria-describedby="emailHelp">
                                         <div id="emailHelp" class="form-text"></div>

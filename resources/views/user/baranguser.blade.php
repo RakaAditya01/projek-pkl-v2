@@ -25,7 +25,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Gambar</th>
+                                <th scope="col">Foto Bukti</th>
                                 <th scope="col">Nama Barang</th>
                                 <th scope="col">Stock</th>
                                 <th scope="col">Action</th>
@@ -37,12 +37,12 @@
                                 @foreach ($data as $no => $row)
 
                                 <td>{{$data->firstItem()+$no}}</td>
-                                <td><img src="images/{{$row->image}}" style="width: 30px;"></td>
+                                <td><img src="images/{{$row->image}}" style="width: 60px;"></td>
                                 <td hidden id="id">{{$row -> id}}</td>
                                 <td>{{$row ->nama_barang}}</td>
                                 <td>{{$row ->stock}}</td>
                                 <td>
-                                    <a href="{{route('pinjamuser')}}" type="button" class="btn btn-primary m-2">Pinjam</a>
+                                    <a href="{{route('pinjamuser',$row->id)}}" type="button" class="btn btn-primary m-2">Pinjam</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -87,4 +87,5 @@ function searchTable() {
     }
 }
 </script>
+@include('sweetalert::alert')
 @endsection
