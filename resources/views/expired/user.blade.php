@@ -49,12 +49,18 @@
                                 {{-- <td>{{$row ->password}}</td> --}}
                                 <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                 <td>{{$row ->role}}</td>
-                                <td class="d-flex">
-                                <div class="row">
-                                <button  class="btn btn-danger m-2 delete" data-id="{{$row->id}}"  data-nama="{{$row->name}}"><i class="fas fa-trash"></i></button>
-                                <a href="/tampilanuser/{{$row->id}}" class="btn btn-primary m-2"><i class="fas fa-pencil-alt mt-2"></i></a>
-                                </div>
-                            </td>
+                                <td>
+                                    <div class="container d-flex" style="margin: 0;padding: 0;">
+                                        <form action="{{route('deleteuser',$row->id)}}" id="delete{{$row->id}}" method="POST" class="d-block">
+                                            @csrf
+                                            @method('delete')
+                                            <a href="#" data-id={{$row->id}} class="btn btn-icon btn-danger m-1 ml-3 mt-3 mb-3 delete swal-confrim">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </form>
+                                        <a href="{{route('tampilanuser',$row->id)}}" class="btn btn-primary m-1 mr-3 mb-3 mt-3 "><i class="fas fa-pencil-alt "></i></a>
+                                    </div>
+                                </td>
                         </tr>
                         @endforeach
                         @if ($data->count() == 0)
@@ -72,16 +78,35 @@
     </section>
 </div>
 
-{{-- script --}}
-<script
-src="https://code.jquery.com/jquery-3.6.0.slim.js"
-integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
-crossorigin="anonymous"></script>
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-{{-- end --}}
-</body>
+@push('after-script')
+<script>
+    $(".swal-confrim").click(function(e) {
+        id = e.target.dataset.id;
+        Swal.fire({
+            title: 'Apakah anda yakin ingin hapus data ini?',
+            text: "Data yang terhapus tidak dapat dikembalikan",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success',
+                    )
+                    $(`#delete${id}`).submit();
+                }else{
+                    
+                }
+                
+            })
+            
+        });
+        </script>
 <script>
 $('.delete').click( function( ){
     var barangid = $(this).attr('data-id');
@@ -139,4 +164,5 @@ function searchTable() {
 
 </script>
 </html>
+@include('sweetalert::alert')
 @endsection

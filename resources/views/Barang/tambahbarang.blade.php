@@ -83,7 +83,7 @@
                                     @enderror
                                 </div>
                                 
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-primary" id="toastr-2" type="submit">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -114,11 +114,11 @@
                 } );
             }
 
-        
-
-        
-
     </script>
      @endsection
   </body>
 </html>
+@push('scripts')
+    <!-- JS Libraies -->
+    <script src="{{ asset('js/modules-toastr.js') }}"></script>
+    @endpush

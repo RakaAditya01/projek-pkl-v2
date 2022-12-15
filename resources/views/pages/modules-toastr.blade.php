@@ -108,8 +108,8 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-    <script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
-
+<script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
+    
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/modules-toastr.js') }}"></script>
 @endpush

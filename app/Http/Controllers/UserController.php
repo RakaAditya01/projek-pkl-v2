@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function tambahuser(){
         $user = User::all();
-        return view('expired.tambah',compact('user'));
+        return view('expired.tambah',compact('user'))->with('toast_success', 'Data Berhasil Di Edit!');;
     }
 
     public function store(request $request){
@@ -34,19 +34,19 @@ class UserController extends Controller
 
     public function tampilanUser($id){
         $data = User::find ($id);
-        return view('expired\edit',compact('data'));
+        return view('expired\edit',compact('data'))->with('toast_success', 'Data Berhasil Di Edit!');;
     }
 
     public function update(request $request, $id){  
         $data = User::find($id);
         $request['password'] = Hash::make($request['password']);
         $data->update($request->all());
-        return redirect()->route('user')->with('success', 'Data Berhasil Di Edit!');;
+        return redirect()->route('user')->with('toast_success', 'Data Berhasil Di Edit!');;
     }   
 
     public function destroy($id){
         $data = User::find($id);
         $data->delete();
-        return redirect()->route('user');
+        return redirect()->route('user')->with('toast_success', 'Data Berhasil Di Edit!');;
     }
 }
