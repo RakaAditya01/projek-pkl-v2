@@ -46,7 +46,7 @@
 
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Stock</label>
-                                    <input type="text" name="stock" class="form-control 
+                                    <input type="number" name="stock" pattern="^[1-9][0-9]*$" class="form-control 
                                     @error('stock')
                                         is-invalid
                                     @enderror" id="" aria-describedby="emailHelp" value="{{ old('stock') }}"> 
@@ -72,10 +72,10 @@
 
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Barcode</label>
-                                    <input type="text" name="scan" class="form-control 
+                                    <input type="text" style="font-family: 'Libre Barcode 39';font-size: 30px;" name="scan" class="form-control 
                                     @error('scan')
                                         is-invalid
-                                    @enderror" id="" aria-describedby="emailHelp" value="{{ old('scan') }}">
+                                    @enderror" id="barcode" aria-describedby="emailHelp" value="{{ old('scan') }}" onload="generateBarcodeNumber()">
                                     @error('scan')
                                     <div class="text-danger">
                                         {{ $message }}
@@ -114,7 +114,15 @@
                 } );
             }
 
+            
+
+        
+
+        
+
     </script>
+
+
      @endsection
   </body>
 </html>

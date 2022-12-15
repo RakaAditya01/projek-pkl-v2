@@ -37,7 +37,7 @@
                                 @foreach ($data as $no => $row)
 
                                 <td>{{$data->firstItem()+$no}}</td>
-                                <td><img src="images/{{$row->image}}" style="width: 60px;"></td>
+                                <td><img src="{{$row->image}}" style="width: 60px;"></td>
                                 <td hidden id="id">{{$row -> id}}</td>
                                 <td>{{$row ->nama_barang}}</td>
                                 <td>{{$row ->stock}}</td>

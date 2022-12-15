@@ -50,13 +50,13 @@
                                 <td>{{$row ->created_at->format('Y-m-d')}}</td>
                                 <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                 <td>
-                                        <form action="{{route('deletehistory',$row->id)}}" id="delete{{$row->id}}" method="POST" class="d-block">
-                                            @csrf
-                                            @method('delete')
-                                            <a href="#" data-id={{$row->id}} class="btn btn-danger m-1 delete swal-confrim">
-                                                Kembalikan
-                                            </a>
-                                        </form>
+                                <form action="{{route('deletehistory',$row->id)}}" id="delete{{$row->id}}" method="POST" class="d-block">
+                                     @csrf
+                                     @method('delete')
+                                     <a href="#" data-id="{{$row->id}}" class="btn btn-danger m-1 delete swal-confrim">
+                                        Kembalikan
+                                     </a>
+                                </form>
                                 </td>
                             </tr>
                             @endforeach

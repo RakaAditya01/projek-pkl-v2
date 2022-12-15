@@ -51,11 +51,11 @@
                                     <input type="hidden" value="{{ $row->anggaran }}" class="key{{ $no }}">
                                     <input type="hidden" value="{{ $row->scan }}" class="key{{ $no }}">
                                     <td>{{$data->firstItem()+$no}}</td>
-                                    <td><img src="images/{{$row->image}}" style="width: 60px;"></td>
+                                    <td><img src="{{$row->image}}" style="width: 60px;"></td>
                                     <td>{{$row ->nama_barang}}</td>
                                     <td>{{$row ->stock}}</td>
                                     <td>{{$row ->anggaran}}</td>
-                                    <td>{{$row ->scan}}</td>
+                                    <td > {{$row ->scan}}</td>
                                     <td >
                                         <div class="container d-flex" style="margin: 0;padding: 0;">
                                             <form action="{{route('deletebarang',$row->id)}}" id="delete{{$row->id}}" method="POST" class="d-block">

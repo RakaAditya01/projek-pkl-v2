@@ -25,49 +25,73 @@ class BarangController extends Controller
     }
 
     public function store(request $request){
-        $this-> validate($request, [
-            'nama_barang' => 'required',
-            'stock' => 'required',
-            'anggaran' => 'required',
-            'scan' => 'required',
-        ],
-        [
-            'gambar.required' => 'Gambar tidak boleh kosong',
-            'nama_barang.required' => 'Nama Barang tidak boleh kosong',
-            'stock.required' => 'Stock tidak boleh kosong',
-            'anggaran.required' => 'Anggaran tidak boleh kosong',
-        ]);
+        // $this-> validate($request, [
+        //     'nama_barang' => 'required',
+        //     'stock' => 'required',
+        //     'anggaran' => 'required',
+        //     'scan' => 'required',
+        // ],
+        // [
+        //     'gambar.required' => 'Gambar tidak boleh kosong',
+        //     'nama_barang.required' => 'Nama Barang tidak boleh kosong',
+        //     'stock.required' => 'Stock tidak boleh kosong',
+        //     'anggaran.required' => 'Anggaran tidak boleh kosong',
+        // ]);
         // $data = Barang::create ($reque;
-        if($request->image){
+        // if($request->get('image')){
+            if($request->scan ==''){
             $img =  $request->get('image');
-            $folderPath = "images/";
+            // $folderPath = "images/";
             $image_parts = explode(";base64,", $img);
             foreach ($image_parts as $row => $image){
             $image_base64 = base64_decode($image);
             }
+            $upload = cloudinary()->upload($img)->getSecurePath();
             $fileName = uniqid() . '.png';
-            $file = $folderPath . $fileName;
-            file_put_contents($file, $image_base64);
+            // $file = $folderPath . $fileName;
+            // file_put_contents($file, $image_base64);
             $validateData['image'] = $fileName;
             // dd($fileName);
+
+            $random = $this->generateUniqueCode();
+            // dd($random);
+            
+            $data = Barang::insert([
+                'nama_barang' => $request->nama_barang,
+                'stock' => $request->stock,
+                'anggaran' => $request->anggaran,
+                'scan' => $random,
+                'image' => $upload,
+                'created_at' => now(),
+            ]);
+        }else{
+            $img =  $request->get('image');
+            // $folderPath = "images/";
+            $image_parts = explode(";base64,", $img);
+            foreach ($image_parts as $row => $image){
+            $image_base64 = base64_decode($image);
+            }
+            $upload = cloudinary()->upload($img)->getSecurePath();
+            $fileName = uniqid() . '.png';
+            // $file = $folderPath . $fileName;
+            // file_put_contents($file, $image_base64);
+            $validateData['image'] = $fileName;
+            // dd($fileName);
+
+            $random = $this->generateUniqueCode();
+            // dd($random);
             
             $data = Barang::insert([
                 'nama_barang' => $request->nama_barang,
                 'stock' => $request->stock,
                 'anggaran' => $request->anggaran,
                 'scan' => $request->scan,
-                'image' => $fileName,
+                'image' => $upload,
                 'created_at' => now(),
             ]);
-            // $data->nama_barang = $request->nama_barang;
-            // $data->stock = $request->stock;
-            // $data->anggaran = $request->anggaran;
-            // $data->scan = $request->scan;
-            // $data->image = $fileName;
-            // dd($data);
-            // $data->save();
-            
         }
+            // dd($data);
+        // }
         
         return redirect('barang')->with('toast_success', 'Data Berhasil Di Simpan!');;
     }
@@ -132,5 +156,16 @@ class BarangController extends Controller
     $data = Barang::find($id);
     $data->delete();
     return redirect()->route('barang')->with('toast_success', 'Data Berhasil Di Hapus!');;
-    }   
+    }
+
+    public function generateUniqueCode()
+    {
+        do {
+            $code = random_int(1000000000000, 9999999999999);
+        } while (Barang::where("scan", "=", $code)->first());
+  
+        return $code;
+    }
+
+
 }
