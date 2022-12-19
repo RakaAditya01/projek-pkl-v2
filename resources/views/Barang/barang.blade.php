@@ -42,8 +42,8 @@
                     <div class="card-body p-0">
                         <div class="bd-highlight d-flex">
                             <div class="p-2 flex-grow-1 bd-highlight text-right">
-                                <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah
-                                    +</a>
+                                <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah+</a>
+                                <a href="/pdf" type="button" class="btn btn-danger mt-2 mb-4">Barcode PDF</a>
                             </div>
                         </div>
                         <div class="table-responsive">
