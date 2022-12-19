@@ -2,23 +2,35 @@
 
 use App\Models\Barang;
 use App\Models\Peminjam;
-use File;
 use Alert;
+use PDF;
 use Illuminate\Http\Request;
 use App\Exports\DataExport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
-class BarangController extends Controller {
-    public function index() {
-        $data=Barang::paginate();
-        return view('Barang.barang', compact('data'));
+class BarangController extends Controller
+{
+
+    public function index(){
+        $data = Barang::paginate();
+        return view('Barang.barang',compact('data'));
     }
 
-    public function tambahbarang() {
-        $data=Barang::all();
-        return view('Barang\tambahbarang', compact('data'));
+    public function exportPDF() {
+       
+        $data = Barang::all();
+  
+        $pdf = PDF::loadView('pdf', ['data' => $data]);
+        
+        return $pdf->download('barang.pdf');
+        
+      }
+      
+    public function tambahbarang(){
+        $data = Barang::all();
+        return view('Barang\tambahbarang' , compact('data'));
     }
 
     public function store(request $request) {

@@ -50,7 +50,7 @@ class UserController extends Controller
         $data = User::find($id);
         $request['password'] = Hash::make($request['password']);
         $data->update($request->all());
-        return redirect()->route('user')->with('toast_success', 'Data Berhasil Di Edit!');;
+        return redirect('user')->with('toast_success', 'Data Berhasil Di Edit!');;
     }   
 
     public function destroy($id){

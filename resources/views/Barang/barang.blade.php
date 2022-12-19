@@ -1,10 +1,34 @@
 @extends('layouts.app')
 
+@push('style')
+<style>
+    @media print {
+  body * {
+    visibility: hidden;
+  }
+  #barcode, #barcode * {
+    visibility: visible;
+  }
+  #barcode {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+</style>
+@endpush
 @section('title', 'Barang')
+<<<<<<< Updated upstream
 
 @push('style')
 <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
 @endpush
+=======
+<link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap" rel="stylesheet">
+>>>>>>> Stashed changes
 
 @section('main')
 <div class="main-content">
