@@ -16,24 +16,19 @@ class PeminjamController extends Controller {
         return view('Peminjaman\peminjaman', compact('data'));
     }
 
-    public function tambahpeminjam(Request $request){
-        $barang = Barang ::all();
-        
-        $nama = auth()->user()->name;
+    public function tambahpeminjam(Request $request) {
+        $barang=Barang::all();
+
+        $nama=auth()->user()->name;
         // $peminjam = DB::table('users')
         //     ->join('peminjams', 'peminjams.nim','=','users.nim')
         //     ->select('users.*','peminjams.nama_barang','peminjams.jumlah')
         //     ->get()
         // ;
         // dd($peminjam);
-        $user = DB::table('users')
-            ->where('name' ,'=', $nama)
-            ->select('nim','name')
-            ->get();
+        $user=DB::table('users') ->where('name', '=', $nama) ->select('nim', 'name') ->get();
         // 
-         return view('Peminjaman\tambahpeminjam',[
-            'user' => $user
-         ] , compact('barang'));
+        return view('Peminjaman\tambahpeminjam', [ 'user'=> $user], compact('barang'));
     }
 
     public function store(request $request) {
@@ -45,27 +40,27 @@ class PeminjamController extends Controller {
             'nama_barang.required'=> 'Nama Barang tidak boleh kosong',
             'jumlah.required'=> 'Jumlah Tidak Boleh Kosong'
             ]);
+
         if ($request->get('image')) {
-            $img = $request->get('image');
-            $image_parts = explode(";base64,", $img);
-            foreach ($image_parts as $row => $image) {
-                $image_base64 = base64_decode($image);
+            $img=$request->get('image');
+            $image_parts=explode(";base64,", $img);
+            foreach ($image_parts as $row=> $image) {
+                $image_base64=base64_decode($image);
             }
-            $upload= cloudinary()->upload($img)->getSecurePath()  ;
-            $id = auth()->user()->nim;
-            $nama = auth()->user()->name;
-            $data = Peminjam::insert([
-                'nama_barang' => $request->nama_barang,
+            $upload=cloudinary()->upload($img)->getSecurePath();
+            $id=auth()->user()->nim;
+            $nama=auth()->user()->name;
+            $data=Peminjam::insert([ 'nama_barang'=> $request->nama_barang,
                 'image'=> $upload,
-                'nama' => $nama,
-                'nim' => $id,
-                'keterangan' =>$request->keterangan,
-                'jumlah' =>$request->jumlah,
-                'expired_at' => Carbon::today()->addWeeks(1)->toDateString(),
-                'created_at' => now(),
-            ]);
-        }  
-            
+                'nama'=> $nama,
+                'nim'=> $id,
+                'keterangan'=>$request->keterangan,
+                'jumlah'=>$request->jumlah,
+                'expired_at'=> Carbon::today()->addWeeks(1)->toDateString(),
+                'created_at'=> now(),
+                ]);
+        }
+
         return redirect(route('peminjaman'));
     }
 
@@ -74,51 +69,46 @@ class PeminjamController extends Controller {
         return view('Peminjaman\edit', ['data'=>$data]);
     }
 
-    public function update(request $request, $id){  
-        $data = DB::table('peminjams')->where('id',$id)->get()[0];
+    public function update(request $request, $id) {
+        $data=DB::table('peminjams') ->where('id', $id) // dd($fileName);
+            ->update([ 'nama_barang'=> $request->nama_barang,
+                'keterangan'=>$request->keterangan,
+                'jumlah'=>$request->jumlah,
+                'expired_at'=> Carbon::today()->addWeeks(1)->toDateString(),
+                'created_at'=> now(),
+                ]);
+            $this->validate($request, [ 'image'=> 'required',
+            'nama_barang'=> 'required',
+            'jumlah'=> 'required',
+            ],
+            [ 'image.required'=> 'Gambar tidak boleh kosong',
+            'nama_barang.required'=> 'Nama Barang tidak boleh kosong',
+            'jumlah.required'=> 'Jumlah Tidak Boleh Kosong'
+            ]);
 
-        $data = DB::table('peminjams')
-        ->where('id', $id)
-         // dd($fileName);
-          ->update([
-           'nama_barang' => $request->nama_barang,
-                'keterangan' =>$request->keterangan,
-                'jumlah' =>$request->jumlah,
-                'expired_at' => Carbon::today()->addWeeks(1)->toDateString(),
-                'created_at' => now(),
-      ]);
+        if($request->get('image')) {
+            $img=$request->get('image');
+            $image_parts=explode(";base64,", $img);
+            foreach ($image_parts as $key=> $image) {
+                $image_base64=base64_decode($image);
+            }
+            $upload= cloudinary()->upload($img)->getSecurePath();
+            $data=DB::table('peminjams') ->where('id', $id) ->update([ 'image'=> $upload,
+                'nama_barang'=> $request->nama_barang,
+                'keterangan'=>$request->keterangan,
+                'jumlah'=>$request->jumlah,
+                'expired_at'=> Carbon::today()->addWeeks(1)->toDateString(),
+                'created_at'=> now(),
+                ]);
+        }
 
-if($request->images){
-  if($data->image){
-      File::delete('images/'. $data->image);
-  }
-  $img =  $request->get('image');
-  $folderPath = "images/";
-  $image_parts = explode(";base64,", $img);
-  foreach ($image_parts as $key => $image){
-      $image_base64 = base64_decode($image);
-  }
-  $fileName = uniqid() . '.png';
-  $file = $folderPath . $fileName;
-  file_put_contents($file, $image_base64);
-  $validateData['image'] = $fileName;
-  $data = DB::table('peminjams')
-        ->where('id', $id)
-        ->update([
-          'image' => $fileName,
-          'nama_barang' => $request->nama_barang,
-          'keterangan' =>$request->keterangan,
-          'jumlah' =>$request->jumlah,
-          'expired_at' => Carbon::today()->addWeeks(1)->toDateString(),
-          'created_at' => now(),
-      ]);
-}
-return redirect()->route('peminjam')->with('toast_success', 'Data Berhasil Di Edit!');;  
-    }   
+        return redirect()->route('peminjaman')->with('toast_success', 'Data Berhasil Di Edit!');
+        ;
+    }
 
-    public function destroy(request $request,$id){
+    public function destroy($id){
         $data = Peminjam::find($id);
-        $data->update($request->all());
-        return redirect()->route('peminjaman')->with('success', 'Data Berhasil Di Edit!');;
-    }   
+        $data->delete();
+        return redirect()->route('peminjaman')->with('toast_success', 'Data Berhasil Di Hapus!');;
+        }   
 }

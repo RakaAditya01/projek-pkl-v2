@@ -34,6 +34,12 @@
                                             aria-describedby="emailHelp">
                                         <div id="emailHelp" class="form-text"></div>
                                     </div>
+
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Expired</label>
+                                        <input type="text" name="expired_at" value="{{$data->expired_at}}" class="form-control" id="">
+                                        <div id="emailHelp" class="form-text"></div>
+                                    </div>
                                     
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Password</label>
@@ -56,7 +62,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>

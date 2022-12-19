@@ -21,9 +21,9 @@
                                 +</a>
                         </div>
                     </div>
-                    <div class="card-body p-0">
+                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table-striped table" id="table">
+                            <table class="table-striped table" id="table-1">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -33,6 +33,8 @@
                                         <th scope="col">Nama Barang</th>
                                         <th scope="col">keterangan</th>
                                         <th scope="col">Jumlah</th>
+                                        <th scope="col">Tgl.Dipinjam</th>
+                                        <th scope="col">Tgl.Pengembalian</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -54,20 +56,22 @@
                                         <td>{{$row->nama_barang}}</td>
                                         <td>{{$row->keterangan}}</td>
                                         <td>{{$row->jumlah}}</td>
-                                        <td class="d-flex">
+                                        <td>{{$row ->created_at->format('Y-m-d')}}</td>
+                                        <td>{{$row ->expired_at->format('Y-m-d')}}</td>
+                                        <td>
                                             <div class="container d-flex" style="margin: 0;padding: 0;">
-                                                <form action="{{ route('deletepeminjaman',  $row->id) }}" method="POST">
+                                                <form action="{{route('deletepeminjaman',$row->id)}}"
+                                                    id="delete{{$row->id}}" method="POST" class="d-block">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="/deletebarang/{{$row->id}}"  class="btn btn-danger m-1 ml-3 mt-3 mb-3 btn-lg btndelete"><i
-                                                            class="fas fa-trash"></i></a>
+                                                    <a href="#" data-id={{$row->id}}
+                                                        class="btn btn-icon btn-danger m-1 btn-lg delete swal-confrim">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
                                                 </form>
-                                                {{-- <a href="/deletebarang/{{$row->id}}"
-                                                    class="btn btn-danger m-1 mr-3 mb-5 mt-3 btn-lg"><i
-                                                        class="fas fa-pen-alt"></i></a> --}}
-                                                <a href="/tampilanpeminjam/{{$row->id}}"
-                                                    class="btn btn-primary m-1 mr-3 mb-5 mt-3 btn-lg"><i
-                                                        class="fas fa-pen-alt"></i></a>
+                                                <a href="{{route('tampilanpeminjam',$row->id)}}"
+                                                    class="btn btn-primary m-1 btn-lg">
+                                                    <i class="fas fa-pencil-alt "></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -85,10 +89,13 @@
             </div>
         </div>
     </section>
-    
-    @include('sweetalert::alert')
-    @endsection
-    @push('scripts')
-    <!-- JS Libraies -->
-    <script src="{{ asset('js/after.js') }}"></script>
-    @endpush
+</div>
+@endsection
+
+@include('sweetalert::alert')
+@push('scripts')
+<!-- JS Libraies -->
+<script src="{{ asset('js/after.js') }}"></script>
+<script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/page/modules-datatables.js') }}"></script>
+@endpush

@@ -38,3 +38,8 @@ $("#table-2").dataTable({
     { "sortable": false, "targets": [0,2,3] }
   ]
 });
+$("#table-abc").dataTable({
+  "columnDefs": [
+    { "sortable": false, "targets": [2,3] }
+  ]
+});

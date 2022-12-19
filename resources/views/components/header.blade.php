@@ -91,6 +91,90 @@
         </div> --}}
         
     </form>
+
+    {{-- Admin --}}
+    @if(auth()->user()->role == 'admin')
+    <ul class="navbar-nav navbar-right">
+        <?php
+            $stock = \DB::select("SELECT * from Barangs where stock < 1");
+            $expired_at = \DB::select("SELECT * from Peminjams where expired_at > expired_at");
+        ?>
+        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg d-flex">
+            <i class="far fa-bell"></i>
+            @if($stock)
+            <div class="rounded-circle bg-success" style="width: 15px!important; height: 15px!important;">
+                <span style="display: flex!important; justify-content: center!important; text-align: center!important; align-items: center; width: 15px!important; height: 15px!important; font-size: 12px;">{{ count($stock) }}</span>
+            </div>
+            @endif
+        </a>
+            <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                <div class="dropdown-header">Notifications</div>
+                <div class="dropdown-list-content dropdown-list-icons">
+                    @foreach ($stock as $stk)
+                    <a href="#"
+                        class="dropdown-item">
+                        <div class="dropdown-item-icon bg-danger text-white">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="dropdown-item-desc">
+                            <p>{{ $stk->nama_barang}}</p>
+                            <div class="time">Barang sudah habis</div>
+                        </div>
+                    </a>
+                    @endforeach
+                    @foreach ($expired_at as $exp)
+                    <a href="#"
+                        class="dropdown-item">
+                        <div class="dropdown-item-icon bg-danger text-white">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="dropdown-item-desc">
+                            <p>{{ $exp->name}}</p>
+                            <div class="time">Batas Peminjaman Telah usai</div>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+                <div class="dropdown-footer text-center">
+                    <a href="/barang">Periksa Barang<i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </li>
+
+        <li class="dropdown"><a href="#"
+                data-toggle="dropdown"
+                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                <img alt="image"
+                    src="{{ asset('img/avatar/avatar-1.png') }}"
+                    class="rounded-circle mr-1">
+                <div class="d-sm-none d-lg-inline-block">Hi, {{auth()->user()->name}}</div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-title">Logged in 5 min ago</div>
+                <a href="/features-profile"
+                    class="dropdown-item has-icon">
+                    <i class="far fa-user"></i> Profile
+                </a>
+                <a href="features-activities.html"
+                    class="dropdown-item has-icon">
+                    <i class="fas fa-bolt"></i> Activities
+                </a>
+                <a href="features-settings.html"
+                    class="dropdown-item has-icon">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="/auth-login2"
+                    class="dropdown-item has-icon text-danger">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+    @endif
+
+    {{-- User --}}
+    @if(auth()->user()->role == 'mahasiswa')
     <ul class="navbar-nav navbar-right">
         <?php
             $stock = \DB::select("SELECT * from Barangs where stock < 1");
@@ -154,4 +238,5 @@
             </div>
         </li>
     </ul>
+    @endif
 </nav>

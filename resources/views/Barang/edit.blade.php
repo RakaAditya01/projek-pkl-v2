@@ -33,7 +33,7 @@
                                 </div>
 
                                 <div class="bungkus2" {{ ($data->image) ? "style=display:block" : "style=display:none" }}>
-                                    <img src="{{ asset('images/'.$data->image) }}" style="width: 25vw;">
+                                    <img src="{{ $data->image }}" style="width: 25vw;">
                                 </div>
 
                                 <button class="btn btn-warning mt-2 tombol-foto" type="button">Ubah Foto</button>

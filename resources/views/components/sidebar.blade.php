@@ -32,7 +32,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="menu-header">More</li>
+            {{-- <li class="menu-header">More</li>
             <li class="nav-item dropdown">
                 <a href="#"
                 class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i><span>Features</span></a>
@@ -42,7 +42,7 @@
                         href="{{ url('webcam') }}">Webcam</a>
                 </li>
             </ul>
-            </li>
+            </li> --}}
         </ul>
         @endif
 

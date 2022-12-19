@@ -56,10 +56,6 @@ class UserController extends Controller
     public function destroy($id){
         $data = User::find($id);
         $data->delete();
-<<<<<<< HEAD
         return redirect()->route('user')->with('toast_success', 'Data Berhasil Di Edit!');;
-=======
-        return redirect()->route('user')->with('success', 'Data Berhasil Di Hapus!');;
->>>>>>> 697e2e6 (sweet alert)
     }
 }

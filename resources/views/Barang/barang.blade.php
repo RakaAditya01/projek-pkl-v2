@@ -15,15 +15,15 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="bd-highlight d-flex">
-                        <div class="p-2 flex-grow-1 bd-highlight text-right">
-                            <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah
-                                +</a>
-                        </div>
-                    </div>
                     <div class="card-body p-0">
+                        <div class="bd-highlight d-flex">
+                            <div class="p-2 flex-grow-1 bd-highlight text-right">
+                                <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah
+                                    +</a>
+                            </div>
+                        </div>
                         <div class="table-responsive">
-                            <table class="table-striped table" id="table">
+                            <table class="table-striped table" id="table-1">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -60,7 +60,7 @@
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </form>
-                                                <a href="{{route('tampilanbarang',$row->id)}}" 
+                                                <a href="{{route('tampilanbarang',$row->id)}}"
                                                     class="btn btn-primary m-1 mr-3 mb-5 mt-3 btn-lg">
                                                     <i class="fas fa-pencil-alt "></i></a>
                                             </div>
@@ -69,11 +69,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{-- @else
-                        <div class="alert alert-success mt-3 alert-dismissible fade show" role="alert">
-                            Maaf, tidak ada ditemukan
-                        </div>
-                        @endif --}}
                             {{$data->links()}}
                         </div>
                     </div>
@@ -81,10 +76,13 @@
             </div>
         </div>
     </section>
-    
-    @include('sweetalert::alert')
-    @endsection
-    @push('scripts')
-    <!-- JS Libraies -->
-    <script src="{{ asset('js/after.js') }}"></script>
-    @endpush
+</div>
+@endsection
+
+@include('sweetalert::alert')
+@push('scripts')
+<!-- JS Libraies -->
+<script src="{{ asset('js/after.js') }}"></script>
+<script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/page/modules-datatables.js') }}"></script>
+@endpush
