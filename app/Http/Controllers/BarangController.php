@@ -53,8 +53,15 @@ class BarangController extends Controller {
             // $data->anggaran = $request->anggaran;
             // $data->scan = $request->scan;
             // $data->image = $fileName;
-            // dd($data);
-            // $data->save();
+            $random = $this->generateUniqueCode();
+            $data = Barang::insert([
+                'nama_barang' => $request->nama_barang,
+                'stock' => $request->stock,
+                'anggaran' => $request->anggaran,
+                'scan' => $request->scan,
+                'image' => $upload,
+                'created_at' => now(),
+            ]);
         }
         return redirect('barang')->with('toast_success', 'Data Berhasil Di Simpan!');
     }
@@ -84,13 +91,20 @@ class BarangController extends Controller {
                 ]);
         }
         return redirect('barang')->with('toast_success', 'Data Berhasil Di Edit!');
-        ;
+    }   
+
+    public function destroy($id){
+    $data = Barang::find($id);
+    $data->delete();
+    return redirect()->route('barang')->with('toast_success', 'Data Berhasil Di Hapus!');;
     }
 
-    public function destroy($id) {
-        $data=Barang::find($id);
-        $data->delete();
-        return redirect()->route('barang')->with('toast_success', 'Data Berhasil Di Hapus!');
-        ;
+    public function generateUniqueCode()
+    {
+        do {
+            $code = random_int(1000000000000, 9999999999999);
+        } while (Barang::where("scan", "=", $code)->first());
+  
+        return $code;
     }
 }
