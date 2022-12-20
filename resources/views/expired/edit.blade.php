@@ -12,7 +12,7 @@
                     <div class="col-8">
                         <div class="card">
                             <div class="card-body" style="width: 90%">
-                                <form  method="POST" action="/updateuser/{{$data->id}}">
+                                <form method="POST" action="/updateuser/{{$data->id}}">
                                     @csrf
                                     @method('put')
                                     <div class="mb-3">

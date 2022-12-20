@@ -1,10 +1,27 @@
 @extends('layouts.app')
 
-@section('title', 'Barang')
-
 @push('style')
-<link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
+<style>
+    @media print {
+  body * {
+    visibility: hidden;
+  }
+  #barcode, #barcode * {
+    visibility: visible;
+  }
+  #barcode {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+</style>
 @endpush
+@section('title', 'Barang')
+<link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap" rel="stylesheet">
 
 @section('main')
 <div class="main-content">
@@ -18,8 +35,8 @@
                     <div class="card-body p-0">
                         <div class="bd-highlight d-flex">
                             <div class="p-2 flex-grow-1 bd-highlight text-right">
-                                <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah
-                                    +</a>
+                                <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah+</a>
+                                <a href="/pdf" type="button" class="btn btn-danger mt-2 mb-4">Barcode PDF</a>
                             </div>
                         </div>
                         <div class="table-responsive">

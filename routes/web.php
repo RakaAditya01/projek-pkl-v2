@@ -65,6 +65,7 @@ Route::get('/tampilanbarang/{id}', [BarangController::class,'tampilanbarang'])->
 Route::post('/insertbarang', [BarangController::class,'store'])->name('insertbarang');
 Route::delete('/deletebarang/{id}', [BarangController::class,'destroy'])->name('deletebarang');
 Route::get('/barang/cari',[BarangController::class,'cari'])->name('cari');
+Route::get('/pdf', [BarangController::class, 'exportPDF']);
 
 // Peminjaman
 Route::get('/peminjaman', [PeminjamController::class,'index'])->name('peminjaman');
@@ -88,7 +89,7 @@ Route::get('/features-profile', [ProfileController::class, 'index'])->name('prof
 Route::put('/update', [ProfileController::class,'update'])->name('update');
 
 // expired
-Route::get('/user', [UserController::class, 'index'])->name('user');
+// Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/tambahuser', [UserController::class,'tambahuser'])->name('tambahuser');
 Route::post('/insertuser', [UserController::class,'store'])->name('insertuser');
 Route::get('/tampilanuser/{id}', [UserController::class,'tampilanuser'])->name('tampilanuser');
