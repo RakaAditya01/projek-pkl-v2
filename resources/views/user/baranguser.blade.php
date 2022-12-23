@@ -68,9 +68,9 @@
     </section>
     {{-- {{ $data->links() }} --}}
 </div>
+@include('sweetalert::alert')
 @endsection
 
-@include('sweetalert::alert')
 @push('scripts')
 <!-- JS Libraies -->
 <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
