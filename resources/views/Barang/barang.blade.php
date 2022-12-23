@@ -99,14 +99,9 @@
 
 @push('scripts')
 <!-- JS Libraies -->
-<<<<<<< Updated upstream
-<script src="{{ asset('js/after.js') }}"></script>
-<script src="{{ asset('library/datatables/media/js/jquery.dataTables.js') }}"></script>
-=======
 <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/select/1.3.3/js/select.bootstrap4.js"></script>
 <script src="{{ asset('js/after.js') }}"></script>
->>>>>>> Stashed changes
 <script src="{{ asset('js/page/modules-datatables.js') }}"></script>
 @endpush
