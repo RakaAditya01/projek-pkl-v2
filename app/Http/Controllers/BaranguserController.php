@@ -14,7 +14,7 @@ class BaranguserController extends Controller
 {
 
     public function index(){
-        $data = Barang::paginate();
+        $data = Barang::paginate(10);
         // dd($data);
         return view('user\baranguser',compact('data'));
     }

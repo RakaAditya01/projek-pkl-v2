@@ -19,13 +19,9 @@ class BarangController extends Controller
     }
 
     public function exportPDF() {
-       
         $data = Barang::all();
-  
         $pdf = PDF::loadView('pdf', ['data' => $data]);
-        
         return $pdf->stream('barang.pdf');
-        
       }
       
     public function tambahbarang(){

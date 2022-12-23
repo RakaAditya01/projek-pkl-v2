@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(){
-        $data = User::paginate();
+        $data = User::paginate(10);
         return view('expired\user',compact('data'));
     }
 

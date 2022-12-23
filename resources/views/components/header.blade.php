@@ -155,14 +155,14 @@
                     class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="features-activities.html"
+                {{-- <a href="features-activities.html"
                     class="dropdown-item has-icon">
                     <i class="fas fa-bolt"></i> Activities
                 </a>
                 <a href="features-settings.html"
                     class="dropdown-item has-icon">
                     <i class="fas fa-cog"></i> Settings
-                </a>
+                </a> --}}
                 <div class="dropdown-divider"></div>
                 <a href="/auth-login2"
                     class="dropdown-item has-icon text-danger">
@@ -177,13 +177,19 @@
     @if(auth()->user()->role == 'mahasiswa')
     <ul class="navbar-nav navbar-right">
         <?php
-            $stock = \DB::select("SELECT * from Barangs where stock < 1");
+        $stock = \DB::select("SELECT * from Barangs where stock < 1");
+        $expired_at = \DB::select("SELECT * from Peminjams where expired_at > expired_at");
         ?>
         <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg d-flex">
             <i class="far fa-bell"></i>
             @if($stock)
             <div class="rounded-circle bg-success" style="width: 15px!important; height: 15px!important;">
                 <span style="display: flex!important; justify-content: center!important; text-align: center!important; align-items: center; width: 15px!important; height: 15px!important; font-size: 12px;">{{ count($stock) }}</span>
+            </div>
+            @endif
+            @if($expired_at)
+            <div class="rounded-circle bg-success" style="width: 15px!important; height: 15px!important;">
+                <span style="display: flex!important; justify-content: center!important; text-align: center!important; align-items: center; width: 15px!important; height: 15px!important; font-size: 12px;">{{ count($expired_at) }}</span>
             </div>
             @endif
         </a>
@@ -222,14 +228,14 @@
                     class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="features-activities.html"
+                {{-- <a href="features-activities.html"
                     class="dropdown-item has-icon">
                     <i class="fas fa-bolt"></i> Activities
                 </a>
                 <a href="features-settings.html"
                     class="dropdown-item has-icon">
                     <i class="fas fa-cog"></i> Settings
-                </a>
+                </a> --}}
                 <div class="dropdown-divider"></div>
                 <a href="/auth-login2"
                     class="dropdown-item has-icon text-danger">

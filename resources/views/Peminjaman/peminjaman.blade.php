@@ -4,6 +4,8 @@
 
 @push('style')
 <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.bootstrap4.min.css" />
 @endpush
 
 @section('main')
@@ -17,7 +19,7 @@
                 <div class="card">
                     <div class="bd-highlight d-flex">
                         <div class="p-2 flex-grow-1 bd-highlight text-right">
-                            <a href="{{route('tambahpeminjam')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah
+                        <a href="{{route('tambahpeminjam')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah
                                 +</a>
                         </div>
                     </div>
@@ -76,11 +78,6 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    {{-- @if ($data->count() == 0)
-                                                <div class="alert alert-danger" role="alert">
-                                                    Tidak Ada Data Peminjam!
-                                                </div>
-                                            @endif --}}
                                 </tbody>
                             </table>
                         </div>
@@ -95,7 +92,9 @@
 
 @push('scripts')
 <!-- JS Libraies -->
-<script src="{{ asset('js/after.js') }}"></script>
 <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/select.bootstrap4.js"></script>
+<script src="{{ asset('js/after.js') }}"></script>
 <script src="{{ asset('js/page/modules-datatables.js') }}"></script>
 @endpush

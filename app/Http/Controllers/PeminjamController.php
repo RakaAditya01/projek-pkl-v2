@@ -11,7 +11,7 @@ use Intervention\Image\Facades\Image;
 
 class PeminjamController extends Controller {
     public function index() {
-        $data=Peminjam::paginate();
+        $data=Peminjam::paginate(10);
 
         return view('Peminjaman\peminjaman', compact('data'));
     }

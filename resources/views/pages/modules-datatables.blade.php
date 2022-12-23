@@ -4,6 +4,7 @@
 
 @push('style')
     <!-- CSS Libraries -->
+    
     {{-- <link rel="stylesheet"
         href="assets/modules/datatables/datatables.min.css">
     <link rel="stylesheet"
@@ -12,7 +13,7 @@
         href="assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css"> --}}
 
     <link rel="stylesheet"
-        href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
+        {{-- href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}"> --}}
 @endpush
 
 @section('main')

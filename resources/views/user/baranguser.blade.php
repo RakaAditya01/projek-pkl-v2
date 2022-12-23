@@ -4,6 +4,8 @@
 
 @push('style')
 <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.bootstrap4.min.css" />
 @endpush
 
 @section('main')
@@ -32,19 +34,6 @@
                                     $no = 1;
                                     @endphp
                                     @foreach ($data as $index => $row)
-                                    {{-- <tr>
-                                        <td scope="row">{{ $index + $data->firstItem() }}</td>
-                                        <td>
-                                            <img src="{{ $row->image }}" alt="" style="width: 80px;">
-                                        </td>
-                                        <td hidden id="id">{{$row -> id}}</td>
-                                        <td>{{$row -> nama_barang}}</td>
-                                        <td>{{$row -> stock}}</td>
-                                        <td>
-                                            <a href="{{route('pinjamuser', $row->id)}}" type="button"
-                                                class="btn btn-primary m-2">Pinjam</a>
-                                        </td>
-                                    </tr> --}}
                                     <tr>
                                         <td scope="row">{{ $index + $data->firstItem() }}</td>
                                         <td>
@@ -63,10 +52,9 @@
                         </div>
                     </div>
                 </div>
-                <br>
+            </div>
         </div>
     </section>
-    {{-- {{ $data->links() }} --}}
 </div>
 @include('sweetalert::alert')
 @endsection
@@ -74,6 +62,8 @@
 @push('scripts')
 <!-- JS Libraies -->
 <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/select.bootstrap4.js"></script>
 <script src="{{ asset('js/after.js') }}"></script>
 <script src="{{ asset('js/page/modules-datatables.js') }}"></script>
 @endpush

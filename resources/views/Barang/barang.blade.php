@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @push('style')
+<link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.bootstrap4.min.css" />
 <style>
     @media print {
   body * {
@@ -16,12 +19,10 @@
   }
 }
 </style>
+
 @endpush
 @section('title', 'Barang')
-<link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap" rel="stylesheet">
+
 
 @section('main')
 <div class="main-content">
@@ -86,7 +87,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{$data->links()}}
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,14 @@
 
 @push('scripts')
 <!-- JS Libraies -->
+<<<<<<< Updated upstream
 <script src="{{ asset('js/after.js') }}"></script>
 <script src="{{ asset('library/datatables/media/js/jquery.dataTables.js') }}"></script>
+=======
+<script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/select.bootstrap4.js"></script>
+<script src="{{ asset('js/after.js') }}"></script>
+>>>>>>> Stashed changes
 <script src="{{ asset('js/page/modules-datatables.js') }}"></script>
 @endpush

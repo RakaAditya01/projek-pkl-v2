@@ -38,7 +38,7 @@
                             alt="logo"
                             width="80"
                             class="shadow-light rounded-circle mb-5 mt-2">
-                        <h2 class="text-dark font-weight-normal">Sapras</h2>
+                        <h2 class="text-dark font-weight-normal">Sarpras</h2>
                         <p class="text-muted">Before you get started, you must login or register if you don't already
                             have an account.</p>
                         <form method="POST"
