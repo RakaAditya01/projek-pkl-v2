@@ -119,7 +119,7 @@ Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->mi
 Route::get('webcam', [WebcamController::class, 'index'])->middleware(['auth','checkRole:mahasiswa,admin']);
 Route::get('/user', [UserController::class, 'index'])->middleware(['auth','checkRole:admin']);
 Route::get('/baranguser', [BaranguserController::class, 'index'])->middleware(['auth','checkRole:mahasiswa']);
-Route::get('/history', [HistoryController::class, 'index'])->middleware(['auth','checkRole:mahasiswa']);
+// Route::get('/history', [HistoryController::class, 'index'])->middleware(['auth','checkRole:mahasiswa']);
 // --------------------------------------------------------------------------------------------------------------------- //
 
 // Dashboard

@@ -18,6 +18,11 @@
 </style>
 @endpush
 @section('title', 'Barang')
+
+@push('style')
+<link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
+@endpush
+
 <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,7 +70,7 @@
                                         <td>{{$row ->nama_barang}}</td>
                                         <td>{{$row ->stock}}</td>
                                         <td>{{$row ->anggaran}}</td>
-                                        <td style="font-family: 'Libre Barcode 39';font-size: 22px;">{{$row ->scan}}</td>
+                                        <td>{{$row ->scan}}</td>
                                         <td>
                                             <div class="container d-flex" style="margin: 0;padding: 0;">
                                                 <form action="{{route('deletebarang',$row->id)}}"

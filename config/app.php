@@ -203,6 +203,8 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         // Cloudinary
         CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
+        // export to pdf
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -227,5 +229,7 @@ return [
     'PDF' => Barryvdh\DomPDF\Facade::class,
     
     ])->toArray(),
+    // export to pdf
+    'PDF' => Barryvdh\DomPDF\Facade::class,
 
 ];
