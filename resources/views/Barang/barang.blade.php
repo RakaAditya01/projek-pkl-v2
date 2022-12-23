@@ -65,7 +65,7 @@
                                         <td>{{$row ->nama_barang}}</td>
                                         <td>{{$row ->stock}}</td>
                                         <td>{{$row ->anggaran}}</td>
-                                        <td>{{$row ->scan}}</td>
+                                        <td style="font-family: 'Libre Barcode 39';font-size: 22px;">{{$row ->scan}}</td>
                                         <td>
                                             <div class="container d-flex" style="margin: 0;padding: 0;">
                                                 <form action="{{route('deletebarang',$row->id)}}"
@@ -94,12 +94,12 @@
         </div>
     </section>
 </div>
+@include('sweetalert::alert')
 @endsection
 
-@include('sweetalert::alert')
 @push('scripts')
 <!-- JS Libraies -->
 <script src="{{ asset('js/after.js') }}"></script>
-<script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('library/datatables/media/js/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('js/page/modules-datatables.js') }}"></script>
 @endpush

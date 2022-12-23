@@ -18,7 +18,6 @@
             <p class="text-muted">We will send a link to reset your password</p>
             <form action="{{ route('reset.password.post') }}" method="POST">
                 @csrf
-                <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group">
                     <label for="email_address">Email</label>
                     <input type="text" id="email_address" class="form-control" name="email" required autofocus>

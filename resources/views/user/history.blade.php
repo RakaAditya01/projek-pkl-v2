@@ -71,9 +71,9 @@
         </div>
     </section>
 </div>
+@include('sweetalert::alert')
 @endsection
 
-@include('sweetalert::alert')
 @push('scripts')
 <!-- JS Libraies -->
 <script src="{{ asset('js/after.js') }}"></script>

@@ -24,7 +24,7 @@ class BarangController extends Controller
   
         $pdf = PDF::loadView('pdf', ['data' => $data]);
         
-        return $pdf->download('barang.pdf');
+        return $pdf->stream('barang.pdf');
         
       }
       
@@ -37,7 +37,7 @@ class BarangController extends Controller
         $this->validate($request, [ 'nama_barang'=> 'required',
             'stock'=> 'required',
             'anggaran'=> 'required',
-            'scan'=> 'required',
+            // 'scan'=> 'required',
             ],
             [ 'gambar.required'=> 'Gambar tidak boleh kosong',
             'nama_barang.required'=> 'Nama Barang tidak boleh kosong',
@@ -53,13 +53,13 @@ class BarangController extends Controller
             }
             // dd($fileName);
             $upload=cloudinary()->upload($img)->getSecurePath();
-            $data=Barang::insert([ 'nama_barang'=> $request->nama_barang,
-                'stock'=> $request->stock,
-                'anggaran'=> $request->anggaran,
-                'scan'=> $request->scan,
-                'image'=> $upload,
-                'created_at'=> now(),
-                ]);
+            // $data=Barang::insert([ 'nama_barang'=> $request->nama_barang,
+            //     'stock'=> $request->stock,
+            //     'anggaran'=> $request->anggaran,
+            //     'scan'=> $request->scan,
+            //     'image'=> $upload,
+            //     'created_at'=> now(),
+            //     ]);
             // $data->nama_barang = $request->nama_barang;
             // $data->stock = $request->stock;
             // $data->anggaran = $request->anggaran;
@@ -70,7 +70,7 @@ class BarangController extends Controller
                 'nama_barang' => $request->nama_barang,
                 'stock' => $request->stock,
                 'anggaran' => $request->anggaran,
-                'scan' => $request->scan,
+                'scan' => $random,
                 'image' => $upload,
                 'created_at' => now(),
             ]);
