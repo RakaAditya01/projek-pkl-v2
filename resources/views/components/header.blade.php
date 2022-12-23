@@ -204,7 +204,7 @@
                         </div>
                         <div class="dropdown-item-desc">
                             <p>{{ $stk->nama_barang}}</p>
-                            <div class="time">Barang sudah habis</div>
+                            <div class="time">Barang sudah habis !!</div>
                         </div>
                     </a>
                     @endforeach
