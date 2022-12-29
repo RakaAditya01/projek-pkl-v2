@@ -71,10 +71,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Online Users</h4>
+                                <h4>Jumlah Stock Barang</h4>
                             </div>
                             <div class="card-body">
-                                47
+                                {{ $ba }}
                             </div>
                         </div>
                     </div>

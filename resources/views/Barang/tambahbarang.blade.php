@@ -9,7 +9,7 @@
             <h1>Tambah Barang</h1>
         </div>
         <div class="row">
-           <div class="card-body">
+        <div class="card-body">
             <div class="row justify-content-center">
                 <div class="col-8">
                     <div class="card">
@@ -31,8 +31,9 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Nama Barang</label>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputEmail1" class="form-label">Nama Barang</label>
                                     <input type="text" name="nama_barang" class="form-control 
                                     @error('nama_barang')
                                         is-invalid
@@ -42,23 +43,23 @@
                                         {{$message}}
                                     </div>
                                     @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Stock</label>
-                                    <input type="number" name="stock" pattern="^[1-9][0-9]*$" class="form-control 
-                                    @error('stock')
-                                        is-invalid
-                                    @enderror" id="" aria-describedby="emailHelp" value="{{ old('stock') }}"> 
-                                    @error('stock')
-                                    <div class="text-danger">
-                                        {{ $message }}
                                     </div>
-                                    @enderror
+                                    <div class="form-group col-6">
+                                        <label for="exampleInputEmail1" class="form-label">Stock</label>
+                                        <input type="number" name="stock" pattern="^[1-9][0-9]*$" class="form-control 
+                                        @error('stock')
+                                            is-invalid
+                                        @enderror" id="" aria-describedby="emailHelp" value="{{ old('stock') }}"> 
+                                        @error('stock')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Anggaran</label>
+                                    <label for="exampleInputEmail1" class="form-label">Tahun Anggaran</label>
                                     <input type="text" name="anggaran" class="form-control 
                                     @error('anggaran')
                                         is-invalid
@@ -89,16 +90,15 @@
                     </div>
                 </div>
             </div>
-           </div>
         </div>
+    </section>
 </div>
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
-    <script type='text/javascript'>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+<script type='text/javascript'>
         Webcam.set({
                 width: 350,
                 height: 250,
@@ -113,20 +113,11 @@
                     document.getElementById('results').innerHTML = '<img src="'+data_uri+'" class="img-fluid mt-4"/>';
                 } );
             }
-
-            
-
-        
-
-        
-
     </script>
-
-
-     @endsection
-  </body>
+    @endsection
+</body>
 </html>
 @push('scripts')
-    <!-- JS Libraies -->
-    <script src="{{ asset('js/modules-toastr.js') }}"></script>
-    @endpush
+<!-- JS Libraies -->
+<script src="{{ asset('js/modules-toastr.js') }}"></script>
+@endpush

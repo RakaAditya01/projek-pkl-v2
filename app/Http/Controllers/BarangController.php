@@ -8,13 +8,15 @@ use Illuminate\Http\Request;
 use App\Exports\DataExport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Constraint\IsEmpty;
 
 
 class BarangController extends Controller
 {
 
     public function index(){
-        $data = Barang::paginate();
+        $data = Barang::paginate(9999999999);
+        // dd($data);
         return view('Barang.barang',compact('data'));
     }
 
@@ -22,8 +24,8 @@ class BarangController extends Controller
         $data = Barang::all();
         $pdf = PDF::loadView('pdf', ['data' => $data]);
         return $pdf->stream('barang.pdf');
-      }
-      
+    }
+
     public function tambahbarang(){
         $data = Barang::all();
         return view('Barang\tambahbarang' , compact('data'));
@@ -42,6 +44,7 @@ class BarangController extends Controller
             ]);
         // $data = Barang::create ($reque;
         if($request->get('image')) {
+            $empty = "";
             $img=$request->get('image');
             $image_parts=explode(";base64,", $img);
             foreach ($image_parts as $row=> $image) {
@@ -49,27 +52,26 @@ class BarangController extends Controller
             }
             // dd($fileName);
             $upload=cloudinary()->upload($img)->getSecurePath();
-            // $data=Barang::insert([ 'nama_barang'=> $request->nama_barang,
-            //     'stock'=> $request->stock,
-            //     'anggaran'=> $request->anggaran,
-            //     'scan'=> $request->scan,
-            //     'image'=> $upload,
-            //     'created_at'=> now(),
-            //     ]);
-            // $data->nama_barang = $request->nama_barang;
-            // $data->stock = $request->stock;
-            // $data->anggaran = $request->anggaran;
-            // $data->scan = $request->scan;
-            // $data->image = $fileName;
-            $random = $this->generateUniqueCode();
-            $data = Barang::insert([
+            if($request->scan == $empty){
+                $random = $this->generateUniqueCode();
+                $data = Barang::insert([
                 'nama_barang' => $request->nama_barang,
                 'stock' => $request->stock,
                 'anggaran' => $request->anggaran,
                 'scan' => $random,
                 'image' => $upload,
                 'created_at' => now(),
-            ]);
+                ]);
+            } else {
+                $data = Barang::insert([
+                    'nama_barang' => $request->nama_barang,
+                    'stock' => $request->stock,
+                    'anggaran' => $request->anggaran,
+                    'scan' => $request->scan,
+                    'image' => $upload,
+                    'created_at' => now(),
+                ]);
+            }
         }
         return redirect('barang')->with('toast_success', 'Data Berhasil Di Simpan!');
     }
@@ -112,7 +114,6 @@ class BarangController extends Controller
         do {
             $code = random_int(1000000000000, 9999999999999);
         } while (Barang::where("scan", "=", $code)->first());
-  
         return $code;
     }
 }

@@ -14,7 +14,7 @@
         <div class="section-header">
             <h1>Barang Dipinjam</h1>
         </div>
-        {{-- <h2 class="section-title">Note.</h2> --}}
+        <h2 class="section-title">Note.</h2> 
         <p class="">Mohon Kembalikan Barang Yang Dipinjam Sesuai Batas Peminjaman.</p>
         <div class="row">
             <div class="col-12">
@@ -31,7 +31,6 @@
                                         <th scope="col">Jumlah</th>
                                         <th scope="col">Tgl.Dipinjam</th>
                                         <th scope="col">Tgl.Pengembalian</th>
-                                        {{-- <th scope="col">Action</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -14,15 +14,12 @@ class BaranguserController extends Controller
 {
 
     public function index(){
-        $data = Barang::paginate(10);
-        // dd($data);
+        $data = Barang::paginate(9999999999);
         return view('user\baranguser',compact('data'));
     }
 
     public function pinjamuser($id){
-        // $barang = Barang ::all();
         $barang = DB::table('barangs')->where('id',$id)->find($id);
-        // dd($data);
         return view('user\pinjamuser' , compact('barang'));
         return redirect(route('history'));
     }
@@ -34,7 +31,6 @@ class BaranguserController extends Controller
             foreach ($image_parts as $row => $image){
                 $image_base64 = base64_decode($image);
             }
-            // dd($fileName);
             $upload= cloudinary()->upload($img)->getSecurePath();
             $id = auth()->user()->nim;
             $nama = auth()->user()->name;
@@ -48,7 +44,6 @@ class BaranguserController extends Controller
                 'expired_at' => Carbon::today()->addWeeks(1)->toDateString(),
                 'created_at' => now(),
             ]);
-            // dd($data);
         }  
             
         return redirect('history')->with('toast_success', 'Data Berhasil Di Simpan!');;

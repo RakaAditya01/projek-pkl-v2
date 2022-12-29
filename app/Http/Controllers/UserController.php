@@ -12,18 +12,9 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(){
-        $data = User::paginate(10);
+        $data = User::paginate(9999999999);
         return view('expired\user',compact('data'));
     }
-
-    // public function api_render()
-    // {
-    //     try {
-    //         if  (User::query()->exists()) {
-    //             $data = User::query()->where('name', intval($));
-    //         }
-    //     }
-    // }
 
     public function tambahuser(){
         $user = User::all();

@@ -29,7 +29,7 @@
                                             </div>
                                             @enderror
                                         </div>
-                              @foreach($user as $users)
+                            @foreach($user as $users)
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">NIM</label>
                                         <input type="text" name="nim" id="" class="form-control 
@@ -94,9 +94,7 @@
     </section>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
-
 <script type='text/javascript'>
     Webcam.set({
             width: 350,
@@ -112,5 +110,5 @@
                 document.getElementById('results').innerHTML = '<img src="'+data_uri+'" class="img-fluid mt-4" name="result"/>';
             } );
         }
-        </script>
+</script>
 @endsection

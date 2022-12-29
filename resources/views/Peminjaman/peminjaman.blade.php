@@ -51,7 +51,7 @@
                                         <input type="hidden" value="{{ $row->nama }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->nama_barang }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->jumlah }}" class="key{{ $no }}">
-                                        <td>{{$data->firstItem()+$no}}</td>
+                                        <td>{{$no + 1}}</td>
                                         <td><img src="{{ $row->image }}" style="width: 60px;"></td>
                                         <td>{{$row->nim}}</td>
                                         <td>{{$row->nama}}</td>

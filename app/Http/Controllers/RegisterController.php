@@ -26,14 +26,13 @@ class RegisterController extends Controller
     public function registeruser(Request $request){
         $request-> validate([
             'name' => 'required|string|max:255',
-            'nim' => 'required|numeric',
+            'nim' => 'required|numeric|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required','confirmed', Rules\Password::min(8)],
             'captcha' => 'required|captcha'
         ]);
-        // dd($request->all()); 
 
-      $user = User::insert([
+        $user = User::insert([
             'name' => $request->name,
             'nim' => $request->nim,
             'email' => $request->email,
@@ -41,14 +40,11 @@ class RegisterController extends Controller
             'expired_at' => Carbon::now()->addMonths(6),
             'remember_token' => Str::random(60)
         ]);
-        // dd($user);
         $User = User::where('name', $request->get('user'))->first();
-
         if (!empty($User) && $User->expired_at );
         return redirect('/auth-login2');
-
-       if (!Hash::check(request ('password'), $User->password)) {
+        if (!Hash::check(request ('password'), $User->password)) {
         return new Response('Invalid Password');
-       }
+        }
     }
 }

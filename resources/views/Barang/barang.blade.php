@@ -48,7 +48,7 @@
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Nama Barang</th>
                                         <th scope="col">Stock</th>
-                                        <th scope="col">Anggaran</th>
+                                        <th scope="col">Tahun Anggaran</th>
                                         <th scope="col">Barcode</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -61,7 +61,7 @@
                                         <input type="hidden" value="{{ $row->stock }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->anggaran }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->scan }}" class="key{{ $no }}">
-                                        <td>{{$data->firstItem()+$no}}</td>
+                                        <td> {{$no + 1}} </td>
                                         <td><img src="{{ $row->image }}" style="width: 90px;"></td>
                                         <td>{{$row ->nama_barang}}</td>
                                         <td>{{$row ->stock}}</td>
@@ -80,7 +80,8 @@
                                                 </form>
                                                 <a href="{{route('tampilanbarang',$row->id)}}"
                                                     class="btn btn-primary m-1 mr-3 mb-5 mt-3 btn-lg">
-                                                    <i class="fas fa-pencil-alt "></i></a>
+                                                    <i class="fas fa-pencil-alt "></i>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

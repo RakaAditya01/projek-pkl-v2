@@ -151,7 +151,7 @@
                                             <textarea class="form-control" name="aboutme">{{auth()->user()->aboutme}}</textarea>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="form-group col-12 mb-0">
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox"
@@ -165,7 +165,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="card-footer text-right">
                                     <button class="btn btn-primary">Save Changes</button>

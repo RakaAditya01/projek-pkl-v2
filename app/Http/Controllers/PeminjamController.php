@@ -11,23 +11,14 @@ use Intervention\Image\Facades\Image;
 
 class PeminjamController extends Controller {
     public function index() {
-        $data=Peminjam::paginate(10);
-
+        $data=Peminjam::paginate(9999999999);
         return view('Peminjaman\peminjaman', compact('data'));
     }
 
     public function tambahpeminjam(Request $request) {
         $barang=Barang::all();
-
         $nama=auth()->user()->name;
-        // $peminjam = DB::table('users')
-        //     ->join('peminjams', 'peminjams.nim','=','users.nim')
-        //     ->select('users.*','peminjams.nama_barang','peminjams.jumlah')
-        //     ->get()
-        // ;
-        // dd($peminjam);
         $user=DB::table('users') ->where('name', '=', $nama) ->select('nim', 'name') ->get();
-        // 
         return view('Peminjaman\tambahpeminjam', [ 'user'=> $user], compact('barang'));
     }
 
@@ -60,7 +51,6 @@ class PeminjamController extends Controller {
                 'created_at'=> now(),
                 ]);
         }
-
         return redirect(route('peminjaman'));
     }
 
@@ -101,14 +91,12 @@ class PeminjamController extends Controller {
                 'created_at'=> now(),
                 ]);
         }
-
         return redirect()->route('peminjaman')->with('toast_success', 'Data Berhasil Di Edit!');
-        ;
     }
 
     public function destroy($id){
         $data = Peminjam::find($id);
         $data->delete();
-        return redirect()->route('peminjaman')->with('toast_success', 'Data Berhasil Di Hapus!');;
+        return redirect()->route('peminjaman')->with('toast_success', 'Data Berhasil Di Hapus!');
         }   
 }

@@ -42,15 +42,12 @@
                                         <td>{{$row -> nama_barang}}</td>
                                         <td>{{$row -> stock}}</td>
                                         @if($row -> stock >= 1)
-                                        {
                                         <td>
                                             <a href="{{route('pinjamuser', $row->id)}}" type="button"
                                                 class="btn btn-primary m-2">Pinjam</a>
                                         </td>
-                                        }
-                                        @else{
+                                        @else
                                             <td>Barang Habis !!</td>
-                                        }
                                         @endif
                                     </tr>
                                     @endforeach

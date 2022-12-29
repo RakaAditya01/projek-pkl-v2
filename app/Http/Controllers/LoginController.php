@@ -10,9 +10,8 @@ use Illuminate\Validation\Rules\Password;
 
 class LoginController extends Controller
 {
-   
+
     public function login(){
-    
         return view('/dashboard-general-dashboard');
     }
 
@@ -29,10 +28,7 @@ class LoginController extends Controller
         return view('pages.auth-register');
     }
     
-    
-
     public function registeruser(Request $request){
-        // dd($request->all());   
         user::create([
             'name' => $request->name,
             'nim' => $request->nis,
@@ -41,9 +37,7 @@ class LoginController extends Controller
             'expired_at' => Carbon::now()->addMonths(6),
             'remember_token' => Str::random(60)
         ]);
-    
         return redirect('/auth-login2');
-        
         $validator = Validator::make($input, $rules);
     }
 
@@ -67,11 +61,8 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
- 
         request()->session()->invalidate();
-        
         request()->session()->regenerateToken();
- 
         return redirect('/login');
     }
 }

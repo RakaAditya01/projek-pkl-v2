@@ -15,8 +15,7 @@ class HistoryController extends Controller
     public function index(){
         $user = Auth::user()->nim;
         $data = Peminjam::where('nim' ,'=', "$user")
-                ->paginate(10);
-                // dd($data);
+                ->paginate(9999999999);
         return view('user\history',compact('data'));
     }
     

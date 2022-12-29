@@ -20,7 +20,6 @@ class ProfileController extends Controller
         $user = User::query()
                 ->where('nim',$request->nim)
                 ->update(['aboutme' => $request->aboutme]);
-
         return back()->with('message', 'Your profile has been update');
     }
 }
