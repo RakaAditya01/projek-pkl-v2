@@ -28,7 +28,8 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'expired_at' => Carbon::now()->addMonths(6),
-            'remember_token' => Str::random(60)
+            'remember_token' => Str::random(60),
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
         ]);
     }
 

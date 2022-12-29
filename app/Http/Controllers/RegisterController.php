@@ -38,7 +38,8 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request['password']),
             'expired_at' => Carbon::now()->addMonths(6),
-            'remember_token' => Str::random(60)
+            'remember_token' => Str::random(60),
+            'created_at'=> now(),
         ]);
         $User = User::where('name', $request->get('user'))->first();
         if (!empty($User) && $User->expired_at );
