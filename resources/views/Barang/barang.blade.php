@@ -8,15 +8,15 @@
     @media print {
   body * {
     visibility: hidden;
-  }
+}
   #barcode, #barcode * {
     visibility: visible;
-  }
-  #barcode {
+}
+#barcode {
     position: absolute;
     left: 0;
     top: 0;
-  }
+}
 }
 </style>
 
