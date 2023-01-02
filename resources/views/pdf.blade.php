@@ -43,7 +43,7 @@
               <div class="card-body text-center">
               <img src="../public/img/pnj1.png" style="width: 60px" alt="">
                 <p class="p" style="margin-bottom: -5px;">{{ $dat->nama_barang }}</p>
-                <p class="scan">{{ $dat->scan }}</p>
+                <p class="scan">*{{ $dat->scan }}*</p>
                 <p class="cn1" style="margin-top: -25px; margin-left:13px">{{ $dat->scan }}</p>
               </div>
             </div>
