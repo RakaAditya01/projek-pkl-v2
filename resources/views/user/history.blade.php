@@ -15,7 +15,7 @@
             <h1>Barang Dipinjam</h1>
         </div>
         <h2 class="section-title">Note.</h2> 
-        <p class="">Mohon Kembalikan Barang Yang Dipinjam Sesuai Batas Peminjaman.</p>
+        <p class="">Silahkan ke PUSDATIN untuk mengambil barang dan Mohon Kembalikan Barang Yang Dipinjam Sesuai Batas Peminjaman.</p>
         <div class="row">
             <div class="col-12">
                 <div class="card">
