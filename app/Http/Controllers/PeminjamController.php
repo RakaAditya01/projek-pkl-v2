@@ -67,11 +67,11 @@ class PeminjamController extends Controller {
                 'expired_at'=> Carbon::today()->addWeeks(1)->toDateString(),
                 'created_at'=> now(),
                 ]);
-            $this->validate($request, [ 'image'=> 'required',
+            $this->validate($request, [
             'nama_barang'=> 'required',
             'jumlah'=> 'required',
             ],
-            [ 'image.required'=> 'Gambar tidak boleh kosong',
+            [
             'nama_barang.required'=> 'Nama Barang tidak boleh kosong',
             'jumlah.required'=> 'Jumlah Tidak Boleh Kosong'
             ]);
