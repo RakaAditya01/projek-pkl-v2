@@ -20,7 +20,7 @@
                                 <br/>
                                 <input type=button class="btn btn-sm btn-primary" value="Take Snapshot" onClick="take_snapshot()">
                                 <input type="hidden" name="image" class="image-tag">
-                                <div id="results">Silahkan Foto NIM/KTP Anda Sebagai Identitas Peminjam...</div>
+                                <div id="results">Silahkan Foto KTM/KTP Anda Sebagai Identitas Peminjam...</div>
                                 
                                 @error('image')
                                     <div class="alert alert-danger" role="alert">
