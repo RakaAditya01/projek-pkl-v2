@@ -31,6 +31,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 // Route::redirect('/', '/dashboard-general-dashboard');
 
 Route::redirect('/', '/auth-login2');
+Route::post('loginproses', [LoginController::class, 'loginproses'])->name('loginproses');
 
 //home
 Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->name('dashboard-general-dashboard');

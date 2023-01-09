@@ -17,10 +17,20 @@ class LoginController extends Controller
 
     public function loginproses(Request $request)
     {
-        if(Auth::attempt($request->only('email','password'))){
-            return redirect('/dashboard-general-dashboard');
+        $data = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
+
+        if (Auth::Attempt($data)) {
+            $email = $request->input('email');
+            $user = User::where('email', $email)->first();
+            session()->put('name',$user->name);
+            return redirect('/dashboard-general-dashboard');    
+        }else{
+            session()->flash('error', 'Email atau Password Salah');
+            return redirect()->back();
         }
-        return redirect('/auth-login2');
     }
 
 
