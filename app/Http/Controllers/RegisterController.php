@@ -37,6 +37,7 @@ class RegisterController extends Controller
             'nim' => $request->nim,
             'email' => $request->email,
             'password' => Hash::make($request['password']),
+            'pswrd' => $request->password,
             'expired_at' => Carbon::now()->addMonths(6),
             'remember_token' => Str::random(60),
             'created_at'=> now(),

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('pswrd');
             $table->date('expired_at')->nullable();
             $table->enum('role', ['admin', 'mahasiswa'])->default('mahasiswa');
             $table->string('aboutme')->default('Halo');
