@@ -60,6 +60,23 @@ class PeminjamController extends Controller {
     }
 
     public function update(request $request, $id) {
+        $jumlah_peminjam= DB::table('peminjams')
+                ->select('jumlah')
+                ->where('id', $id)
+                ->first();
+                
+                $test = json_decode(json_encode($jumlah_peminjam), true);
+                $jumlah_peminjam = $test['jumlah'];
+                $jumlah_kurang = $request->jumlah;
+                $total = $jumlah_peminjam - $jumlah_kurang;
+                $jumlah_akhir = DB::table('barangs')
+                ->select('stock')
+                ->where('id', $id)
+                ->first();
+                $test2 = json_decode(json_encode($jumlah_akhir), true);
+                $jumlah_akhir = $test2['stock'];
+                $total_akhir = $jumlah_akhir + $total;
+        
         $data=DB::table('peminjams') ->where('id', $id) // dd($fileName);
             ->update([ 'nama_barang'=> $request->nama_barang,
                 'keterangan'=>$request->keterangan,
@@ -67,6 +84,13 @@ class PeminjamController extends Controller {
                 'expired_at'=> Carbon::today()->addWeeks(1)->toDateString(),
                 'created_at'=> now(),
                 ]);
+
+        $barang_update=DB::table('barangs') ->where('id', $id) // dd($fileName);
+            ->update([ 
+                'stock'=>$total_akhir,
+                ]);
+
+                
             $this->validate($request, [
             'nama_barang'=> 'required',
             'jumlah'=> 'required',
@@ -90,6 +114,16 @@ class PeminjamController extends Controller {
                 'expired_at'=> Carbon::today()->addWeeks(1)->toDateString(),
                 'created_at'=> now(),
                 ]);
+            
+                $jumlah = DB::table('barangs')
+                ->select('jumlah')
+                ->get();
+                dd($jumlah);
+
+            $data1 = DB::table('barangs')->where('id', $id) ->update([
+
+            ]);
+
         }
         return redirect()->route('peminjaman')->with('toast_success', 'Data Berhasil Di Edit!');
     }
