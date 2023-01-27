@@ -112,7 +112,7 @@ class BarangController extends Controller
     public function generateUniqueCode()
     {
         do {
-            $code = random_int(1000000000000, 9999999999999);
+            $code = random_int(10000000, 99999999);
         } while (Barang::where("scan", "=", $code)->first());
         return $code;
     }

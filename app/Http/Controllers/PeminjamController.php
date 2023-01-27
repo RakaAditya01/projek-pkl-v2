@@ -65,17 +65,17 @@ class PeminjamController extends Controller {
                 ->where('id', $id)
                 ->first();
                 
-                $test = json_decode(json_encode($jumlah_peminjam), true);
-                $jumlah_peminjam = $test['jumlah'];
-                $jumlah_kurang = $request->jumlah;
-                $total = $jumlah_peminjam - $jumlah_kurang;
-                $jumlah_akhir = DB::table('barangs')
-                ->select('stock')
-                ->where('id', $id)
-                ->first();
-                $test2 = json_decode(json_encode($jumlah_akhir), true);
-                $jumlah_akhir = $test2['stock'];
-                $total_akhir = $jumlah_akhir + $total;
+                // $test = json_decode(json_encode($jumlah_peminjam), true);
+                // $jumlah_peminjam = $test['jumlah'];
+                // $jumlah_kurang = $request->jumlah;
+                // $total = $jumlah_peminjam - $jumlah_kurang;
+                // $jumlah_akhir = DB::table('barangs')
+                // ->select('stock')
+                // ->where('id', $id)
+                // ->first();
+                // $test2 = json_decode(json_encode($jumlah_akhir), true);
+                // $jumlah_akhir = $test2['stock']; 
+                // $total_akhir = $jumlah_akhir + $total;
         
         $data=DB::table('peminjams') ->where('id', $id) // dd($fileName);
             ->update([ 'nama_barang'=> $request->nama_barang,
@@ -85,10 +85,10 @@ class PeminjamController extends Controller {
                 'created_at'=> now(),
                 ]);
 
-        $barang_update=DB::table('barangs') ->where('id', $id) // dd($fileName);
-            ->update([ 
-                'stock'=>$total_akhir,
-                ]);
+        // $barang_update=DB::table('barangs') ->where('id', $id) // dd($fileName);
+        //     ->update([ 
+        //         'stock'=>$total_akhir,
+        //         ]);
 
                 
             $this->validate($request, [
@@ -115,10 +115,10 @@ class PeminjamController extends Controller {
                 'created_at'=> now(),
                 ]);
             
-                $jumlah = DB::table('barangs')
-                ->select('jumlah')
-                ->get();
-                dd($jumlah);
+                // $jumlah = DB::table('barangs')
+                // ->select('jumlah')
+                // ->get();
+                // dd($jumlah);
 
             $data1 = DB::table('barangs')->where('id', $id) ->update([
 
