@@ -83,6 +83,19 @@
                                     </div>
                                     @enderror
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Serial Number</label>
+                                    <input type="text" name="serialnumber" class="form-control 
+                                    @error('serialnumber')
+                                        is-invalid
+                                    @enderror" id="serialnumber" aria-describedby="emailHelp" value="{{ old('serialnumber') }}" onload="generateSerialNumber($id)">
+                                    @error('serialnumber')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
                                 
                                 <button class="btn btn-primary" id="toastr-2" type="submit">Submit</button>
                             </form>

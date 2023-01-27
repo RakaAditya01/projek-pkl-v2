@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->integer('anggaran');
             $table->string('scan');
+            $table->string('serialnumber');
             $table->timestamps();
         });
     }
