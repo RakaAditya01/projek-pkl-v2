@@ -45,6 +45,7 @@
                 <p class="p" style="margin-bottom: -5px;">{{ $dat->nama_barang }}</p>
                 <p class="scan">*{{ $dat->scan }}*</p>
                 <p class="cn1" style="margin-top: -25px; margin-left:13px">{{ $dat->scan }}</p>
+                <p class="ci1" style="margin-top: -15px; margin-left:10px">{{ $dat->serialnumber }}</p>
               </div>
             </div>
           </div>

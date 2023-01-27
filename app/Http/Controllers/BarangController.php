@@ -52,13 +52,17 @@ class BarangController extends Controller
             }
             // dd($fileName);
             $upload=cloudinary()->upload($img)->getSecurePath();
-            if($request->scan == $empty){
+            if($request->scan == $empty || $request->serialnumber == $empty){
+                $id = $this->generateIdCode();
                 $random = $this->generateUniqueCode();
+                $serial = $this->generateSerialNumber($id);
+                // dd($serial);
                 $data = Barang::insert([
                 'nama_barang' => $request->nama_barang,
                 'stock' => $request->stock,
                 'anggaran' => $request->anggaran,
                 'scan' => $random,
+                'serialnumber' => $serial,
                 'image' => $upload,
                 'created_at' => now(),
                 ]);
@@ -68,6 +72,7 @@ class BarangController extends Controller
                     'stock' => $request->stock,
                     'anggaran' => $request->anggaran,
                     'scan' => $request->scan,
+                    'serialnumber' => $request->serialnumber,
                     'image' => $upload,
                     'created_at' => now(),
                 ]);
@@ -87,6 +92,7 @@ class BarangController extends Controller
                 'stock'=> $request->stock,
                 'anggaran'=> $request->anggaran,
                 'scan'=> $request->scan,
+                'serialnumber'=> $request->serialnumber,
                 'updated_at'=> now(),
                 ]);
         if($request->get('image')) {
@@ -116,4 +122,32 @@ class BarangController extends Controller
         } while (Barang::where("scan", "=", $code)->first());
         return $code;
     }
+
+    public function generateIdCode()
+    {
+        do {
+            $code = random_int(1000, 9999);
+        } while (Barang::where("serialnumber", "=", $code)->first());
+        return $code;
+    }
+
+    public static function generateSerialNumber(int $id)
+        {
+            $start = 0; // 0 = A, 702 or 703 = AAA, adjust accordingly
+            $letters_value = $start + (ceil($id / 999) - 1);
+            $numbers = ($id % 999 === 0) ? 999 : $id % 999;
+
+            $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $base = strlen($characters);
+            $letters = '';
+
+            // while there are still positive integers to divide
+            while ($letters_value) {
+                $current = $letters_value % $base;
+                $letters = $characters[$current] . $letters;
+                $letters_value = floor($letters_value / $base);
+            }
+
+        return $letters.'-'.sprintf('%03d', $numbers);
+        }
 }

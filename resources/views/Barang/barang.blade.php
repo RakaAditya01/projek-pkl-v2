@@ -49,6 +49,7 @@
                                         <th scope="col">Nama Barang</th>
                                         <th scope="col">Stock</th>
                                         <th scope="col">Tahun Anggaran</th>
+                                        <th scope="col">Serial Number</th>
                                         <th scope="col">Barcode</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -61,11 +62,13 @@
                                         <input type="hidden" value="{{ $row->stock }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->anggaran }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->scan }}" class="key{{ $no }}">
+                                        <input type="hidden" value="{{ $row->serialnumber }}" class="key{{ $no }}">
                                         <td> {{$no + 1}} </td>
                                         <td><img src="{{ $row->image }}" style="width: 90px;"></td>
                                         <td>{{$row ->nama_barang}}</td>
                                         <td>{{$row ->stock}}</td>
                                         <td>{{$row ->anggaran}}</td>
+                                        <td>{{$row ->serialnumber}}</td>
                                         <td style="font-family: 'Libre Barcode 39';font-size: 22px;">{{$row ->scan}}</td>
                                         <td>
                                             <div class="container d-flex" style="margin: 0;padding: 0;">
