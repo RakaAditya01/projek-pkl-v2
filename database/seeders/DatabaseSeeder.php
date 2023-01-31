@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => Hash::make('12345678'),
+            'pswrd' => Hash::make('12345678'),
             'role' => 'admin',
             'nim' => '12345678'
         ]);
