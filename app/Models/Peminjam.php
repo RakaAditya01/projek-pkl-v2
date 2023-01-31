@@ -10,6 +10,7 @@ class Peminjam extends Model
 {
     use HasFactory;
 
+    protected $table = 'peminjams';
     protected $fillable = [
         'nim',
         'nama',
