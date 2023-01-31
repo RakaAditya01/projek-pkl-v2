@@ -12,14 +12,14 @@ use Intervention\Image\Facades\Image;
 class PeminjamController extends Controller {
     public function index() {
         $data=Peminjam::paginate(9999999999);
-        return view('Peminjaman\peminjaman', compact('data'));
+        return view('Peminjaman.peminjaman', compact('data'));
     }
 
     public function tambahpeminjam(Request $request) {
         $barang=Barang::all();
         $nama=auth()->user()->name;
         $user=DB::table('users') ->where('name', '=', $nama) ->select('nim', 'name') ->get();
-        return view('Peminjaman\tambahpeminjam', [ 'user'=> $user], compact('barang'));
+        return view('Peminjaman.tambahpeminjam', [ 'user'=> $user], compact('barang'));
     }
 
     public function store(request $request) {
@@ -56,7 +56,7 @@ class PeminjamController extends Controller {
 
     public function tampilanpeminjam($id) {
         $data=DB::table('peminjams')->where('id', $id)->find($id);
-        return view('Peminjaman\edit', ['data'=>$data]);
+        return view('Peminjaman.edit', ['data'=>$data]);
     }
 
     public function update(request $request, $id) {

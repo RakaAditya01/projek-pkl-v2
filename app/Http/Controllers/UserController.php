@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index(){
         $data = User::paginate(9999999999);
-        return view('expired\user',compact('data'));
+        return view('expired.user',compact('data'));
     }
 
     public function tambahuser(){
@@ -35,7 +35,7 @@ class UserController extends Controller
 
     public function tampilanUser($id){
         $data = User::find ($id);
-        return view('expired\edit',compact('data'))->with('toast_success', 'Data Berhasil Di Edit!');;
+        return view('expired.edit',compact('data'))->with('toast_success', 'Data Berhasil Di Edit!');;
     }
 
     public function update(request $request, $id){  

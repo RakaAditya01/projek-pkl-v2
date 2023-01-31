@@ -15,12 +15,12 @@ class BaranguserController extends Controller
 
     public function index(){
         $data = Barang::paginate(9999999999);
-        return view('user\baranguser',compact('data'));
+        return view('user.baranguser',compact('data'));
     }
 
     public function pinjamuser($id){
         $barang = DB::table('barangs')->where('id',$id)->find($id);
-        return view('user\pinjamuser' , compact('barang'));
+        return view('user.pinjamuser' , compact('barang'));
         return redirect(route('history'));
     }
 

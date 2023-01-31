@@ -28,7 +28,7 @@ class BarangController extends Controller
 
     public function tambahbarang(){
         $data = Barang::all();
-        return view('Barang\tambahbarang' , compact('data'));
+        return view('Barang.tambahbarang' , compact('data'));
     }
 
     public function store(request $request) {
@@ -83,7 +83,7 @@ class BarangController extends Controller
 
     public function tampilanbarang($id) {
         $data=DB::table('barangs')->where('id', $id)->find($id);
-        return view('Barang\edit', ['data'=>$data]);
+        return view('Barang.edit', ['data'=>$data]);
     }
 
     public function update(request $request, $id) {
