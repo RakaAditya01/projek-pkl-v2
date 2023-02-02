@@ -59,7 +59,7 @@ Route::get('/password', [RegisterController::class])->middleware('password.confi
 Route::post('/registeruser', [RegisterController::class, 'registeruser'])->name('registeruser');
 
 // barang
-Route::get('/barang', [BarangController::class,'index'])->name('barang');
+Route::post('/barang', [BarangController::class,'index'])->name('barang');
 Route::get('/tambahbarang', [BarangController::class,'tambahbarang'])->name('tambahbarang');
 Route::get('/updatebarang/{id}', [BarangController::class,'update'])->name('updatebarang');
 Route::get('/tampilanbarang/{id}', [BarangController::class,'tampilanbarang'])->name('tampilanbarang');
