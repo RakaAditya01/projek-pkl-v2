@@ -16,6 +16,7 @@
                         <div class="card-body">
                             <form  method="POST"  action="/insertbarang/"  enctype="multipart/form-data">
                                 @csrf
+                                @method('POST')
                                 <div class="mb-3">
                                     <label for="image">Foto</label>
                                     <div id="camera" class="img-fluid"></div>
