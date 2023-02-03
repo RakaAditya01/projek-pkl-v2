@@ -66,7 +66,13 @@ Route::get('/tampilanbarang/{id}', [BarangController::class,'tampilanbarang'])->
 Route::post('/insertbarang', [BarangController::class,'store'])->name('insertbarang');
 Route::delete('/deletebarang/{id}', [BarangController::class,'destroy'])->name('deletebarang');
 Route::get('/barang/cari',[BarangController::class,'cari'])->name('cari');
+
+
+// pdf
 Route::get('/pdf', [BarangController::class, 'exportPDF']);
+Route::get('/pdfuser', [UserController::class, 'pdfuser']);
+Route::get('/pdf1', [BarangController::class, 'cetakpdf']);
+Route::get('/excel', [BarangController::class,'excel']);
 
 // Peminjaman
 Route::get('/peminjaman', [PeminjamController::class,'index'])->name('peminjaman');

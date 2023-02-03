@@ -1,27 +1,12 @@
 @extends('layouts.app')
 
+@section('title', 'Barang')
+
 @push('style')
 <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.bootstrap4.min.css" />
-<style>
-    @media print {
-  body * {
-    visibility: hidden;
-}
-  #barcode, #barcode * {
-    visibility: visible;
-}
-#barcode {
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-}
-</style>
-
 @endpush
-@section('title', 'Barang')
 
 
 @section('main')
@@ -38,8 +23,11 @@
                             <div class="p-2 flex-grow-1 bd-highlight text-right">
                                 <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah+</a>
                                 <a href="/pdf" type="button" class="btn btn-danger mt-2 mb-4">Barcode PDF</a>
+                                <a href="/pdf1" type="button" class="btn btn-warning mt-2 mb-4">PDF</a>
+                                <a href="/excel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
                             </div>
                         </div>
+                        <div class="card-body">
                         <div class="table-responsive">
                             <table class="table-striped table" id="table-1">
                                 <thead>
@@ -55,8 +43,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $no=> $row)
+                                    @php
+                                    $no = 1;
+                                    @endphp
                                     <tr>
+                                        @foreach ($data as $no=> $row)
                                         <input type="hidden" value="{{ $row->image }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->nama_barang }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->stock }}" class="key{{ $no }}">

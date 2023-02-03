@@ -18,9 +18,17 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table-striped table nowrap" id="table-1" style="width: 100%">
-                                <thead>
+                        <div class="card-body p-0">
+                            <div class="bd-highlight d-flex">
+                                <div class="p-2 flex-grow-1 bd-highlight text-right">
+                                    <a href="{{route('tambahuser')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah+</a>
+                                    <a href="/pdfuser" type="button" class="btn btn-danger mt-2 mb-4">Barcode PDF</a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table-striped table" id="table-1">
+                                    <thead>
                                     <tr>
                                         <th scope="col">ID</th>
                                         <th scope="col">Name</th>

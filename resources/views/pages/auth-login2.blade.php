@@ -41,7 +41,12 @@
                         <h2 class="text-dark font-weight-normal">Sarpras</h2>
                         <p class="text-muted">Before you get started, you must login or register if you don't already
                             have an account.</p>
-                        
+                            <hr>
+                            @if(session('error'))
+                            <div class="alert alert-danger">
+                                <b>Opps!</b> {{session('error')}}
+                            </div>
+                            @endif
                         <form method="POST"
                             action="{{route('loginproses')}}"
                             class="needs-validation"

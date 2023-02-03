@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use PDF;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,12 @@ class UserController extends Controller
         return view('expired.user',compact('data'));
     }
 
+    public function pdfuser() {
+        $data = User::all();
+        $pdf = PDF::loadView('pdfuser', ['data' => $data]);
+        return $pdf->stream('user.pdf');
+    }
+
     public function tambahuser(){
         $user = User::all();
         return view('expired.tambah',compact('user'))->with('toast_success', 'Data Berhasil Di Edit!');;
@@ -26,7 +33,8 @@ class UserController extends Controller
             'name' => $request->name,
             'nim' => $request->nim,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request['password']),
+            'pswrd' => $request->password,
             'expired_at' => Carbon::now()->addMonths(6),
             'remember_token' => Str::random(60),
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),

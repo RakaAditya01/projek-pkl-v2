@@ -5,7 +5,8 @@ use App\Models\Peminjam;
 use Alert;
 use PDF;
 use Illuminate\Http\Request;
-use App\Exports\DataExport;
+use App\Exports\BarangExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PHPUnit\Framework\Constraint\IsEmpty;
@@ -20,10 +21,20 @@ class BarangController extends Controller
         return view('Barang.barang',compact('data'));
     }
 
+    public function excel()
+	{
+		return Excel::download(new BarangExport, 'DATA-BARANG.xlsx');
+	}
+
     public function exportPDF() {
         $data = Barang::all();
         $pdf = PDF::loadView('pdf', ['data' => $data]);
         return $pdf->stream('barang.pdf');
+    }
+    public function cetakpdf() {
+        $data = Barang::all();
+        $pdf = PDF::loadView('pdf1', ['data' => $data]);
+        return $pdf->stream('barang.pdf1');
     }
 
     public function tambahbarang(){

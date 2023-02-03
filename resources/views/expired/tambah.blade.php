@@ -55,12 +55,25 @@
                                     </div>
 
                                     <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Expired</label>
+                                        <input type="date" name="expired_at" class="form-control" id="expired_at"
+                                        @error('expired_at')
+                                        is-invalid
+                                        @enderror" aria-describedby="emailHelp">
+                                        @error('expired_at')
+                                       <div class="text-danger">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
+                                </div>
+
+                                    <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Password</label>
-                                        <input type="text" name="Password" id="Password" class="form-control 
-                                        @error('Password')
+                                        <input type="text" name="password" id="password" class="form-control 
+                                        @error('password')
                                             is-invalid
                                         @enderror" aria-describedby="emailHelp">
-                                        @error('Password')
+                                        @error('password')
                                         <div class="text-danger">
                                             {{ $message }}
                                         </div>
