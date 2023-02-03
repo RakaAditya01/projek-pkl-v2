@@ -7,12 +7,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use PDF;
 
 
 class PeminjamController extends Controller {
     public function index() {
         $data=Peminjam::paginate(9999999999);
         return view('Peminjaman.peminjaman', compact('data'));
+    }
+
+    public function exportPDF() {
+        $data = Peminjam::all();
+        $PdfPeminjam = PDF::loadView('PdfPeminjam', ['data' => $data]);
+        return $PdfPeminjam->stream('peminjam.PdfPeminjam');
     }
 
     public function tambahpeminjam(Request $request) {

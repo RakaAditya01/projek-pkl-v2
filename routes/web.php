@@ -76,6 +76,7 @@ Route::get('/tampilanpeminjam/{id}', [PeminjamController::class,'tampilanpeminja
 Route::put('/updatepeminjam/{id}', [PeminjamController::class,'update'])->name('updatepeminjam');
 Route::delete('/deletepeminjaman/{id}', [PeminjamController::class,'destroy'])->name('deletepeminjaman');
 Route::get('/peminjam/cari',[PeminjamController::class,'cari'])->name('cari');
+Route::get('/PdfPeminjam', [PeminjamController::class, 'exportPDF']);
 // Route::get('/action',[PeminjamController::class,'action'])->name('action');
 
 //user
