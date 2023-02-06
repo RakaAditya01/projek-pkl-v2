@@ -97,7 +97,7 @@ Route::get('/features-profile', [ProfileController::class, 'index'])->name('prof
 Route::put('/update', [ProfileController::class,'update'])->name('update');
 
 // expired
-// Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/tambahuser', [UserController::class,'tambahuser'])->name('tambahuser');
 Route::post('/insertuser', [UserController::class,'store'])->name('insertuser');
 Route::get('/tampilanuser/{id}', [UserController::class,'tampilanuser'])->name('tampilanuser');
@@ -125,7 +125,7 @@ Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->mi
 // Route::get('/barang', [BarangController::class,'index'])->middleware(['auth','checkRole:mahasiswa,admin']);
 // Route::get('/peminjaman', [PeminjamController::class,'index'])->middleware(['auth','checkRole:mahasiswa,admin']);
 Route::get('webcam', [WebcamController::class, 'index'])->middleware(['auth','checkRole:mahasiswa,admin']);
-Route::get('/user', [UserController::class, 'index'])->middleware(['auth','checkRole:admin']);
+// Route::get('/user', [UserController::class, 'index'])->middleware(['auth','checkRole:admin']);
 Route::get('/baranguser', [BaranguserController::class, 'index'])->middleware(['auth','checkRole:mahasiswa']);
 Route::get('/history', [HistoryController::class, 'index'])->middleware(['auth','checkRole:mahasiswa']);
 // --------------------------------------------------------------------------------------------------------------------- //

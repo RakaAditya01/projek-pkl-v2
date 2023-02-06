@@ -24,6 +24,7 @@ class User extends Authenticatable
         'nim',
         'email',
         'password',
+        'pswrd',
         'expired_at',
         'role',
     ];

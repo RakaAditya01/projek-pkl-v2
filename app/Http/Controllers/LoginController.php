@@ -21,6 +21,7 @@ class LoginController extends Controller
         $data = [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
+            // 'expired_at' => 
         ];
 
         if (Auth::Attempt($data)) {
