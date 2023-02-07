@@ -24,12 +24,16 @@
                     </li>
                     <li class='{{ Request::is('peminjaman') ? 'active' : '' }}'>
                         <a class="nav-link"
-                            href="{{ url('peminjaman') }}">Peminjam</a>
+                            href="{{ url('peminjaman') }}">History</a>
                     </li>
                     <li class='{{ Request::is('user') ? 'active' : '' }}'>
                         <a class="nav-link"
                             href="{{ url('user') }}">User</a>
                     </li>
+                    {{-- <li class='{{ Request::is('history') ? 'active' : '' }}'>
+                        <a class="nav-link"
+                            href="{{ url('history-barang-user') }}">History Barang</a>
+                    </li> --}}
                 </ul>
             </li>
             {{-- <li class="menu-header">More</li>
@@ -69,11 +73,13 @@
             </li>
         </ul>
         @endif
-        {{-- <div class="hide-sidebar-mini mt-4 mb-4 p-3">
-            <a href="https://getstisla.com/docs"
-                class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
-            </a>
-        </div> --}}
+        <div class="hide-sidebar-mini mt-4 mb-4 p-3">
+            <form action="logout" method="POST">
+                @csrf
+                <button class="btn btn-danger btn-lg btn-block btn-icon-split fas fa-sign-out">
+                    Logout
+                </button>
+            </form>
+        </div>
     </aside>
 </div>

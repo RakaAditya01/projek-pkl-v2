@@ -24,7 +24,7 @@
                                 <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah+</a>
                                 <a href="/pdf" type="button" class="btn btn-danger mt-2 mb-4">Barcode PDF</a>
                                 <a href="/pdf1" type="button" class="btn btn-warning mt-2 mb-4">PDF</a>
-                                <a href="/excel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+                                <a href="/excel" class="btn btn-success mt-2 mb-4" target="_blank">EXPORT EXCEL</a>
                             </div>
                         </div>
                         <div class="card-body">

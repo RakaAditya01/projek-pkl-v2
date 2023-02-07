@@ -44,7 +44,7 @@
                                 <h4>Jumlah Barang</h4>
                             </div>
                             <div class="card-body">
-                               {{ $barang }}
+                            {{ $barang }}
                             </div>
                         </div>
                     </div>

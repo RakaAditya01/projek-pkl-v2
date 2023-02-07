@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Peminjam')
+@section('title', 'History')
 
 @push('style')
 <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
@@ -12,31 +12,22 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>History</h1>
+            <h1>Data History Barang User</h1>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="bd-highlight d-flex">
-                        <div class="p-2 flex-grow-1 bd-highlight text-right">
-                        <a href="{{route('tambahpeminjam')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah+</a>
-                        <a href="/PdfPeminjam" type="button" class="btn btn-danger mt-2 mb-4">PDF</a>
-                        </div>
-                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table-striped table" id="table-1">
+                            <table class="table-striped table nowrap" id="table-1" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">Foto</th>
-                                        <th scope="col">NIM</th>
                                         <th scope="col">Nama</th>
+                                        <th scope="col">Nim</th>
                                         <th scope="col">Nama Barang</th>
-                                        <th scope="col">keterangan</th>
+                                        <th scope="col">Keterangan</th>
                                         <th scope="col">Jumlah</th>
-                                        <th scope="col">Tgl.Dipinjam</th>
-                                        <th scope="col">Tgl.Pengembalian</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -45,36 +36,24 @@
                                     $no = 1;
                                     @endphp
                                     <tr>
-                                        @foreach ($data as $no => $row)
-                                        <input type="hidden" value="{{ $row->image }}" class="key{{ $no }}">
-                                        <input type="hidden" value="{{ $row->nim }}" class="key{{ $no }}">
-                                        <input type="hidden" value="{{ $row->nama }}" class="key{{ $no }}">
-                                        <input type="hidden" value="{{ $row->nama_barang }}" class="key{{ $no }}">
-                                        <input type="hidden" value="{{ $row->jumlah }}" class="key{{ $no }}">
-                                        <td>{{$no + 1}}</td>
-                                        <td><img src="{{ $row->image }}" style="width: 60px;"></td>
-                                        <td>{{$row->nim}}</td>
-                                        <td>{{$row->nama}}</td>
-                                        <td>{{$row->nama_barang}}</td>
-                                        <td>{{$row->keterangan}}</td>
-                                        <td>{{$row->jumlah}}</td>
-                                        <td>{{$row ->created_at->format('Y-m-d')}}</td>
-                                        <td>{{$row ->expired_at->format('Y-m-d')}}</td>
+                                        @foreach ($data as $index => $row)
+                                        <th scope="row">{{ $index + $data->firstItem() }}</th>
+                                        <td>{{$row ->name}}</td>
+                                        <td>{{$row ->nim}}</td>
+                                        <td>{{$row ->nama_barang}}</td>
+                                        <td>{{$row ->keterangan}}</td>
+                                        <td>{{$row ->jumlah}}</td>
                                         <td>
                                             <div class="container d-flex" style="margin: 0;padding: 0;">
-                                                <form action="{{route('deletepeminjaman',$row->id)}}"
+                                                <form action="{{route('hapushistory',$row->id)}}"
                                                     id="delete{{$row->id}}" method="POST" class="d-block">
                                                     @csrf
                                                     @method('delete')
                                                     <a href="#" data-id={{$row->id}}
-                                                        class="btn btn-icon btn-danger m-1 btn-lg delete swal-confrim">
+                                                        class="btn btn-icon btn-danger m-1 ml-3 mt-1 mb-3 delete swal-confrim">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </form>
-                                                <a href="{{route('tampilanpeminjam',$row->id)}}"
-                                                    class="btn btn-primary m-1 btn-lg">
-                                                    <i class="fas fa-pencil-alt "></i>
-                                                </a>
                                             </div>
                                         </td>
                                     </tr>

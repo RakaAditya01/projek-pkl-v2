@@ -168,13 +168,12 @@
                     class="dropdown-item has-icon">
                     <i class="fas fa-cog"></i> Settings
                 </a> --}}
-                <div class="dropdown-divider"></div>
-                <div class="dropdown-item has-icon text-danger">
+                {{-- <div class="dropdown-item has-icon text-danger">
                     <form action="logout" method="POST">
                         @csrf
                         <button class="btn btn-danger fas fa-sign-out-alt">Logout</button>
                     </form>
-                </div>
+                </div> --}}
     @endif
     {{-- <div class="dropdown-divider"></div>
                 <div class="dropdown-item has-icon text-danger">

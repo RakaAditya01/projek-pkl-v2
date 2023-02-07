@@ -22,7 +22,7 @@
                             <div class="bd-highlight d-flex">
                                 <div class="p-2 flex-grow-1 bd-highlight text-right">
                                     <a href="{{route('tambahuser')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah+</a>
-                                    <a href="/pdfuser" type="button" class="btn btn-danger mt-2 mb-4">Barcode PDF</a>
+                                    <a href="/pdfuser" type="button" class="btn btn-danger mt-2 mb-4">PDF</a>
                                 </div>
                             </div>
                             <div class="card-body">
