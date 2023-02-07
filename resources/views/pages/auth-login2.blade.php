@@ -47,6 +47,11 @@
                                 <b>Opps!</b> {{session('error')}}
                             </div>
                             @endif
+                            @if(session('logout'))
+                            <div class="alert alert-success">
+                                 {{session('logout')}}
+                            </div>
+                            @endif
                         <form method="POST"
                             action="{{route('loginproses')}}"
                             class="needs-validation"

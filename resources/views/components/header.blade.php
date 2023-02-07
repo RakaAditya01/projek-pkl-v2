@@ -169,14 +169,22 @@
                     <i class="fas fa-cog"></i> Settings
                 </a> --}}
                 <div class="dropdown-divider"></div>
-                <a href="/auth-login2"
-                    class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-            </div>
-        </li>
-    </ul>
+                <div class="dropdown-item has-icon text-danger">
+                    <form action="logout" method="POST">
+                        @csrf
+                        <button class="btn btn-danger fas fa-sign-out-alt">Logout</button>
+                    </form>
+                </div>
     @endif
+    {{-- <div class="dropdown-divider"></div>
+                <div class="dropdown-item has-icon text-danger">
+                    <form action="logout" method="POST">
+                        @csrf
+                        <button>
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
+                </div> --}}
 
     {{-- User --}}
     @if(auth()->user()->role == 'mahasiswa')
