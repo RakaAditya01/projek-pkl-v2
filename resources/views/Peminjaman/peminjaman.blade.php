@@ -21,6 +21,7 @@
                         <div class="p-2 flex-grow-1 bd-highlight text-right">
                         <a href="{{route('tambahpeminjam')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah+</a>
                         <a href="/PdfPeminjam" type="button" class="btn btn-danger mt-2 mb-4">PDF</a>
+                        <a href="/excel1" class="btn btn-success mt-2 mb-4" target="_blank">EXPORT EXCEL</a>
                         </div>
                     </div>
                     <div class="card-body">

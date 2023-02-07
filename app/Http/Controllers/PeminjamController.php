@@ -5,8 +5,12 @@ use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use App\Exports\PeminjamExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Constraint\IsEmpty;
 use PDF;
 
 
@@ -21,6 +25,11 @@ class PeminjamController extends Controller {
         $PdfPeminjam = PDF::loadView('PdfPeminjam', ['data' => $data]);
         return $PdfPeminjam->stream('peminjam.PdfPeminjam');
     }
+
+    public function excel1()
+	{
+		return Excel::download(new PeminjamExport, 'HISTORY-PEMINJAMAN.xlsx');
+	}
 
     public function tambahpeminjam(Request $request) {
         $barang=Barang::all();

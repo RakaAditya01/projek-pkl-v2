@@ -74,6 +74,7 @@ Route::get('/pdf', [BarangController::class, 'exportPDF']);
 Route::get('/pdfuser', [UserController::class, 'pdfuser']);
 Route::get('/pdf1', [BarangController::class, 'cetakpdf']);
 Route::get('/excel', [BarangController::class,'excel']);
+Route::get('/excel1', [PeminjamController::class,'excel1']);
 
 // Peminjaman
 Route::get('/peminjaman', [PeminjamController::class,'index'])->name('peminjaman');
