@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BaranguserController;
+use App\Http\Controllers\ChartJSController;
 use App\Http\Controllers\HistorybarangController;
 use App\Http\Controllers\ForgotPasswordController;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
@@ -50,6 +51,10 @@ Route::post('auth-reset-password', [ForgotPasswordController::class, 'submitRese
 Route::get('webcam', [WebcamController::class, 'index']);
 Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture');
 Route::get('scan', [ScanController::class, 'index'])->name('scan');
+
+// grafik
+  
+Route::get('/chart', [ChartJSController::class, 'index'])->name('chart');
 
 // Auth
 Route::post('/logout', [LoginController::class, 'logout']);

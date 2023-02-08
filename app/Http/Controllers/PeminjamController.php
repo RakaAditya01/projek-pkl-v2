@@ -70,6 +70,21 @@ class PeminjamController extends Controller {
         return redirect(route('peminjaman'));
     }
 
+
+    // public function grafik()
+    // {
+    //     $jumlah = Peminjam::select(DB::raw("CAST(SUM(jumlah) as int) as jumlah"))
+    //     ->groupBy(DB::raw("Month(created_at)"))
+    //     ->pluck('jumlah');
+        
+
+    //     $bulan = Peminjam::select(DB::raw("MONTHNAME(created_at) as bulan"))
+    //     ->groupBy(DB::raw("MONTHNAME(created_at)"))
+    //     ->pluck('bulan');
+
+    //     return view('grafik', compact('jumlah', 'bulan'));
+    // }
+
     public function tampilanpeminjam($id) {
         $data=DB::table('peminjams')->where('id', $id)->find($id);
         return view('Peminjaman.edit', ['data'=>$data]);
@@ -148,5 +163,6 @@ class PeminjamController extends Controller {
         $data = Peminjam::find($id);
         $data->delete();
         return redirect()->route('peminjaman')->with('toast_success', 'Data Berhasil Di Hapus!');
-        }   
+        }
+
 }

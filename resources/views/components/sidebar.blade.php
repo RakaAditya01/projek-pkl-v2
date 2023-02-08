@@ -30,10 +30,10 @@
                         <a class="nav-link"
                             href="{{ url('user') }}">User</a>
                     </li>
-                    {{-- <li class='{{ Request::is('history') ? 'active' : '' }}'>
+                    <li class='{{ Request::is('chart') ? 'active' : '' }}'>
                         <a class="nav-link"
-                            href="{{ url('history-barang-user') }}">History Barang</a>
-                    </li> --}}
+                            href="{{ url('chart') }}">Grafik</a>
+                    </li>
                 </ul>
             </li>
             {{-- <li class="menu-header">More</li>
