@@ -73,7 +73,7 @@
             </li>
         </ul>
         @endif
-        <div class="hide-sidebar-mini mt-4 mb-4 p-3">
+        <div class="hide-sidebar-mini mt-3 mb-3 p-5">
             <form action="logout" method="POST">
                 @csrf
                 <button class="noselect">
