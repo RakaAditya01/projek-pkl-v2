@@ -80,6 +80,17 @@
                                         aria-describedby="emailHelp">
                                     <div id="emailHelp" class="form-text"></div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col mb-lg-2 mb-1">
+                                        <label for="exampleFormControlSelect1" class="form-label">Kepemilikan</label>
+                                        <select class="form-select @error('level') is-invalid @enderror" id="exampleFormControlSelect1" aria-label="Default select example" name="kepemilikan">
+                                            {{-- <option selected value="{{ $user->role }}">{{ $user->role }}</option> --}}
+                                            <option value="milik negara">Milik Negara</option>
+                                            <option value="milik pnj">Milik PNJ</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>

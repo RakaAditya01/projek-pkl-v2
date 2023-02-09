@@ -74,6 +74,7 @@ class BarangController extends Controller
                 'anggaran' => $request->anggaran,
                 'scan' => $random,
                 'serialnumber' => $serial,
+                'kepemilikan' => $request->kepemilikan,
                 'image' => $upload,
                 'created_at' => now(),
                 ]);
@@ -84,6 +85,7 @@ class BarangController extends Controller
                     'anggaran' => $request->anggaran,
                     'scan' => $request->scan,
                     'serialnumber' => $request->serialnumber,
+                    'kepemilikan' => $request->kepemilikan,
                     'image' => $upload,
                     'created_at' => now(),
                 ]);
@@ -104,6 +106,7 @@ class BarangController extends Controller
                 'anggaran'=> $request->anggaran,
                 'scan'=> $request->scan,
                 'serialnumber'=> $request->serialnumber,
+                'kepemilikan' => $request->kepemilikan,
                 'updated_at'=> now(),
                 ]);
         if($request->get('image')) {

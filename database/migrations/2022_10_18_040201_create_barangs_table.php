@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->integer('anggaran');
             $table->string('scan');
+            $table->enum('kepemilikan', ['Milik Negara', 'Milik PNJ']);
             $table->string('serialnumber');
             $table->timestamps();
         });

@@ -21,7 +21,7 @@
                     <div class="card-body p-0">
                         <div class="bd-highlight d-flex">
                             <div class="p-2 flex-grow-1 bd-highlight text-right">
-                                <a href="{{route('tambahbarang')}}" type="button" class="btn btn-success mt-2 mb-4">Tambah+</a>
+                                <a href="{{route('tambahbarang')}}" type="button" class="btn btn-primary mt-2 mb-4">Tambah+</a>
                                 <a href="/pdf" type="button" class="btn btn-danger mt-2 mb-4">Barcode PDF</a>
                                 <a href="/pdf1" type="button" class="btn btn-warning mt-2 mb-4">PDF</a>
                                 <a href="/excel" class="btn btn-success mt-2 mb-4" target="_blank">EXPORT EXCEL</a>
@@ -37,6 +37,7 @@
                                         <th scope="col">Nama Barang</th>
                                         <th scope="col">Stock</th>
                                         <th scope="col">Tahun Anggaran</th>
+                                        <th scope="col">Kepemilikan</th>
                                         <th scope="col">Serial Number</th>
                                         <th scope="col">Barcode</th>
                                         <th scope="col">Action</th>
@@ -52,6 +53,7 @@
                                         <input type="hidden" value="{{ $row->nama_barang }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->stock }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->anggaran }}" class="key{{ $no }}">
+                                        <input type="hidden" value="{{ $row->kepemilikan }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->scan }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->serialnumber }}" class="key{{ $no }}">
                                         <td> {{$no + 1}} </td>
@@ -59,6 +61,7 @@
                                         <td>{{$row ->nama_barang}}</td>
                                         <td>{{$row ->stock}}</td>
                                         <td>{{$row ->anggaran}}</td>
+                                        <td>{{$row ->kepemilikan}}</td>
                                         <td>{{$row ->serialnumber}}</td>
                                         <td style="font-family: 'Libre Barcode 39';font-size: 22px;">{{$row ->scan}}</td>
                                         <td>

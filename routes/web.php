@@ -14,7 +14,6 @@ use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BaranguserController;
 use App\Http\Controllers\ChartJSController;
-use App\Http\Controllers\HistorybarangController;
 use App\Http\Controllers\ForgotPasswordController;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -121,10 +120,6 @@ Route::group(['middleware' => ['auth','checkrole:admin']],function () {
 //history
 Route::get('/history', [HistoryController::class, 'index'])->name('history');
 Route::post('/deletehistory/{id}', [HistoryController::class,'destroy'])->name('deletehistory');
-
-//History Barang User
-Route::get('/history-barang-user', [HistorybarangController::class, 'index'])->name('history-barang-user');
-Route::delete('/hapushistory/{id}', [HistorybarangController::class,'destroy'])->name('hapushistory');
 
 // webcam
 Route::get('webcam', [WebcamController::class, 'index']);

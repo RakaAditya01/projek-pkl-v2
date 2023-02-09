@@ -8,15 +8,9 @@
         <div class="section-header">
             <h1>Grafik Peminjam</h1>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <canvas id="myChart" height="100px"></canvas>
-                    </div>
-                        </div>
-                    </div>
-                </div>
+        <body>
+          <canvas id="myChart" height="100px"></canvas>
+      </body>
             </div>
         </div>
     </section>

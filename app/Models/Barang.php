@@ -18,6 +18,7 @@ class Barang extends Model
         'anggaran',
         'scan',
         'serialnumber',
+        'kepemilikan',
     ];
 
     public Function peminjam(){
