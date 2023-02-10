@@ -29,6 +29,7 @@
                                         <th scope="col">Nama Barang</th>
                                         <th scope="col">keterangan</th>
                                         <th scope="col">Jumlah</th>
+                                        <th scope="col">Kepemilikan</th>
                                         <th scope="col">Tgl.Dipinjam</th>
                                         <th scope="col">Tgl.Pengembalian</th>
                                     </tr>
@@ -46,6 +47,7 @@
                                         <td>{{$row ->nama_barang}}</td>
                                         <td>{{$row ->keterangan}}</td>
                                         <td>{{$row ->jumlah}}</td>
+                                        <td>{{$row ->kepemilikan}}</td>
                                         <td>{{$row ->created_at->format('Y-m-d')}}</td>
                                         <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                         {{-- <td>

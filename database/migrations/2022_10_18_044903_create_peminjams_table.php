@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->timestamp('barang_verified_at')->nullable();
             $table->string('keterangan');
+            $table->enum('kepemilikan', ['Milik Negara', 'Milik PNJ']);
             $table->date('expired_at')->nullable();
             $table->timestamps();
         });

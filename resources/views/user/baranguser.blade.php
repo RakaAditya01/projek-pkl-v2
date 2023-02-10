@@ -26,6 +26,7 @@
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Nama Barang</th>
                                         <th scope="col">Stock</th>
+                                        <th scope="col">Kepemilikan</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -41,6 +42,7 @@
                                         </td>
                                         <td>{{$row -> nama_barang}}</td>
                                         <td>{{$row -> stock}}</td>
+                                        <td>{{$row -> kepemilikan}}</td>
                                         @if($row -> stock >= 1)
                                         <td>
                                             <a href="{{route('pinjamuser', $row->id)}}" type="button"

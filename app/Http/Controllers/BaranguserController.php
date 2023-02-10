@@ -41,6 +41,7 @@ class BaranguserController extends Controller
                 'nim' => $id,
                 'keterangan' =>$request->keterangan,
                 'jumlah' =>$request->jumlah,
+                'kepemilikan' =>$request->kepemilikan,
                 'expired_at' => Carbon::today()->addWeeks(1)->toDateString(),
                 'created_at' => now(),
             ]);

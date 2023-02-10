@@ -57,12 +57,14 @@ class PeminjamController extends Controller {
             $upload=cloudinary()->upload($img)->getSecurePath();
             $id=auth()->user()->nim;
             $nama=auth()->user()->name;
-            $data=Peminjam::insert([ 'nama_barang'=> $request->nama_barang,
+            $data=Peminjam::insert([ 
+                'nama_barang'=> $request->nama_barang,
                 'image'=> $upload,
                 'nama'=> $nama,
                 'nim'=> $id,
                 'keterangan'=>$request->keterangan,
                 'jumlah'=>$request->jumlah,
+                'kepemilikan'=>$request->kepemilikan,
                 'expired_at'=> Carbon::today()->addWeeks(1)->toDateString(),
                 'created_at'=> now(),
                 ]);

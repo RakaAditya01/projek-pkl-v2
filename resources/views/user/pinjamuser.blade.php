@@ -79,6 +79,12 @@
                                 </div>
                                 @enderror
                             </div>
+
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Kepemilikan</label>
+                                <input type="text" name="kepemilikan"  class="form-control" aria-describedby="emailHelp" value="{{$barang->kepemilikan}}" readonly>
+                                </input>
+                            </div>
                             
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
