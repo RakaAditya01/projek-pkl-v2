@@ -4,7 +4,7 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    labels: ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"],
     datasets: [{
       label: 'Statistics',
       data: [460, 458, 330, 502, 430, 610, 488],
@@ -47,7 +47,7 @@ var ctx = document.getElementById("myChart2").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    labels: ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"],
     datasets: [{
       label: 'Statistics',
       data: [460, 458, 330, 502, 430, 610, 488],
