@@ -36,6 +36,7 @@
                                         <th scope="col">Nama Barang</th>
                                         <th scope="col">keterangan</th>
                                         <th scope="col">Jumlah</th>
+                                        <th scope="col">Kepemilikan</th>
                                         <th scope="col">Tgl.Dipinjam</th>
                                         <th scope="col">Tgl.Pengembalian</th>
                                         <th scope="col">Action</th>
@@ -52,6 +53,7 @@
                                         <input type="hidden" value="{{ $row->nama }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->nama_barang }}" class="key{{ $no }}">
                                         <input type="hidden" value="{{ $row->jumlah }}" class="key{{ $no }}">
+                                        <input type="hidden" value="{{ $row->kepemilikan }}" class="key{{ $no }}">
                                         <td>{{$no + 1}}</td>
                                         <td><img src="{{ $row->image }}" style="width: 60px;"></td>
                                         <td>{{$row->nim}}</td>
@@ -59,6 +61,7 @@
                                         <td>{{$row->nama_barang}}</td>
                                         <td>{{$row->keterangan}}</td>
                                         <td>{{$row->jumlah}}</td>
+                                        <td>{{$row->kepemilikan}}</td>
                                         <td>{{$row ->created_at->format('Y-m-d')}}</td>
                                         <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                         <td>
