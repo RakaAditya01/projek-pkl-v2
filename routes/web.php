@@ -70,7 +70,7 @@ Route::get('/updatebarang/{id}', [BarangController::class,'update'])->name('upda
 Route::get('/tampilanbarang/{id}', [BarangController::class,'tampilanbarang'])->name('tampilanbarang');
 Route::post('/insertbarang', [BarangController::class,'store'])->name('insertbarang');
 Route::delete('/deletebarang/{id}', [BarangController::class,'destroy'])->name('deletebarang');
-Route::get('/barang/cari',[BarangController::class,'cari'])->name('cari');
+// Route::get('/barang/cari',[BarangController::class,'cari'])->name('cari');
 
 
 // pdf
@@ -87,7 +87,7 @@ Route::post('/insertpeminjam', [PeminjamController::class,'store'])->name('inser
 Route::get('/tampilanpeminjam/{id}', [PeminjamController::class,'tampilanpeminjam'])->name('tampilanpeminjam');
 Route::put('/updatepeminjam/{id}', [PeminjamController::class,'update'])->name('updatepeminjam');
 Route::delete('/deletepeminjaman/{id}', [PeminjamController::class,'destroy'])->name('deletepeminjaman');
-Route::get('/peminjam/cari',[PeminjamController::class,'cari'])->name('cari');
+// Route::get('/peminjam/cari',[PeminjamController::class,'cari'])->name('peminjam/cari');
 Route::get('/PdfPeminjam', [PeminjamController::class, 'exportPDF']);
 // Route::get('/action',[PeminjamController::class,'action'])->name('action');
 
@@ -109,7 +109,7 @@ Route::post('/insertuser', [UserController::class,'store'])->name('insertuser');
 Route::get('/tampilanuser/{id}', [UserController::class,'tampilanuser'])->name('tampilanuser');
 Route::put('/updateuser/{id}', [UserController::class,'update'])->name('updateuser');
 Route::delete('/deleteuser/{id}', [UserController::class,'destroy'])->name('deleteuser');
-Route::get('/user/cari',[UserController::class,'cari'])->name('cari');
+// Route::get('/user/cari',[UserController::class,'cari'])->name('cari');
 
 // auth
 Route::group(['middleware' => ['auth','checkrole:admin']],function () {

@@ -29,7 +29,7 @@
                                             </div>
                                             @enderror
                                         </div>
-                            @foreach($user as $users)
+                                   @foreach($user as $users)
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">NIM</label>
                                         <input type="text" name="nim" id="" class="form-control 
@@ -66,6 +66,18 @@
                                             is-invalid
                                         @enderror" id="" aria-describedby="emailHelp">
                                         @error('keterangan')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Kepemilikan</label>
+                                        <input type="text" name="kepemilikan" class="form-control 
+                                        @error('kepemilikan')
+                                            is-invalid
+                                        @enderror" id="" aria-describedby="emailHelp">
+                                        @error('kepemilikan')
                                         <div class="text-danger">
                                             {{ $message }}
                                         </div>
