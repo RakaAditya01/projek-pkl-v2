@@ -14,7 +14,7 @@
                     <div class="col-8">
                         <div class="card">
                             <div class="card-body" style="width: 90%">
-                                <form method="POST" action="/insertpeminjam/" enctype="multipart/form-data">
+                                <form action="{{ route('insertpeminjam') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="image">Foto</label>

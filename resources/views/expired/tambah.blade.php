@@ -12,7 +12,7 @@
                     <div class="col-8">
                         <div class="card">
                             <div class="card-body" style="width: 90%">
-                                <form method="POST" action="/insertuser/" enctype="multipart/form-data">
+                                <form action="{{ route('insertuser') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Name</label>
