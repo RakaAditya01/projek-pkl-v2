@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => Hash::make('12345678'),
             'pswrd' => Hash::make('12345678'),
-            'expired_at' => ('2023-7-12'),
+            'expired_at' => ('2023-07-12'),
             'role' => 'admin',
             'nim' => '12345678'
         ]);
