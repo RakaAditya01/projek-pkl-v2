@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
@@ -29,6 +30,20 @@ class UserController extends Controller
     }
 
     public function store(request $request){
+        $this->validate($request,[
+            'name' => 'required',
+            'nim' => 'required|unique',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => ['required', Rules\Password::min(8)],
+            'expired_at' => 'required'
+        ], 
+        [
+            'name.required' => 'Nama Tidak Boleh Kosong',
+            'nim.required' => 'NIM Tidak Boleh Kosong',
+            'email.required' => 'Email Tidak Boleh Kosong',
+            'password.required' => 'Password Tidak Boleh Kosong',
+            'expired_at.required' => 'Expired Tidak Boleh Kosong'
+        ]);
         user::create([
             'name' => $request->name,
             'nim' => $request->nim,
