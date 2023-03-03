@@ -15,13 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => Hash::make('12345678'),
             'pswrd' => Hash::make('12345678'),
+            'expired_at' => now()->addMonths(6),
             'role' => 'admin',
             'nim' => '12345678'
         ]);

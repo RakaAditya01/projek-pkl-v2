@@ -34,8 +34,8 @@
                                         <th scope="col">Name</th>
                                         <th scope="col">Nim</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Expired</th>
                                         <th scope="col">Role</th>
+                                        <th scope="col">Expired</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -49,8 +49,8 @@
                                         <td>{{$row ->name}}</td>
                                         <td>{{$row ->nim}}</td>
                                         <td>{{$row ->email}}</td>
-                                        <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                         <td>{{$row ->role}}</td>
+                                        <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                         <td>
                                             <div class="container d-flex" style="margin: 0;padding: 0;">
                                                 <form action="{{route('deleteuser',$row->id)}}"

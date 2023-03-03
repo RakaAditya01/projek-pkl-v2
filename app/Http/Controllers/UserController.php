@@ -34,6 +34,7 @@ class UserController extends Controller
             'nim' => $request->nim,
             'email' => $request->email,
             'pswrd' => $request->password,
+            'role' => $request->role,
             'password' => Hash::make($request['password']),
             'expired_at' => Carbon::now()->addMonths(6),
             'remember_token' => Str::random(60),

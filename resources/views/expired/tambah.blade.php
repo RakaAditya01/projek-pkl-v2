@@ -16,7 +16,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Name</label>
-                                        <input type="text" name="name" id="" class="form-control 
+                                        <input type="text" name="name" id="name" class="form-control 
                                         @error('name')
                                             is-invalid
                                         @enderror" aria-describedby="emailHelp">
