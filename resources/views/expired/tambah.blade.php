@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('style')
+<link rel="shortcut icon" href="img/pnj.ico" type="image/x-icon">
+@endpush
+
 @section('main')
 <div class="main-content">
     <section class="section">
