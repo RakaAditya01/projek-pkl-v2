@@ -54,6 +54,7 @@
                                         <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                         <td>
                                             <div class="container d-flex" style="margin: 0;padding: 0;">
+                                                @if(auth()->user()->id != $row->id)
                                                 <form action="{{route('deleteuser',$row->id)}}"
                                                     id="delete{{$row->id}}" method="POST" class="d-block">
                                                     @csrf
@@ -63,6 +64,7 @@
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </form>
+                                                @endif
                                                 <a href="{{route('tampilanuser',$row->id)}}"
                                                     class="btn btn-primary m-1 mr-3 mb-3 mt-1 "><i
                                                         class="fas fa-pencil-alt "></i></a>
