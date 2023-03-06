@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => Hash::make('12345678'),
             'pswrd' => Hash::make('12345678'),
-            'expired_at' => now()->addMonths(6),
+            'expired_at' => now()->addMonths(9),
             'role' => 'admin',
             'nim' => '12345678'
         ]);
