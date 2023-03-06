@@ -51,7 +51,7 @@
                                         <td>{{$row ->nim}}</td>
                                         <td>{{$row ->email}}</td>
                                         <td>{{$row ->role}}</td>
-                                        <td>{{$row ->expired_at->format('Y-m-d')}}}}</td>
+                                        <td>{{$row ->expired_at->format('Y-m-d')}}</td>
                                         <td>
                                             <div class="container d-flex" style="margin: 0;padding: 0;">
                                                 @if(auth()->user()->id != $row->id)
