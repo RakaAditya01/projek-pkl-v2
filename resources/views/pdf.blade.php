@@ -12,7 +12,7 @@
     <style>
         @font-face {
           font-family: 'Libre Barcode 39';
-          src: url({{ storage_path("fonts/LibreBarcode39-Regular.ttf") }}') format('truetype');
+          src: url({{ storage_path("fonts.LibreBarcode39-Regular.ttf") }}') format('truetype');
         }
 
         .scan{
@@ -20,7 +20,7 @@
           font-family: 'Libre Barcode 39';font-size: 35px;"
           text-decoration: underline;
           text-decoration: overline;
-          margin-left:3px
+          margin-left:3px;
         }
     </style>
   <body>
