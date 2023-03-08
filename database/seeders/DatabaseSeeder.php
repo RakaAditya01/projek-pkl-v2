@@ -25,5 +25,14 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'nim' => '12345678'
         ]);
+        \App\Models\User::factory()->create([
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('12345678'),
+            'pswrd' => Hash::make('12345678'),
+            'expired_at' => now()->addMonths(9),
+            'role' => 'mahasiswa',
+            'nim' => '09876543'
+        ]);
     }
 }

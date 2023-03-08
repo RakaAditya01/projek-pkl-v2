@@ -69,14 +69,14 @@
                                         <div id="emailHelp" class="form-text"></div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Kepemilikan</label>
-                                        <input type="text" name="kepemilikan"  class="form-control" aria-describedby="emailHelp" value="{{$barang->kepemilikan}}" readonly>
+                                        <label for="exampleInputEmail1" class="form-label">Jumlah</label>
+                                        <input type="text" name="jumlah" value="{{$data->jumlah}}" class="form-control" id=""
+                                        aria-describedby="emailHelp">
                                         <div id="emailHelp" class="form-text"></div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Jumlah</label>
-                                        <input type="text" name="jumlah" value="{{$data->jumlah}}" class="form-control" id=""
-                                            aria-describedby="emailHelp">
+                                        <label for="exampleInputEmail1" class="form-label">Kepemilikan</label>
+                                        <input type="text" name="kepemilikan"  class="form-control" aria-describedby="emailHelp" value="{{$data->kepemilikan}}" readonly>
                                         <div id="emailHelp" class="form-text"></div>
                                     </div>
                                     

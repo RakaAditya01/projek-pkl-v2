@@ -152,11 +152,6 @@ class PeminjamController extends Controller {
                 // ->select('jumlah')
                 // ->get();
                 // dd($jumlah);
-
-            $data1 = DB::table('barangs')->where('id', $id) ->update([
-
-            ]);
-
         }
         return redirect()->route('peminjaman')->with('toast_success', 'Data Berhasil Di Edit!');
     }
