@@ -1,7 +1,5 @@
 <h1 align="center">Projek PKL</h1>
-
 <br>
-
 ## Quick start
 
 Several quick start options are available:
