@@ -4,6 +4,7 @@ use App\Models\Barang;
 use App\Models\Peminjam;
 use Alert;
 use PDF;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use App\Exports\BarangExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -61,9 +62,9 @@ class BarangController extends Controller
             foreach ($image_parts as $row=> $image) {
                 $image_base64=base64_decode($image);
             }
-            // dd($fileName);
+            // dd($request);
             $upload=cloudinary()->upload($img)->getSecurePath();
-            if($request->scan == $empty || $request->serialnumber == $empty){
+            if($request->scan == null || $request->serialnumber == null){
                 $id = $this->generateIdCode();
                 $random = $this->generateUniqueCode();
                 $serial = $this->generateSerialNumber($id);
@@ -76,7 +77,7 @@ class BarangController extends Controller
                 'serialnumber' => $serial,
                 'kepemilikan' => $request->kepemilikan,
                 'image' => $upload,
-                'created_at' => now(),
+                'created_at'=> now(),
                 ]);
             } else {
                 $data = Barang::insert([
